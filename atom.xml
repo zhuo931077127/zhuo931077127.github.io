@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-17T14:27:30.431Z</updated>
+  <updated>2019-01-17T14:34:58.506Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://yoursite.com/2019/01/17/HTNE/"/>
     <id>http://yoursite.com/2019/01/17/HTNE/</id>
     <published>2019-01-16T16:00:00.000Z</published>
-    <updated>2019-01-17T14:27:30.431Z</updated>
+    <updated>2019-01-17T14:34:58.506Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>本文出发点在于捕获动态网络中节点和边的变化来在embedding中保持网络结构，举个简单的例子来说，如Fig. 1所示，是一个共同作者网络图。数字标注的节点是author，方框内是co-authored paper. 可以看到图中每个节点每条边加入网络中的时间是不同的。根据图中的信息，可以分析出例如前期1和2，3合作较紧密，后期转为了6,7。 并且(b)中所示，同一条边可能多次出现，这就比传统的单条边拥有更多语义信息。</p><p><img src="/2019/01/17/HTNE/2019-01-17-HTNE/Fig1.png" alt="你想输入的替代文字"></p><p>另外，最近也有方法对动态网络的embedding做了研究，比如[29][30]的方法。但是他们的目的是将时间线分段为固定时间窗来对动态建模，但是这些方法依然没有考虑动态过程也就是网络随时序动态变化的信息。</p><p>因此，本文提出了基于霍克斯过程（Hawkes process）的时序网络表示学习方法，该方法是由序列事件驱动的（也就是序列的变化） 如Fig .1(b)所示 (b)图为节点1的邻域生成序列。Hawkes Process 的思路是说历史上发生的事情对未来的概率密度函数有影响，只是随着时间流逝这种影响会逐渐减弱（Decay）。本文提出用霍克斯过程来捕获时间序列（也就是邻域生成序列）的激励效应。 尤其是历史事件对当前事件的影响。</p><p>通过吧成对的向量映射到基本速率和历史影响，从而把低维向量被输入Hawkes过程。 另外历史邻居当前邻居的影响，不同节点是不同的，所以本文使用attention model来学习历史邻居对当前邻居影响的量化表示。</p><h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>稍后更新</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>本文出发点在于捕获动态网络中节点和边的变化来在embedding中保持网络结构，举个简单的例子来说，如Fig. 1所示，是一个共同作者网络图。数字标注的节点是author，方框内是co-authored paper. 可以看到图中每个节点每条边加入网络中的时间是不同的。根据图中的信息，可以分析出例如前期1和2，3合作较紧密，后期转为了6,7。 并且(b)中所示，同一条边可能多次出现，这就比传统的单条边拥有更多语义信息。</p><p><img src="/2019/01/17/HTNE/Fig1.png" alt="你想输入的替代文字"></p><p>另外，最近也有方法对动态网络的embedding做了研究，比如[29][30]的方法。但是他们的目的是将时间线分段为固定时间窗来对动态建模，但是这些方法依然没有考虑动态过程也就是网络随时序动态变化的信息。</p><p>因此，本文提出了基于霍克斯过程（Hawkes process）的时序网络表示学习方法，该方法是由序列事件驱动的（也就是序列的变化） 如Fig .1(b)所示 (b)图为节点1的邻域生成序列。Hawkes Process的思路是说历史上发生的事情对未来的概率密度函数有影响，只是随着时间流逝这种影响会逐渐减弱（Decay）。本文提出用霍克斯过程来捕获时间序列（也就是邻域生成序列）的激励效应。 尤其是历史事件对当前事件的影响。</p><p>通过吧成对的向量映射到基本速率和历史影响，从而把低维向量被输入Hawkes过程。 另外历史邻居当前邻居的影响，不同节点是不同的，所以本文使用attention model来学习历史邻居对当前邻居影响的量化表示。</p><p>值得注意的是，本文目标是优化邻域生成序列的极大似然估计，而不是条件概率函数</p><h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>稍后更新</p>]]></content>
     
     <summary type="html">
     
