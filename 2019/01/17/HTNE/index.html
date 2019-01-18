@@ -90,7 +90,7 @@
 <meta property="og:description" content="Introduction本文出发点在于捕获动态网络中节点和边的变化来在embedding中保持网络结构，举个简单的例子来说，如Fig. 1所示，是一个共同作者网络图。数字标注的节点是author，方框内是co-authored paper. 可以看到图中每个节点每条边加入网络中的时间是不同的。根据图中的信息，可以分析出例如前期1和2，3合作较紧密，后期转为了6,7。 并且(b)中所示，同一条边可能">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2019/01/17/HTNE/Fig1.png">
-<meta property="og:updated_time" content="2019-01-18T13:31:40.869Z">
+<meta property="og:updated_time" content="2019-01-18T14:49:45.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTNE:《Embedding Temporal Network via Neighborhood Formation》阅读笔记">
 <meta name="twitter:description" content="Introduction本文出发点在于捕获动态网络中节点和边的变化来在embedding中保持网络结构，举个简单的例子来说，如Fig. 1所示，是一个共同作者网络图。数字标注的节点是author，方框内是co-authored paper. 可以看到图中每个节点每条边加入网络中的时间是不同的。根据图中的信息，可以分析出例如前期1和2，3合作较紧密，后期转为了6,7。 并且(b)中所示，同一条边可能">
@@ -430,10 +430,16 @@
 <p><strong>Definition 2</strong> : 对于给定节点$x$,邻域表示为$N(x)=\{y_i|i=1,2…\}$.$x$的目标邻居到达事件可以表示为$\{x:(y_1,t_1)\to(y_2,t_2)\to…\to(y_n,t_n)\}$,即邻域形成序列。每个元组表示在时间戳$t_i$时，$x$与$y_i$建立边。</p>
 <h3 id="Hawkes-Process"><a href="#Hawkes-Process" class="headerlink" title="Hawkes Process"></a>Hawkes Process</h3><p>点过程（Point Process）通过假设t时刻前的历史事件可以影响当前事件的发生，来对离散序列事件建模。<br>对于一个给定的节点$x \in V$, 在$x$的邻域生成序列中，到达目标邻居$y$的条件强度函数（或者可以说是$x$与$y$有边的可能性强度）可以表示为：  </p>
 <script type="math/tex; mode=display">\tilde{\lambda}_{y|x}(t)=\mu_{x,y}+\sum_{t_h<t}{\alpha_{h,y}\kappa(t-t_{h})}</script><p>其中，$\mu_{x,y}$表示构建一条连接节点$x$和$y$的基本率(base rate)，$h$是t时刻前的历史目标节点，$\alpha_{h,y}$表示一个$t_h$时刻的历史目标节点$h$（该节点是$x$的邻居）对当前邻居$y$的影响强度。$\sum_{t_h&lt;t}$表示遍历t时刻前$x$的所有邻居。$\kappa(t-t_{h})$表示随时间的衰减，可以表示成指数函数：  </p>
-<script type="math/tex; mode=display">\kappa(t-t_h)=\exp(-\delta_s(t-t_h))</script><p>其中，减少率 $\delta$是一个源依赖参数，对于每一个源节点（每个序列的根），历史邻居对当前邻居形成的影响强度是不同的。具体来说，如果$\kappa$越大，说明$t_h$时刻的邻居对当前邻居的影响越大，即$-\delta_s(t-t_h)$越大($\delta &gt;0$), $\delta_s(t-t_h)$越小，因为$t$是当前时刻的邻居，所以当$t_h$越接近当前邻居时刻时，$\kappa$越大，这就说明了里当前时刻之前越近的邻居，对当前时刻邻居的影响越大。<br>综上所述，$\kappa$的具体意义是随时间衰减的影响，其中$\delta_s$参数表示对于不同的源节点，影响是不同的。</p>
+<script type="math/tex; mode=display">\kappa(t-t_h)=\exp(-\delta_s(t-t_h))</script><p>其中，减少率 $\delta$是一个源依赖参数，对于每一个源节点（每个序列的根），历史邻居对当前邻居形成的影响强度是不同的。具体来说，如果$\kappa$越大，说明$t_h$时刻的邻居对当前邻居的影响越大，即 $-\delta_s(t-t_h)$越大, $\delta_s(t-t_h)$越小，因为$t$是当前时刻的邻居，所以当$t_h$越接近当前邻居时刻时，$\kappa$越大，这就说明了里当前时刻之前越近的邻居，对当前时刻邻居的影响越大。<br>综上所述，$\kappa$的具体意义是随时间衰减的影响，其中$\delta_s$参数表示对于不同的源节点，影响是不同的。</p>
 <p>如果$\tilde{\lambda}_{y|x}(t)$ 越大，说明x和y有边的可能性也越大。</p>
 <p>直观的来看，基本率（base rate）$\mu_{x,y}$揭示了节点x和节点y之间的连接可能性。为了简洁，本文使用了<strong>负平方欧式距离（negative squared Euclidean）</strong>来反映表示向量间的相似度: $\mu_{x,y}=f(\mathbf{e}_x,\mathbf{e}_y)=-||\mathbf{e}_x-\mathbf{e}_y||^2$。同样的，在计算历史邻居$h$对当前邻居$y$的影响时，也采用这个方法，即： $\alpha_{h,y}=f(\mathbf{e}_h,\mathbf{e}_y)=-||\mathbf{e}_h-\mathbf{e}_y||^2$。<br>因为条件强度函数必须为正，所以使用如下公式: $\lambda_{y|x}(t)=\exp(\tilde\lambda_{y|x}(t))$。$exp()$对原函数进行了归一化，所以问题就转化为了given $x$, maximize likelihood: $p(y|x)$. 这就与传统的NE方法差不多了。。。</p>
-<h3 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h3>
+<h3 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h3><p>根据论文中（3）式，可以看出，$\sum_{t_h&lt;t}{\alpha_{h,y}\kappa(t-t_{h})}$这一部分主要描述了历史邻居对当前邻居的影响，但是完全忽略了源节点$x$，因为源节点$x$的变化也会影响到历史邻居对当前邻居的亲近程度(affinity)。因此，本文引入了<strong>attention model</strong>。as follows：  </p>
+<script type="math/tex; mode=display">w_{h,x} = \frac{\exp(-||\mathbf{e}_x-\mathbf{e}_h||^2)}{\sum_{h'}{\exp(-||\mathbf{e}_x-\mathbf{e}_{h'}||^2)}}</script><p>这是一个softmax函数 来根据源节点$x$的不同为它的邻居赋予不同权重。</p>
+<p>最后， 历史邻居与当前邻居的连接紧密程度可以表示为:</p>
+<script type="math/tex; mode=display">\alpha_{h,y}=w_{h,x}f(\mathbf{e}_h,\mathbf{e}_y)</script><h3 id="Optimization"><a href="#Optimization" class="headerlink" title="Optimization"></a>Optimization</h3><p>目标函数即为给定节点$x$以及基于邻域形成序列的霍克斯过程, 生成节点$y$的条件概率。 公式如下：</p>
+<script type="math/tex; mode=display">p(y|x, \mathcal{H}_x(t)) = \frac{\lambda_{y|x}(t)}{\sum_{y'}{\lambda_{y'|x}(t)}}</script><p>目标函数即为所有节点对的极大似然：</p>
+<script type="math/tex; mode=display">\log \mathcal{L}=\sum_{x\in{\mathcal{V}}}{\sum_{y\in{\mathcal{H}_x}}}{\log{p(y|x,\mathcal{H}(t))}}</script><p>最后，由于softmax过程是calculating expensive，所以采用负采样优化损失函数。</p>
+
       
     </div>
     
@@ -715,7 +721,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition"><span class="nav-number">2.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hawkes-Process"><span class="nav-number">2.2.</span> <span class="nav-text">Hawkes Process</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Attention"><span class="nav-number">2.3.</span> <span class="nav-text">Attention</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition"><span class="nav-number">2.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hawkes-Process"><span class="nav-number">2.2.</span> <span class="nav-text">Hawkes Process</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Attention"><span class="nav-number">2.3.</span> <span class="nav-text">Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimization"><span class="nav-number">2.4.</span> <span class="nav-text">Optimization</span></a></li></ol></li></ol></div>
             
 
           </div>
