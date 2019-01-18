@@ -90,7 +90,7 @@
 <meta property="og:description" content="Introduction本文出发点在于捕获动态网络中节点和边的变化来在embedding中保持网络结构，举个简单的例子来说，如Fig. 1所示，是一个共同作者网络图。数字标注的节点是author，方框内是co-authored paper. 可以看到图中每个节点每条边加入网络中的时间是不同的。根据图中的信息，可以分析出例如前期1和2，3合作较紧密，后期转为了6,7。 并且(b)中所示，同一条边可能">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2019/01/17/HTNE/Fig1.png">
-<meta property="og:updated_time" content="2019-01-18T09:05:52.831Z">
+<meta property="og:updated_time" content="2019-01-18T09:26:06.987Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="HTNE:《Embedding Temporal Network via Neighborhood Formation》阅读笔记">
 <meta name="twitter:description" content="Introduction本文出发点在于捕获动态网络中节点和边的变化来在embedding中保持网络结构，举个简单的例子来说，如Fig. 1所示，是一个共同作者网络图。数字标注的节点是author，方框内是co-authored paper. 可以看到图中每个节点每条边加入网络中的时间是不同的。根据图中的信息，可以分析出例如前期1和2，3合作较紧密，后期转为了6,7。 并且(b)中所示，同一条边可能">
@@ -381,7 +381,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  813
+                  805
                 </span>
               
 
@@ -397,7 +397,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  3
+                  2
                 </span>
               
             </div>
@@ -425,10 +425,10 @@
 <p>通过把成对的向量映射到基本速率和历史影响，从而把低维向量被输入Hawkes过程。 </p>
 <p>另外历史邻居当前邻居的影响，不同节点是不同的，所以本文使用attention model来学习历史邻居对当前邻居影响的量化表示。</p>
 <p>值得注意的是，本文目标是优化邻域生成序列的极大似然估计，而不是条件概率函数</p>
-<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>本文通过跟踪节点邻域的形成来捕获网络的形成过程。<br><em>Definition 1</em> : 时序网络 $G=(V,E,A)$, $A$ 是事件集， 边$(x,y) \in E$ 被表示为按时间顺序的时间序列，例如， $\mathbf{a}_{x,y}=\{a_1\to{a_2}\to{…}\}\subset\mathcal{A}$, $a_i$ 表示时间$t_i$时刻的一个事件。  </p>
+<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>本文通过跟踪节点邻域的形成来捕获网络的形成过程。<br><strong>Definition 1</strong> : 时序网络 $G=(V,E,A)$, $A$ 是事件集， 边$(x,y) \in E$ 被表示为按时间顺序的时间序列，例如， $\mathbf{a}_{x,y}=\{a_1\to{a_2}\to{…}\}\subset\mathcal{A}$, $a_i$ 表示时间$t_i$时刻的一个事件。  </p>
 <p>因此，网络中节点的相邻邻居可以根据与邻居的交互事件的时序被组织为序列，表示邻域形成过程。</p>
-<p><em>Definition 2</em> : 邻域形成序列。对于给定节点$x$,邻域表示为$N(x)=\{y_i|i=1,2…\}$.$x$的目标邻居到达事件可以表示为$\{x:(y_1,t_1)\to(y_2,t_2)\to…\to(y_n,t_n)\}$, 每个元组表示在时间戳$t_i$时，$x$与$y_i$建立边。</p>
-<h3 id="Hawkes-Process"><a href="#Hawkes-Process" class="headerlink" title="Hawkes Process"></a>Hawkes Process</h3><p>点过程（Point Process）通过假设t时刻前的历史事件可以影响当前事件的发生，来对离散序列事件建模。<br>对于一个给定的节点$x \in V$, 在$x$的邻域生成序列中，到达目标邻居$y$的条件强度函数可以表示为：$$ \tilde{\lambda}<em>{y|x}(t)=\mu</em>{x,y}+\sum_{t_h&lt;t}{\alpha_{h,y}\kappa(t-t_{h})}$$</p>
+<p><strong>Definition 2</strong> : 邻域形成序列。对于给定节点$x$,邻域表示为$N(x)=\{y_i|i=1,2…\}$.$x$的目标邻居到达事件可以表示为$\{x:(y_1,t_1)\to(y_2,t_2)\to…\to(y_n,t_n)\}$, 每个元组表示在时间戳$t_i$时，$x$与$y_i$建立边。</p>
+<h3 id="Hawkes-Process"><a href="#Hawkes-Process" class="headerlink" title="Hawkes Process"></a>Hawkes Process</h3><p>点过程（Point Process）通过假设t时刻前的历史事件可以影响当前事件的发生，来对离散序列事件建模。<br>对于一个给定的节点$x \in V$, 在$x$的邻域生成序列中，到达目标邻居$y$的条件强度函数可以表示为：<script type="math/tex">\tilde{\lambda}_{y|x}(t)=\mu_{x,y}+\sum_{t_h<t}{\alpha_{h,y}\kappa(t-t_{h})}</script></p>
 
       
     </div>
