@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Hawkes process,attention,">
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="关于网站读研一年半了，一开始看各种英文论文总是在网上到处找各种中文的解读，久而久之随着英文水平的提高，对一些论文也有了些自己的理解。于是乎，在一夜深人静的夜晚，突有想法搭建一个blog。一方面分享自己的解读，另一方面督促自己多多刷paper。总之希望可以长久的更新这个blog，也请各位监督~ 网站结构方面， 除了论文解读，并且分享一些自己做的一些项目还有代码。另外，由于本渣的菜鸟健忘属性，还会">
-<meta name="keywords" content="Network Embedding, Social Network Analysis, Data mining">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于：About">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="论文地址: Enhanced Network Embeddings via Exploiting Edge Labels Introduction这是DeepWalk团队的一篇论文，目的是捕获网络中的边信息。传统的NE方法通常把节点简单关系当做（0,1）二值，然而边中所包含的丰富的语义信息。本文尝试做Network Embedding的同时保留网络结构和节点关系信息。举个例子来说，真实社交网络中，">
+<meta name="keywords" content="Hawkes process,attention">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Enhanced Network Embeddings via Exploiting Edge Labels》阅读笔记">
+<meta property="og:url" content="http://yoursite.com/2019/01/22/NE-Edge-Labels/index.html">
 <meta property="og:site_name" content="Wei Zhuo">
-<meta property="og:description" content="关于网站读研一年半了，一开始看各种英文论文总是在网上到处找各种中文的解读，久而久之随着英文水平的提高，对一些论文也有了些自己的理解。于是乎，在一夜深人静的夜晚，突有想法搭建一个blog。一方面分享自己的解读，另一方面督促自己多多刷paper。总之希望可以长久的更新这个blog，也请各位监督~ 网站结构方面， 除了论文解读，并且分享一些自己做的一些项目还有代码。另外，由于本渣的菜鸟健忘属性，还会">
+<meta property="og:description" content="论文地址: Enhanced Network Embeddings via Exploiting Edge Labels Introduction这是DeepWalk团队的一篇论文，目的是捕获网络中的边信息。传统的NE方法通常把节点简单关系当做（0,1）二值，然而边中所包含的丰富的语义信息。本文尝试做Network Embedding的同时保留网络结构和节点关系信息。举个例子来说，真实社交网络中，">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-16T16:00:00.000Z">
+<meta property="og:updated_time" content="2019-01-22T06:31:16.548Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于：About">
-<meta name="twitter:description" content="关于网站读研一年半了，一开始看各种英文论文总是在网上到处找各种中文的解读，久而久之随着英文水平的提高，对一些论文也有了些自己的理解。于是乎，在一夜深人静的夜晚，突有想法搭建一个blog。一方面分享自己的解读，另一方面督促自己多多刷paper。总之希望可以长久的更新这个blog，也请各位监督~ 网站结构方面， 除了论文解读，并且分享一些自己做的一些项目还有代码。另外，由于本渣的菜鸟健忘属性，还会">
+<meta name="twitter:title" content="《Enhanced Network Embeddings via Exploiting Edge Labels》阅读笔记">
+<meta name="twitter:description" content="论文地址: Enhanced Network Embeddings via Exploiting Edge Labels Introduction这是DeepWalk团队的一篇论文，目的是捕获网络中的边信息。传统的NE方法通常把节点简单关系当做（0,1）二值，然而边中所包含的丰富的语义信息。本文尝试做Network Embedding的同时保留网络结构和节点关系信息。举个例子来说，真实社交网络中，">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/22/NE-Edge-Labels/">
 
 
 
 
 
-  <title>关于：About | Wei Zhuo</title>
+  <title>《Enhanced Network Embeddings via Exploiting Edge Labels》阅读笔记 | Wei Zhuo</title>
   
 
 
@@ -273,54 +273,267 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/22/NE-Edge-Labels/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mario Z">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar3.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wei Zhuo">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">关于：About</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=default"></script>
-
-<h3 id="关于网站"><a href="#关于网站" class="headerlink" title="关于网站"></a>关于网站</h3><p>读研一年半了，一开始看各种英文论文总是在网上到处找各种中文的解读，久而久之随着英文水平的提高，对一些论文也有了些自己的理解。<br>于是乎，在一夜深人静的夜晚，突有想法搭建一个blog。<br>一方面分享自己的解读，另一方面督促自己多多刷paper。<br>总之希望可以长久的更新这个blog，也请各位监督~</p>
-<p>网站结构方面， 除了论文解读，并且分享一些自己做的一些项目还有代码。<br>另外，由于本渣的菜鸟健忘属性，还会把blog当做一个笔记本。  </p>
-<p>最后，photography和daily life发发照片，写写日常啥的。</p>
-<p>本站搭建于<a href="https://github.com/zhuo931077127" title="Github" target="_blank" rel="noopener">Github</a></p>
-<p>2019-1-16</p>
-<h3 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h3><p>5年前 抱着无论如何要学医的想法 成功考入了一所医科大学，结果一脸懵逼的被调剂到了物联网工程专业 一年半前，换了一所依然不以计算机类见长的大学开始了研究生生涯。 从此与代码杠上了（此处加一句cnm）。 </p>
-<p>本科做了将近三年的Android，IOS，姑且算是Javaer 、Objective-Cer. 现在算个不入流的Pythoner，AIer. </p>
-<p>主要研究方向：Social Network Analysis， Respresentation Learning. 希望可以认识大佬~</p>
-<h3 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h3><ul>
-<li>QQ：931077127  </li>
-<li>e-mail: mario931077127@gmail.com</li>
-</ul>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ul>
-<li><strong>单身</strong></li>
-<li>休斯顿火箭，巴萨球迷</li>
-<li>西部片狂热爱好者 昆汀~科恩兄弟</li>
-<li>摄影爱好者</li>
-<li>严重失眠患者 （顺便求助睡眠方法）</li>
-</ul>
-<h1 id="May-The-Force-Be-With-You"><a href="#May-The-Force-Be-With-You" class="headerlink" title="May The Force Be With You"></a>May The Force Be With You</h1>
+          <h1 class="post-title" itemprop="name headline">《Enhanced Network Embeddings via Exploiting Edge Labels》阅读笔记</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-22T11:02:29+08:00">
+                2019-01-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network-Embedding/" itemprop="url" rel="index">
+                    <span itemprop="name">Network Embedding</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network-Embedding/paper/" itemprop="url" rel="index">
+                    <span itemprop="name">paper</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>论文地址: <a href="https://arxiv.org/abs/1809.05124?context=physics.soc-ph" target="_blank" rel="noopener">Enhanced Network Embeddings via Exploiting Edge Labels</a></p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>这是DeepWalk团队的一篇论文，目的是捕获网络中的边信息。传统的NE方法通常把节点简单关系当做（0,1）二值，然而边中所包含的丰富的语义信息。本文尝试做Network Embedding的同时保留网络结构和节点关系信息。举个例子来说，真实社交网络中，一个用户可能和他的同事，家人有关系，但是已有的NE方法不能同事捕获好友关系（有边连接），以及边的类型。</p>
+<p>具体来说，本分的方法分为无监督部分和监督部分。其中无监督部分预测节点邻域， 监督部分预测边标签。所以本文模型是个<strong>半监督NE模型</strong>。</p>
+<h2 id="Problem-Definition"><a href="#Problem-Definition" class="headerlink" title="Problem Definition"></a>Problem Definition</h2><p>假定Network Graph $G=(V,E)$是无向图。$L=(l_1,l_2,…,l_{|V|})$是边的类型集。一个含有边类型的Graph可以被重新定义为$G=(V,E_L,E_U,Y_L)$,其中$E_L$是由label的边集，$E_U$是没有label的边集，$E_L \cup E_U =E$。$Y_L$表示$E_L$中边的关系类型集合。论文中假定一条边可以有多重关系，所以对于边$E_i$的label集$Y_L(i) \in Y_L$, $Y_L(i)$可能包含很多类型 所以$Y_L(i) \subseteq L$。目的还是一样，学习一个映射函数$\Phi \to \mathbb{R}^{|V| \times d}$, 其中$d \ll |V|$。</p>
+<h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>首先定义损失函数:  </p>
+<script type="math/tex; mode=display">\mathcal{L}=(1-\lambda)\mathcal{L}_s+\lambda\mathcal{L}_r</script><p>其中$\mathcal{L}_s$表示预测节点邻域的损失。$\mathcal{L}_r$表示预测边label的损失。$\lambda$是两种损失的权重。</p>
+<h3 id="Structural-Loss"><a href="#Structural-Loss" class="headerlink" title="Structural Loss"></a>Structural Loss</h3><p>第一部分是最小化无监督网络结构损失，对于一个给定的节点$v$, 要最大化这个节点和它邻域可能性。其中，节点的邻域不一定要一定和该节点有边相连。文章先给出了结构损失的目标函数：  </p>
+<script type="math/tex; mode=display">\mathcal{L}_s=-\sum_{u \in C(v)} \log Pr(u|v)</script><p>这个函数其实就是给定$v$,最大化$v$的邻域的极大似然。其中$Pr(u|v)$是一个softmax函数：  </p>
+<script type="math/tex; mode=display">Pr(u|v)=\frac{\exp(\Phi(u) \cdot \Phi'(v))}{\sum_{u' \in V} \exp(\Phi(u') \cdot \Phi'(v))}</script><p>这其实和DeepWalk一样，一个节点$v$有两个表示向量，$\Phi(v)$和$\Phi’(v)$分别表示该节点作为中心节点和上下文节点的表示。由于计算复杂度较高，所以采用负采样的策略。<br>剩下的问题就是如何构建节点$v$的邻域$C(v)$。一种直接的方式就是从邻接矩阵中选取他的邻居。然后由于现实网络的稀疏性，一个节点只有很少的邻居。为了缓解网络稀疏性的问题， 本文采取了类似于DeepWalk的randomwalk策略。 最终可以得到节点$v$的邻域：  </p>
+<script type="math/tex; mode=display">C(v)=\{v_{i-w},...,v_{i-1}\} \cup \{v_{i+1},...,v_{i+w}\}</script><h3 id="Relational-Loss"><a href="#Relational-Loss" class="headerlink" title="Relational Loss"></a>Relational Loss</h3><p>由于label是为了预测边的，所以需要把每条边表示出来，所以对于边$e=(u,v) \in E$,可以用一下方法来表示这条边:  </p>
+<script type="math/tex; mode=display">\Phi(e)=g(\Phi(u),\Phi(v))</script><p>其中，$g$是一个映射函数用来把两个节点的表示向量转化为他们之间边的表示向量，本文使用了简单的连接操作，即把两个向量直接拼接：  </p>
+<script type="math/tex; mode=display">\Phi(e)=\Phi(u) \oplus \Phi(v)</script><p>这样我们就获得了edge embedding。直接将它输入前馈神经网络，前馈神经网络第$k$层的定义为:  </p>
+<script type="math/tex; mode=display">h^{(k)}=f(W^{(k)}h^{(k-1)}+b^{(k)})</script><p>其中 $h^{(0)}=\Phi(e)$，$f$是除最后一层外采用relu激活函数，最后一层采用sigmoid函数激活,最后一层输出为$\hat{y_i}$。最后最小化二元交叉熵损失函数：</p>
+<script type="math/tex; mode=display">\mathcal{L}_r=\sum^{|L|}_{i=1} H(y_i,\hat{y_i}) + (1-y_i) \cdot \log (1-\hat{y_i})</script><h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>这篇论文从原理到方法实现都非常简单，稍后我也将尝试复现这篇论文，边的标签信息是以前NE方法所没有考虑到的，但这篇论问的局限性是没有考虑边的方向以及权重，这是可以拓展的方向。</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="Mario Z WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/ali.png" alt="Mario Z Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hawkes-process/" rel="tag"># Hawkes process</a>
+          
+            <a href="/tags/attention/" rel="tag"># attention</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/21/SDNE/" rel="next" title="SDNE:《Structral Deep Network Embedding》阅读笔记">
+                <i class="fa fa-chevron-left"></i> SDNE:《Structral Deep Network Embedding》阅读笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -499,7 +712,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于网站"><span class="nav-number">1.</span> <span class="nav-text">关于网站</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于我"><span class="nav-number">2.</span> <span class="nav-text">关于我</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#联系方式"><span class="nav-number">3.</span> <span class="nav-text">联系方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他"><span class="nav-number">4.</span> <span class="nav-text">其他</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#May-The-Force-Be-With-You"><span class="nav-number"></span> <span class="nav-text">May The Force Be With You</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Problem-Definition"><span class="nav-number">2.</span> <span class="nav-text">Problem Definition</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Method"><span class="nav-number">3.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Structural-Loss"><span class="nav-number">3.1.</span> <span class="nav-text">Structural Loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Relational-Loss"><span class="nav-number">3.2.</span> <span class="nav-text">Relational Loss</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Conclusion"><span class="nav-number">3.3.</span> <span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
             
 
           </div>
