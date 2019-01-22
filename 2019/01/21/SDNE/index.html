@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Edge detection,">
+  <meta name="keywords" content="Deep Learning,semi-supervised model,">
 
 
 
@@ -81,23 +81,21 @@
 
 
 
-<meta name="description" content="前段时间做了一个简单的小项目，需求是测量图片中布的褶皱角度，第一次做CV的东西，决定用这个blog记录一下。 项目源码在:edge-detection  先看看传统的边缘检测方法的效果:  第一张图是原始图，由于本项目要求竟要求图片上半部分的褶皱角度，所以仅考虑上半部分的背景干扰，可以看出高斯，梯度，非极大抑制这三种方法都无法有效的排除干扰。然后我们用canny算法试试。步骤是先把图片转化为灰度图">
-<meta name="keywords" content="Edge detection">
+<meta name="description" content="论文地址：SDNE Introduction这是一篇比较早的Network Embedding论文， 较早将深度模型应用到NE任务。 首先，本文提出了当前网络表示学习中遇到的三个问题：（1）. 高度非线性（2）. 尽可能保持网络结构（3）. 现实网络的高度稀疏性SDNE的主要目标就是保持网络结构的一阶相似性和二阶相似性。一阶相似性就是网络中边相连的节点对之间具有的相似性。二阶相似性就是在一个Gra">
+<meta name="keywords" content="Deep Learning,semi-supervised model">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图片边缘检测并且拟合直线">
-<meta property="og:url" content="http://yoursite.com/2019/01/19/edge-detection-pj/index.html">
+<meta property="og:title" content="SDNE:《Structral Deep Network Embedding》阅读笔记">
+<meta property="og:url" content="http://yoursite.com/2019/01/21/SDNE/index.html">
 <meta property="og:site_name" content="Wei Zhuo">
-<meta property="og:description" content="前段时间做了一个简单的小项目，需求是测量图片中布的褶皱角度，第一次做CV的东西，决定用这个blog记录一下。 项目源码在:edge-detection  先看看传统的边缘检测方法的效果:  第一张图是原始图，由于本项目要求竟要求图片上半部分的褶皱角度，所以仅考虑上半部分的背景干扰，可以看出高斯，梯度，非极大抑制这三种方法都无法有效的排除干扰。然后我们用canny算法试试。步骤是先把图片转化为灰度图">
+<meta property="og:description" content="论文地址：SDNE Introduction这是一篇比较早的Network Embedding论文， 较早将深度模型应用到NE任务。 首先，本文提出了当前网络表示学习中遇到的三个问题：（1）. 高度非线性（2）. 尽可能保持网络结构（3）. 现实网络的高度稀疏性SDNE的主要目标就是保持网络结构的一阶相似性和二阶相似性。一阶相似性就是网络中边相连的节点对之间具有的相似性。二阶相似性就是在一个Gra">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2019/01/19/edge-detection-pj/tra.png">
-<meta property="og:image" content="http://yoursite.com/2019/01/19/edge-detection-pj/edge.jpeg">
-<meta property="og:image" content="http://yoursite.com/2019/01/19/edge-detection-pj/line.png">
-<meta property="og:image" content="http://yoursite.com/2019/01/19/edge-detection-pj/final.jpeg">
-<meta property="og:updated_time" content="2019-01-19T04:11:50.156Z">
+<meta property="og:image" content="http://yoursite.com/2019/01/21/SDNE/SDNE.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/21/SDNE/al.png">
+<meta property="og:updated_time" content="2019-01-22T02:56:11.352Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图片边缘检测并且拟合直线">
-<meta name="twitter:description" content="前段时间做了一个简单的小项目，需求是测量图片中布的褶皱角度，第一次做CV的东西，决定用这个blog记录一下。 项目源码在:edge-detection  先看看传统的边缘检测方法的效果:  第一张图是原始图，由于本项目要求竟要求图片上半部分的褶皱角度，所以仅考虑上半部分的背景干扰，可以看出高斯，梯度，非极大抑制这三种方法都无法有效的排除干扰。然后我们用canny算法试试。步骤是先把图片转化为灰度图">
-<meta name="twitter:image" content="http://yoursite.com/2019/01/19/edge-detection-pj/tra.png">
+<meta name="twitter:title" content="SDNE:《Structral Deep Network Embedding》阅读笔记">
+<meta name="twitter:description" content="论文地址：SDNE Introduction这是一篇比较早的Network Embedding论文， 较早将深度模型应用到NE任务。 首先，本文提出了当前网络表示学习中遇到的三个问题：（1）. 高度非线性（2）. 尽可能保持网络结构（3）. 现实网络的高度稀疏性SDNE的主要目标就是保持网络结构的一阶相似性和二阶相似性。一阶相似性就是网络中边相连的节点对之间具有的相似性。二阶相似性就是在一个Gra">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/21/SDNE/SDNE.png">
 
 
 
@@ -127,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/19/edge-detection-pj/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/21/SDNE/">
 
 
 
 
 
-  <title>图片边缘检测并且拟合直线 | Wei Zhuo</title>
+  <title>SDNE:《Structral Deep Network Embedding》阅读笔记 | Wei Zhuo</title>
   
 
 
@@ -290,7 +288,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/19/edge-detection-pj/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/21/SDNE/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mario Z">
@@ -307,7 +305,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">图片边缘检测并且拟合直线</h1>
+          <h1 class="post-title" itemprop="name headline">SDNE:《Structral Deep Network Embedding》阅读笔记</h1>
         
 
         <div class="post-meta">
@@ -319,8 +317,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-19T00:00:00+08:00">
-                2019-01-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-21T15:34:36+08:00">
+                2019-01-21
               </time>
             
 
@@ -342,8 +340,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/project/" itemprop="url" rel="index">
-                    <span itemprop="name">project</span>
+                  <a href="/categories/Network-Embedding/" itemprop="url" rel="index">
+                    <span itemprop="name">Network Embedding</span>
                   </a>
                 </span>
 
@@ -353,8 +351,8 @@
                 
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/project/Computer-Vision/" itemprop="url" rel="index">
-                    <span itemprop="name">Computer Vision</span>
+                  <a href="/categories/Network-Embedding/paper/" itemprop="url" rel="index">
+                    <span itemprop="name">paper</span>
                   </a>
                 </span>
 
@@ -384,7 +382,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  619
+                  1.1k
                 </span>
               
 
@@ -400,7 +398,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  2
+                  4
                 </span>
               
             </div>
@@ -421,20 +419,25 @@
       
 
       
-        <p>前段时间做了一个简单的小项目，需求是测量图片中布的褶皱角度，第一次做CV的东西，决定用这个blog记录一下。 项目源码在:<a href="https://github.com/zhuo931077127/edge-detection" title="edge-detection" target="_blank" rel="noopener">edge-detection
-</a></p>
-<p>先看看传统的边缘检测方法的效果:</p>
-<p><img src="/2019/01/19/edge-detection-pj/tra.png" alt="你想输入的替代文字"></p>
-<p>第一张图是原始图，由于本项目要求竟要求图片上半部分的褶皱角度，所以仅考虑上半部分的背景干扰，可以看出高斯，梯度，非极大抑制这三种方法都无法有效的排除干扰。<br>然后我们用canny算法试试。<br>步骤是先把图片转化为灰度图，然后用canny算子做边缘检测。<br>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gray = cv.cvtColor(image, cv.COLOR_RGB2GRAY)</span><br><span class="line">edges = cv.Canny(gray, 50, 310)  # apertureSize参数默认其实就是3  # 50 310</span><br><span class="line"># cv.imshow(&quot;edges&quot;, edges)</span><br><span class="line">edge = Image.fromarray(edges)</span><br><span class="line">edge.save(&quot;edge.jpeg&quot;)</span><br></pre></td></tr></table></figure></p>
-<p>结果如下:  </p>
-<p><img src="/2019/01/19/edge-detection-pj/edge.jpeg" alt="你想输入的替代文字"></p>
-<p>霍夫线性变换拟合直线:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">lines = cv.HoughLines(edges, 1, np.pi / 180, 68)  # 68</span><br><span class="line">   # l1 = lines[:, 0, :]</span><br><span class="line">   # print(l1)</span><br><span class="line">   mink = float(&apos;inf&apos;)</span><br><span class="line">   maxk = -float(&apos;inf&apos;)</span><br><span class="line">   for line in lines:</span><br><span class="line">       rho, theta = line[0]  # line[0]存储的是点到直线的极径和极角，其中极角是弧度表示的。</span><br><span class="line">       a = np.cos(theta)  # theta是弧度</span><br><span class="line">       b = np.sin(theta)</span><br><span class="line">       x0 = a * rho  # 代表x = r * cos（theta）</span><br><span class="line">       y0 = b * rho  # 代表y = r * sin（theta）</span><br><span class="line">       x1 = int(x0 + 1000 * (-b))  # 计算直线起点横坐标</span><br><span class="line">       y1 = int(y0 + 1000 * a)  # 计算起始起点纵坐标</span><br><span class="line">       x2 = int(x0 - 1000 * (-b))  # 计算直线终点横坐标</span><br><span class="line">       y2 = int(y0 - 1000 * a)  # 计算直线终点纵坐标    注：这里的数值1000给出了画出的线段长度范围大小，数值越小，画出的线段越短，数值越大，画出的线段越长</span><br><span class="line">       print(&quot;x1: %s, y1:%s, x2:%s, y2:%s&quot; % (x1, y1, x2, y2))</span><br><span class="line">       k = (y2 - y1) / (x2 - x1)</span><br><span class="line">       if k &gt; maxk:</span><br><span class="line">           maxk = k</span><br><span class="line">           xmax1 = x1</span><br><span class="line">           ymax1 = y1</span><br><span class="line">           xmax2 = x2</span><br><span class="line">           ymax2 = y2</span><br><span class="line">           lineMax = line</span><br><span class="line">       if k &lt; mink:</span><br><span class="line">           mink = k</span><br><span class="line">           xmin1 = x1</span><br><span class="line">           ymin1 = y1</span><br><span class="line">           xmin2 = x2</span><br><span class="line">           ymin2 = y2</span><br><span class="line">           lineMin = line</span><br><span class="line">   cv.line(image, (xmax1, ymax1), (xmax2, ymax2), (255, 0, 0), 2)  # 点的坐标必须是元组，不能是列表。</span><br><span class="line">   cv.line(image, (xmin1, ymin1), (xmin2, ymin2), (255, 0, 0), 2)  # 点的坐标必须是元组，不能是列表。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>值得注意的是，拟合直线过程中HoughLines会发现很多直线，因此，我选择了斜率最大和最小的两条直线做为最终的直线。画在图上的话就是酱紫的结果:</p>
-<p><img src="/2019/01/19/edge-detection-pj/line.png" alt="你想输入的替代文字"></p>
-<p>所以：总的过程可以概括如下:</p>
-<p><img src="/2019/01/19/edge-detection-pj/final.jpeg" alt="你想输入的替代文字"></p>
-<p>现在想这么弱智的项目居然还花了几天时间做，我是真滴蠢哦（T-T）</p>
+        <p>论文地址：<a href="https://www.kdd.org/kdd2016/papers/files/rfp0191-wangAemb.pdf" target="_blank" rel="noopener">SDNE</a></p>
+<h3 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h3><p>这是一篇比较早的Network Embedding论文， 较早将深度模型应用到NE任务。 首先，本文提出了当前网络表示学习中遇到的三个问题：<br><strong>（1）. 高度非线性</strong><br><strong>（2）. 尽可能保持网络结构</strong><br><strong>（3）. 现实网络的高度稀疏性</strong><br>SDNE的主要目标就是保持网络结构的一阶相似性和二阶相似性。<br>一阶相似性就是网络中边相连的节点对之间具有的相似性。<br>二阶相似性就是在一个Graph中，拥有共同邻居但是不直接向相连的两个节点具有的相似性。</p>
+<p>其中，一阶相似性主要反映了网络的局部特征。 二阶相似性反映了网络的全局特征。</p>
+<h3 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h3><p>本文的模型主要如下图所示：</p>
+<p><img src="/2019/01/21/SDNE/SDNE.png" alt="你想输入的替代文字"></p>
+<p>这张图看上去有点复杂，实则原理非常简单。</p>
+<p>模型分为无监督部分和有监督部分，无监督部分是一个<strong>深度自编码器</strong> 用来捕获二阶相似度（保留全局结构），监督部分是一个拉普拉斯特征映射捕获一阶相似度（局部结构）。呃呃呃，Emmmmm ,不知道是我理解有问题还是其他原因，文章里说的和我理解的不太一样 /(ㄒoㄒ)/~~。 然后介绍一下具体的模型结构：  </p>
+<p>深度自编码器的编码部分：  </p>
+<script type="math/tex; mode=display">y_i^{(k)}=\sigma{(W^{(k)}y_i^{(k-1)}+b^{(k)})}, k=2,...,K</script><p>假设第$k$层是 节点$v$的表示向量（仅考虑全局信息），那么从第$k$层开始解码，最终得到$\hat{x_i}$, 所以自编码器的误差就是输入节点$v$的邻接向量的重构误差。所以，二阶相似度损失函数定义为:  </p>
+<script type="math/tex; mode=display">\mathcal{L}=\sum_{i=1}^n{||\hat{x_i}-x_i||^2_2}</script><p>值得注意的是，由于网络的稀疏性，邻接矩阵中的0元素远多于非0元素，使用邻接矩阵作为输入的话要处理很多0，这样就做了太多无用功了。为了解决这个问题，对损失函数做了改进如下：  </p>
+<script type="math/tex; mode=display">\mathcal{L_{2nd}}=\sum_{i=1}^n||(\hat{x_i}-x_i)\odot{b_i}||^2_2=||\hat{X}-X\odot{B}||^2_F</script><p>其中$\odot$是哈马达乘积，表示对应元素相乘。$b_i=\{b_{i,j}\}^n_{j=1}$， 邻接矩阵中的0对应$b=1$, 非0元素的$b&gt;1$,这样的目的是对于有边连接的节点增加惩罚。可以理解为对有边连接的节点赋予更高权重。</p>
+<p>以上我们获得了二阶相似度的损失函数。在介绍一阶相似度之前，我们先来看看<strong>拉普拉斯映射（Laplacian Eigenmap）</strong>  其实LE也是一种经典的NRL方法，主要目的也是降维。其目标函数如下所示:  </p>
+<script type="math/tex; mode=display">\sum_{i,j} W_{ij}||y_i-y_j||^2</script><p>LE是通过构建相似关系图来重构局部特征结构,如果放在网络结构中来说,如果节点$v_i$和$v_j$很接近（有边），那么他们在embedding space中的距离也应该相应接近。$y_i$和$y_j$就表示他们在特征空间中的表示。因此，本文定义了保持一阶相似度的目标函数：  </p>
+<script type="math/tex; mode=display">\mathcal{L_{1st}}=\sum_{i,j=1}^n{s_{i,j}||y_i^{(K)}-y_j^{(K)}||^2_2}=\sum_{i.j=1}^n{s_{i,j}||y_i-y_j||^2_2}</script><p>具体来说，$K$就是自编码器第$K$层的输出，即编码结果，需要保持一条边的两个节点在嵌入空间中的表示相对接近。</p>
+<p>最终 结合一阶相似度和二阶相似度，本文给出了SDNE的目标函数：  </p>
+<script type="math/tex; mode=display">\mathcal{L_{mix}}=\mathcal{L_{2nd}+\alpha{\mathcal{L_{1st}}}}+\nu{\mathcal{L_{reg}}} 
+=||(\hat{X}-X)\odot{B}||^2_F+\alpha{\sum_{i.j=1}^n{s_{i,j}||y_i-y_j||^2_2}}+\nu{\mathcal{L_{reg}}}</script><p>其中，为了防止过拟合，添加了$\mathcal L2$-norm单元$\mathcal{L_{reg}}$来防止过拟合:  </p>
+<script type="math/tex; mode=display">\mathcal{L_{reg}}=\frac{1}{2}\sum_{k=1}^k({||W^{(k)}||^2_F+||\hat{W}^{k}||_F^2})</script><h3 id="Optimization"><a href="#Optimization" class="headerlink" title="Optimization"></a>Optimization</h3><p>使用SGD来优化$\mathcal{L_{mix}}$。具体算法如下：<br><img src="/2019/01/21/SDNE/al.png" alt="你想输入的替代文字"></p>
+<h3 id="Experiment"><a href="#Experiment" class="headerlink" title="Experiment"></a>Experiment</h3><p>不得不感叹这篇论文的实验是真的充分，分别在Link Prediction，Vertex Classification，Visualization上做了评价，并且都取得了高于Baselines的效果。</p>
 
       
     </div>
@@ -481,7 +484,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Edge-detection/" rel="tag"># Edge detection</a>
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          
+            <a href="/tags/semi-supervised-model/" rel="tag"># semi-supervised model</a>
           
         </div>
       
@@ -509,8 +514,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/17/HTNE/" rel="next" title="HTNE:《Embedding Temporal Network via Neighborhood Formation》阅读笔记">
-                <i class="fa fa-chevron-left"></i> HTNE:《Embedding Temporal Network via Neighborhood Formation》阅读笔记
+              <a href="/2019/01/19/edge-detection-pj/" rel="next" title="图片边缘检测并且拟合直线">
+                <i class="fa fa-chevron-left"></i> 图片边缘检测并且拟合直线
               </a>
             
           </div>
@@ -518,10 +523,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/21/SDNE/" rel="prev" title="SDNE:《Structral Deep Network Embedding》阅读笔记">
-                SDNE:《Structral Deep Network Embedding》阅读笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -578,8 +579,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -700,6 +710,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimization"><span class="nav-number">3.</span> <span class="nav-text">Optimization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Experiment"><span class="nav-number">4.</span> <span class="nav-text">Experiment</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
