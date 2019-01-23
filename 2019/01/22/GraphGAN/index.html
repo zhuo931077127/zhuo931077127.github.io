@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hawkes process,attention,">
+  <meta name="keywords" content="GAN,Graph Softmax,">
 
 
 
@@ -81,20 +81,21 @@
 
 
 
-<meta name="description" content="论文地址：HTNE Introduction本文出发点在于捕获动态网络中节点和边的变化来在embedding中保持网络结构，举个简单的例子来说，如Fig. 1所示，是一个共同作者网络图。数字标注的节点是author，方框内是co-authored paper. 可以看到图中每个节点每条边加入网络中的时间是不同的。根据图中的信息，可以分析出例如前期1和2，3合作较紧密，后期转为了6,7。 并且(b)">
-<meta name="keywords" content="Hawkes process,attention">
+<meta name="description" content="论文地址:GraphGAN IntroductionGAN是CV上非常火的方法，作者将其引入Network Embedding领域。为了达到这个目的，首先，作者将当前的NE model分成了两类，分别是生成模型(generative model)和判别模型(discriminative model)。简单来说，生成模型。所谓生成模型，就是对于每个节点$v_c$，都存在一个潜在的真实连接分布$p_{">
+<meta name="keywords" content="GAN,Graph Softmax">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTNE:《Embedding Temporal Network via Neighborhood Formation》阅读笔记">
-<meta property="og:url" content="http://yoursite.com/2019/01/17/HTNE/index.html">
+<meta property="og:title" content="《GraphGAN:Graph Representation Learning with Generative Adversarial Nets》阅读笔记">
+<meta property="og:url" content="http://yoursite.com/2019/01/22/GraphGAN/index.html">
 <meta property="og:site_name" content="Wei Zhuo">
-<meta property="og:description" content="论文地址：HTNE Introduction本文出发点在于捕获动态网络中节点和边的变化来在embedding中保持网络结构，举个简单的例子来说，如Fig. 1所示，是一个共同作者网络图。数字标注的节点是author，方框内是co-authored paper. 可以看到图中每个节点每条边加入网络中的时间是不同的。根据图中的信息，可以分析出例如前期1和2，3合作较紧密，后期转为了6,7。 并且(b)">
+<meta property="og:description" content="论文地址:GraphGAN IntroductionGAN是CV上非常火的方法，作者将其引入Network Embedding领域。为了达到这个目的，首先，作者将当前的NE model分成了两类，分别是生成模型(generative model)和判别模型(discriminative model)。简单来说，生成模型。所谓生成模型，就是对于每个节点$v_c$，都存在一个潜在的真实连接分布$p_{">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2019/01/17/HTNE/Fig1.png">
-<meta property="og:updated_time" content="2019-01-19T13:37:37.503Z">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/GraphGAN/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/GraphGAN/2.png">
+<meta property="og:updated_time" content="2019-01-23T04:08:41.117Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTNE:《Embedding Temporal Network via Neighborhood Formation》阅读笔记">
-<meta name="twitter:description" content="论文地址：HTNE Introduction本文出发点在于捕获动态网络中节点和边的变化来在embedding中保持网络结构，举个简单的例子来说，如Fig. 1所示，是一个共同作者网络图。数字标注的节点是author，方框内是co-authored paper. 可以看到图中每个节点每条边加入网络中的时间是不同的。根据图中的信息，可以分析出例如前期1和2，3合作较紧密，后期转为了6,7。 并且(b)">
-<meta name="twitter:image" content="http://yoursite.com/2019/01/17/HTNE/Fig1.png">
+<meta name="twitter:title" content="《GraphGAN:Graph Representation Learning with Generative Adversarial Nets》阅读笔记">
+<meta name="twitter:description" content="论文地址:GraphGAN IntroductionGAN是CV上非常火的方法，作者将其引入Network Embedding领域。为了达到这个目的，首先，作者将当前的NE model分成了两类，分别是生成模型(generative model)和判别模型(discriminative model)。简单来说，生成模型。所谓生成模型，就是对于每个节点$v_c$，都存在一个潜在的真实连接分布$p_{">
+<meta name="twitter:image" content="http://yoursite.com/2019/01/22/GraphGAN/1.png">
 
 
 
@@ -124,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/17/HTNE/">
+  <link rel="canonical" href="http://yoursite.com/2019/01/22/GraphGAN/">
 
 
 
 
 
-  <title>HTNE:《Embedding Temporal Network via Neighborhood Formation》阅读笔记 | Wei Zhuo</title>
+  <title>《GraphGAN:Graph Representation Learning with Generative Adversarial Nets》阅读笔记 | Wei Zhuo</title>
   
 
 
@@ -287,7 +288,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/17/HTNE/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/22/GraphGAN/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mario Z">
@@ -304,7 +305,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">HTNE:《Embedding Temporal Network via Neighborhood Formation》阅读笔记</h1>
+          <h1 class="post-title" itemprop="name headline">《GraphGAN:Graph Representation Learning with Generative Adversarial Nets》阅读笔记</h1>
         
 
         <div class="post-meta">
@@ -316,8 +317,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-17T00:00:00+08:00">
-                2019-01-17
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-22T16:57:05+08:00">
+                2019-01-22
               </time>
             
 
@@ -381,7 +382,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  852
+                  1.3k
                 </span>
               
 
@@ -397,7 +398,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  3
+                  4
                 </span>
               
             </div>
@@ -418,29 +419,17 @@
       
 
       
-        <p>论文地址：<a href="https://dl.acm.org/citation.cfm?id=3220054" target="_blank" rel="noopener">HTNE</a></p>
-<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>本文出发点在于捕获动态网络中节点和边的变化来在embedding中保持网络结构，举个简单的例子来说，如Fig. 1所示，是一个共同作者网络图。数字标注的节点是author，方框内是co-authored paper. 可以看到图中每个节点每条边加入网络中的时间是不同的。根据图中的信息，可以分析出例如前期1和2，3合作较紧密，后期转为了6,7。 并且(b)中所示，同一条边可能多次出现，这就比传统的单条边拥有更多语义信息。</p>
-<p><img src="/2019/01/17/HTNE/Fig1.png" alt="你想输入的替代文字"></p>
-<p>另外，最近也有方法对动态网络的embedding做了研究，比如[29][30]的方法。但是他们的目的是将时间线分段为固定时间窗来对动态建模，但是这些方法依然没有考虑动态过程也就是网络随时序动态变化的信息。</p>
-<p>因此，本文提出了基于霍克斯过程（Hawkes process）的时序网络表示学习方法，该方法是由序列事件驱动的（也就是序列的变化） 如Fig .1(b)所示 (b)图为节点1的邻域生成序列。霍克斯过程的思路是说历史上发生的事情对未来的概率密度函数有影响，只是随着时间流逝这种影响会逐渐减弱（Decay）。本文提出用霍克斯过程来捕获时间序列（也就是邻域生成序列）的激励效应。 尤其是历史事件对当前事件的影响。</p>
-<p>通过把成对的向量映射到基本速率和历史影响，从而把低维向量被输入Hawkes过程。 </p>
-<p>另外历史邻居当前邻居的影响，不同节点是不同的，所以本文使用attention model来学习历史邻居对当前邻居影响的量化表示。</p>
-<p>值得注意的是，本文目标是优化邻域生成序列的极大似然估计即<strong>条件强度函数</strong>（conditional intensity function）来邻域生成序列的到达率，而不是条件概率函数</p>
-<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><h3 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h3><p>本文通过跟踪节点邻域的形成来捕获网络的形成过程。<br><strong>Definition 1</strong> : 时序网络 $G=(V,E,A)$, $A$ 是事件集， 边$(x,y) \in E$ 被表示为按时间顺序的时间序列，例如， $\mathbf{a}_{x,y}=\{a_1\to{a_2}\to{…}\}\subset\mathcal{A}$, $a_i$ 表示时间$t_i$时刻的一个事件。  </p>
-<p>因此，网络中节点的相邻邻居可以根据与邻居的交互事件的时序被组织为序列，表示邻域形成过程。</p>
-<p><strong>Definition 2</strong> : 对于给定节点$x$,邻域表示为$N(x)=\{y_i|i=1,2…\}$.$x$的目标邻居到达事件可以表示为$\{x:(y_1,t_1)\to(y_2,t_2)\to…\to(y_n,t_n)\}$,即邻域形成序列。每个元组表示在时间戳$t_i$时，$x$与$y_i$建立边。</p>
-<h3 id="Hawkes-Process"><a href="#Hawkes-Process" class="headerlink" title="Hawkes Process"></a>Hawkes Process</h3><p>点过程（Point Process）通过假设t时刻前的历史事件可以影响当前事件的发生，来对离散序列事件建模。<br>对于一个给定的节点$x \in V$, 在$x$的邻域生成序列中，到达目标邻居$y$的条件强度函数（或者可以说是$x$与$y$有边的可能性强度）可以表示为：  </p>
-<script type="math/tex; mode=display">\tilde{\lambda}_{y|x}(t)=\mu_{x,y}+\sum_{t_h<t}{\alpha_{h,y}\kappa(t-t_{h})}</script><p>其中，$\mu_{x,y}$表示构建一条连接节点$x$和$y$的基本率(base rate)，$h$是t时刻前的历史目标节点，$\alpha_{h,y}$表示一个$t_h$时刻的历史目标节点$h$（该节点是$x$的邻居）对当前邻居$y$的影响强度。$\sum_{t_h&lt;t}$表示遍历t时刻前$x$的所有邻居。$\kappa(t-t_{h})$表示随时间的衰减，可以表示成指数函数：  </p>
-<script type="math/tex; mode=display">\kappa(t-t_h)=\exp(-\delta_s(t-t_h))</script><p>其中，减少率 $\delta$是一个源依赖参数，对于每一个源节点（每个序列的根），历史邻居对当前邻居形成的影响强度是不同的。具体来说，如果$\kappa$越大，说明$t_h$时刻的邻居对当前邻居的影响越大，即 $-\delta_s(t-t_h)$越大, $\delta_s(t-t_h)$越小，因为$t$是当前时刻的邻居，所以当$t_h$越接近当前邻居时刻时，$\kappa$越大，这就说明了里当前时刻之前越近的邻居，对当前时刻邻居的影响越大。<br>综上所述，$\kappa$的具体意义是随时间衰减的影响，其中$\delta_s$参数表示对于不同的源节点，影响是不同的。</p>
-<p>如果$\tilde{\lambda}_{y|x}(t)$ 越大，说明x和y有边的可能性也越大。</p>
-<p>直观的来看，基本率（base rate）$\mu_{x,y}$揭示了节点x和节点y之间的连接可能性。为了简洁，本文使用了<strong>负平方欧式距离（negative squared Euclidean）</strong>来反映表示向量间的相似度: $\mu_{x,y}=f(\mathbf{e}_x,\mathbf{e}_y)=-||\mathbf{e}_x-\mathbf{e}_y||^2$。同样的，在计算历史邻居$h$对当前邻居$y$的影响时，也采用这个方法，即： $\alpha_{h,y}=f(\mathbf{e}_h,\mathbf{e}_y)=-||\mathbf{e}_h-\mathbf{e}_y||^2$。<br>因为条件强度函数必须为正，所以使用如下公式: $\lambda_{y|x}(t)=\exp(\tilde\lambda_{y|x}(t))$。$exp()$对原函数进行了归一化，所以问题就转化为了given $x$, maximize likelihood: $p(y|x)$. 这就与传统的NE方法差不多了。。。</p>
-<h3 id="Attention"><a href="#Attention" class="headerlink" title="Attention"></a>Attention</h3><p>根据论文中（3）式，可以看出，$\sum_{t_h&lt;t}{\alpha_{h,y}\kappa(t-t_{h})}$这一部分主要描述了历史邻居对当前邻居的影响，但是完全忽略了源节点$x$，因为源节点$x$的变化也会影响到历史邻居对当前邻居的亲近程度(affinity)。因此，本文引入了<strong>attention model</strong>。as follows：  </p>
-<script type="math/tex; mode=display">w_{h,x} = \frac{\exp(-||\mathbf{e}_x-\mathbf{e}_h||^2)}{\sum_{h'}{\exp(-||\mathbf{e}_x-\mathbf{e}_{h'}||^2)}}</script><p>这是一个softmax函数 来根据源节点$x$的不同为它的邻居赋予不同权重。</p>
-<p>最后， 历史邻居与当前邻居的连接紧密程度可以表示为:</p>
-<script type="math/tex; mode=display">\alpha_{h,y}=w_{h,x}f(\mathbf{e}_h,\mathbf{e}_y)</script><h3 id="Optimization"><a href="#Optimization" class="headerlink" title="Optimization"></a>Optimization</h3><p>目标函数即为给定节点$x$以及基于邻域形成序列的霍克斯过程, 生成节点$y$的条件概率。 公式如下：</p>
-<script type="math/tex; mode=display">p(y|x, \mathcal{H}_x(t)) = \frac{\lambda_{y|x}(t)}{\sum_{y'}{\lambda_{y'|x}(t)}}</script><p>目标函数即为所有节点对的极大似然：</p>
-<script type="math/tex; mode=display">\log \mathcal{L}=\sum_{x\in{\mathcal{V}}}{\sum_{y\in{\mathcal{H}_x}}}{\log{p(y|x,\mathcal{H}(t))}}</script><p>最后，由于softmax过程是calculating expensive，所以采用负采样优化损失函数。</p>
-
+        <p>论文地址:<a href="https://arxiv.org/abs/1711.08267" target="_blank" rel="noopener">GraphGAN</a></p>
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>GAN是CV上非常火的方法，作者将其引入Network Embedding领域。为了达到这个目的，首先，作者将当前的NE model分成了两类，分别是生成模型(generative model)和判别模型(discriminative model)。简单来说，生成模型。<br>所谓生成模型，就是对于每个节点$v_c$，都存在一个潜在的真实连接分布$p_{true}(v|v_c)$, 这个分布反映了由条件生成样本的概率，因此，生成式模型的目的就是求网络中边的极大似然。比较经典的方法有DeepWalk，是通过随机游走来获得center node的上下文，然后最大化上下文节点的似然。Node2vec拓展了DeepWalk,提出了biased随机游走，使得模型在为给定节点生成上下文节点时具有更多的灵活性。<br>所谓判别模型，目的是学习一个分类器来直接预测边是否存在。将两个节点视为输入特征，然后输出预测的两个节点之间有边的概率，即$p(edge|(v_i,v_j))$,常见的方法有SDNE，PPNE。</p>
+<p>于是，本文结合生成对抗网络(GAN),提出了GraphGAN来同一生成和判别器。其中生成器$G(v|v_c)$试图拟合真实的连接概率分布$p_{true}(v|v_c)$,生成最可能和$v_c$有链接的点。判别器$D(v,v_c)$尝试区分强连接节点对和若连接节点对，然后计算$v$和$v_c$存在边的可能性。简单来说，就是把生成器生成的可能与$v_c$有边的节点放入判别器计算两者有边的概率。</p>
+<p>除此之外GAN框架下，然而生成器的连接分布是通过softmax实现的，但是传统的softmax无法适配生成器，原因如下:<br>(1).传统的softmax对网络中的所有节点一视同仁，缺乏对网络结构相似度信息的考虑。<br>(2).计算成本太高。<br>因此，论文中提出了新的生成器实现方法 Graph Softmax。并且证明GS具有归一化（normalization）、网络结构感知（graph structure awareness）和高计算效率（computational efficiency）的性质。相应的，文中也提出了基于随机游走(random walk)的生成器策略。</p>
+<h2 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h2><p>这里挑特别的来说。$\mathcal{N}(v_c)$表示和$v_c$直接相连的节点集。我们把给定节点$v_c$与任意节点$v \in \mathcal{V}$的真实连接分布表示为$p_{true}(v|v_c)$。这么看$\mathcal{N}(v_c)$可以看做从$p_{true}(v|v_c)$中采样的集合。文章的目的是学习两个模型:<br><strong>Generator</strong> $G(v|v_c;\theta_G)$ 生成器，尝试拟合真实连接分布$p_{true}(v|v_c)$，并且从节点集$\mathcal{V}$中生成最有可能和$v_c$相连的节点。<br><strong>Discriminator</strong> $D(v,v_c;\theta_G)$ 判别器，目的是判断已对接点$(v,v_c)$的连接性。$D(v,v_c;\theta_G)$输出$v$和$v_c$有边的概率。</p>
+<p>生成器$G$尝试完美拟合$p_{true}(v|v_c)$，并且生成和$v_c$真实邻居高度相似的节点来欺骗判别器。相反，判别器尝试发现输入的顶点是真实的节点对或者有生成器生成出的样本。这是一个极大极小游戏，目标函数$V(G,D)$:  </p>
+<script type="math/tex; mode=display">\min_{\theta_G} \max_{\theta_D} V(G,D)=\sum_{c=1}^V (\mathbb{E}_{v \sim p_{true}(\cdot|v_c)}[\log D(v,v_c;\theta_D)]+\mathbb{E}_{v \sim G(\cdot|v_c;\theta_G)}[\log(1-D(v,v_c;\theta_D))])</script><p>上面这个公式是本文最关键的公式，以我的分析就是：在给定$\theta_D$的情况下，对其最小化。先来分析$\max_{\theta_D}V(G,D)$,即给定$\theta_G$,使原式最大。当给定$\theta_G$时，通过改变$\theta_D$,使$\mathbb{E}_{v \sim p_{true}(\cdot|v_c)}[\log D(v,v_c;\theta_D)]$达到最大（是判别器D拟合真实分布），同时使$\mathbb{E}_{v \sim G(\cdot|v_c;\theta_G)}[\log(1-D(v,v_c;\theta_D))]$最大，即尽可能减小选定节点$v_c$与判别器中生成的$v_c$邻居节点与$v_c$连接的可能性。然后在给定$\theta_D$的情况下，通过改变生成器$\theta_G$继续生成节点，使得$\mathbb{E}_{v \sim G(\cdot|v_c;\theta_G)}[\log(1-D(v,v_c;\theta_D))]$尽可能小，即上一步的判别器尽可能把当前生成器生成的节点认为是邻居。 之后再更新判别器,以此类推。这样$G$和$D$各自提高性能，最终$G$生成的分布和真实连接分布无法区分，这样达到最好的效果。整体过程如下图所示:  </p>
+<p><img src="/2019/01/22/GraphGAN/1.png" alt="你想输入的替代文字"></p>
+<h3 id="Discriminator-Optimization"><a href="#Discriminator-Optimization" class="headerlink" title="Discriminator Optimization"></a>Discriminator Optimization</h3><p>对于判别器来说是个简单的sigmoid函数，来计算两个输入节点的表示向量:  </p>
+<script type="math/tex; mode=display">D(v,v_c;\theta_D)=\frac{1}{1+\exp(-d^\top_v d_{v_c})}</script><p>其中，$d_v$,$d_{v_c}$是两个输入节点关于判别器$D$的表示向量，$\theta_D$是所有节点表示向量的结合。注意到上面的公式只涉及$v$和$v_c$, 我们只需要更新$d_v$,$d_{v_c}$，通过梯度下降的方法可以实现：<br><img src="/2019/01/22/GraphGAN/2.png" alt="你想输入的替代文字"></p>
+<h3 id="Generator-Optimization"><a href="#Generator-Optimization" class="headerlink" title="Generator Optimization"></a>Generator Optimization</h3>
       
     </div>
     
@@ -486,9 +475,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Hawkes-process/" rel="tag"># Hawkes process</a>
+            <a href="/tags/GAN/" rel="tag"># GAN</a>
           
-            <a href="/tags/attention/" rel="tag"># attention</a>
+            <a href="/tags/Graph-Softmax/" rel="tag"># Graph Softmax</a>
           
         </div>
       
@@ -516,8 +505,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/16/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2019/01/22/NE-Edge-Labels/" rel="next" title="《Enhanced Network Embeddings via Exploiting Edge Labels》阅读笔记">
+                <i class="fa fa-chevron-left"></i> 《Enhanced Network Embeddings via Exploiting Edge Labels》阅读笔记
               </a>
             
           </div>
@@ -525,10 +514,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/19/edge-detection-pj/" rel="prev" title="图片边缘检测并且拟合直线">
-                图片边缘检测并且拟合直线 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -726,7 +711,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Definition"><span class="nav-number">2.1.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hawkes-Process"><span class="nav-number">2.2.</span> <span class="nav-text">Hawkes Process</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Attention"><span class="nav-number">2.3.</span> <span class="nav-text">Attention</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Optimization"><span class="nav-number">2.4.</span> <span class="nav-text">Optimization</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Discriminator-Optimization"><span class="nav-number">2.1.</span> <span class="nav-text">Discriminator Optimization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generator-Optimization"><span class="nav-number">2.2.</span> <span class="nav-text">Generator Optimization</span></a></li></ol></li></ol></div>
             
 
           </div>
