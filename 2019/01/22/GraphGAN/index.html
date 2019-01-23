@@ -91,7 +91,8 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2019/01/22/GraphGAN/1.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/22/GraphGAN/2.png">
-<meta property="og:updated_time" content="2019-01-23T04:08:41.117Z">
+<meta property="og:image" content="http://yoursite.com/2019/01/22/GraphGAN/3.png">
+<meta property="og:updated_time" content="2019-01-23T15:15:41.207Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《GraphGAN:Graph Representation Learning with Generative Adversarial Nets》阅读笔记">
 <meta name="twitter:description" content="论文地址:GraphGAN IntroductionGAN是CV上非常火的方法，作者将其引入Network Embedding领域。为了达到这个目的，首先，作者将当前的NE model分成了两类，分别是生成模型(generative model)和判别模型(discriminative model)。简单来说，生成模型。所谓生成模型，就是对于每个节点$v_c$，都存在一个潜在的真实连接分布$p_{">
@@ -382,7 +383,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.3k
+                  1.5k
                 </span>
               
 
@@ -398,7 +399,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  4
+                  5
                 </span>
               
             </div>
@@ -429,7 +430,8 @@
 <p><img src="/2019/01/22/GraphGAN/1.png" alt="你想输入的替代文字"></p>
 <h3 id="Discriminator-Optimization"><a href="#Discriminator-Optimization" class="headerlink" title="Discriminator Optimization"></a>Discriminator Optimization</h3><p>对于判别器来说是个简单的sigmoid函数，来计算两个输入节点的表示向量:  </p>
 <script type="math/tex; mode=display">D(v,v_c;\theta_D)=\frac{1}{1+\exp(-d^\top_v d_{v_c})}</script><p>其中，$d_v$,$d_{v_c}$是两个输入节点关于判别器$D$的表示向量，$\theta_D$是所有节点表示向量的结合。注意到上面的公式只涉及$v$和$v_c$, 我们只需要更新$d_v$,$d_{v_c}$，通过梯度下降的方法可以实现：<br><img src="/2019/01/22/GraphGAN/2.png" alt="你想输入的替代文字"></p>
-<h3 id="Generator-Optimization"><a href="#Generator-Optimization" class="headerlink" title="Generator Optimization"></a>Generator Optimization</h3>
+<h3 id="Generator-Optimization"><a href="#Generator-Optimization" class="headerlink" title="Generator Optimization"></a>Generator Optimization</h3><p>对于生成器来说，目标是最小化判别器将生成的样本判断为负样本的对数似然（概率）。换句话说，生成器会调整自己的连接分布（通过调整生成的所有节点的向量表示$\theta_G$）来提升对生成样本的判别分数。由于$v$的采样时离散的，所以使用policy gradient来计算$V(G,D)$关于$\theta_G$的梯度：<br><img src="/2019/01/22/GraphGAN/3.png" alt="你想输入的替代文字"><br>为了理解上述公式，注意到$\nabla_{\theta_G}V(G,D)$是一个由$\log(1-D(v,v_c;\theta_D))$加权的梯度$\nabla_{\theta_G}\log G(v|v_c;\theta_G)$的求和，直观上说，这意味着有高概率是负样本的节点会将生成器G“拉着”远离自己（因为我们在$\theta_G$上执行梯度下降）。</p>
+
       
     </div>
     
