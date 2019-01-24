@@ -92,7 +92,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/01/22/GraphGAN/1.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/22/GraphGAN/2.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/22/GraphGAN/3.png">
-<meta property="og:updated_time" content="2019-01-23T15:15:41.207Z">
+<meta property="og:updated_time" content="2019-01-24T03:35:07.626Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《GraphGAN:Graph Representation Learning with Generative Adversarial Nets》阅读笔记">
 <meta name="twitter:description" content="论文地址:GraphGAN IntroductionGAN是CV上非常火的方法，作者将其引入Network Embedding领域。为了达到这个目的，首先，作者将当前的NE model分成了两类，分别是生成模型(generative model)和判别模型(discriminative model)。简单来说，生成模型。所谓生成模型，就是对于每个节点$v_c$，都存在一个潜在的真实连接分布$p_{">
@@ -383,7 +383,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.5k
+                  1.8k
                 </span>
               
 
@@ -399,7 +399,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  5
+                  7
                 </span>
               
             </div>
@@ -431,7 +431,16 @@
 <h3 id="Discriminator-Optimization"><a href="#Discriminator-Optimization" class="headerlink" title="Discriminator Optimization"></a>Discriminator Optimization</h3><p>对于判别器来说是个简单的sigmoid函数，来计算两个输入节点的表示向量:  </p>
 <script type="math/tex; mode=display">D(v,v_c;\theta_D)=\frac{1}{1+\exp(-d^\top_v d_{v_c})}</script><p>其中，$d_v$,$d_{v_c}$是两个输入节点关于判别器$D$的表示向量，$\theta_D$是所有节点表示向量的结合。注意到上面的公式只涉及$v$和$v_c$, 我们只需要更新$d_v$,$d_{v_c}$，通过梯度下降的方法可以实现：<br><img src="/2019/01/22/GraphGAN/2.png" alt="你想输入的替代文字"></p>
 <h3 id="Generator-Optimization"><a href="#Generator-Optimization" class="headerlink" title="Generator Optimization"></a>Generator Optimization</h3><p>对于生成器来说，目标是最小化判别器将生成的样本判断为负样本的对数似然（概率）。换句话说，生成器会调整自己的连接分布（通过调整生成的所有节点的向量表示$\theta_G$）来提升对生成样本的判别分数。由于$v$的采样时离散的，所以使用policy gradient来计算$V(G,D)$关于$\theta_G$的梯度：<br><img src="/2019/01/22/GraphGAN/3.png" alt="你想输入的替代文字"><br>为了理解上述公式，注意到$\nabla_{\theta_G}V(G,D)$是一个由$\log(1-D(v,v_c;\theta_D))$加权的梯度$\nabla_{\theta_G}\log G(v|v_c;\theta_G)$的求和，直观上说，这意味着有高概率是负样本的节点会将生成器G“拉着”远离自己（因为我们在$\theta_G$上执行梯度下降）。</p>
-
+<h3 id="Graph-Softmax"><a href="#Graph-Softmax" class="headerlink" title="Graph Softmax"></a>Graph Softmax</h3><p>graph softmax的核心思想是定义一种新的计算连接性概率的方式，满足以下性质:  </p>
+<ul>
+<li>归一化：$\sum_{v \neq v_c;\theta_G}=1$。</li>
+<li>图结构感知：生成器充分利用网络中的结构信息，来估计真实连接分布，如果两个节点在图上越远，那么他们间有边的概率越小。</li>
+<li>高效的计算：和传统的softmax不同，$G(v|v_c;\theta_G)$的计算应只涉及图中的一小部分点。</li>
+</ul>
+<p>因此，本文以图中节点$v_c$为例，以$v_c$为根构建一棵BFS树$T_c$。$\mathcal{N}_c(v)$为节点$v$在$T_c$上的邻居集合（包括他的父节点和所有子节点）。对于一个given vertex $v$和它的一个邻居$v_i \in \mathcal{N}_c(v)$,定义概率为:  </p>
+<script type="math/tex; mode=display">p_c(v_i|v)=\frac{\exp (g_{v_i}^\top g_v)}{\sum_{v_i \in \mathcal{N}_c(v)} \exp(g_{v_j}^\top g_v)}</script><p>这是一个在$\mathcal{N}_c(v)$上的softmax函数。</p>
+<p>为了计算$G(v|v_c;\theta_G)$,注意到在$T_c$上，根节点$v_c$到每个节点$v$都有一条唯一的路径， 把这条路径记为$P_{v_c \to v}=(v_{r_0},v_{r_1},…,v_{r_m})$,其中$v_{r_0}=v_c$, $v_{r_m}=v$,那么在graph softmax中，将$G(v|v_c;\theta_G)$定义为:  </p>
+<script type="math/tex; mode=display">G(v|v_c;\theta_G)\triangleq (\prod^m_{j=1} p_c(v_{r_j}|v_{r_{j-1}})) \cdot p_c(v_{r_{m-1}}|v_{r_m})</script><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2>
       
     </div>
     
@@ -713,7 +722,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Discriminator-Optimization"><span class="nav-number">2.1.</span> <span class="nav-text">Discriminator Optimization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generator-Optimization"><span class="nav-number">2.2.</span> <span class="nav-text">Generator Optimization</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Discriminator-Optimization"><span class="nav-number">2.1.</span> <span class="nav-text">Discriminator Optimization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generator-Optimization"><span class="nav-number">2.2.</span> <span class="nav-text">Generator Optimization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Graph-Softmax"><span class="nav-number">2.3.</span> <span class="nav-text">Graph Softmax</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">3.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
             
 
           </div>
