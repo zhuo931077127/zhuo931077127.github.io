@@ -92,7 +92,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/01/22/GraphGAN/1.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/22/GraphGAN/2.png">
 <meta property="og:image" content="http://yoursite.com/2019/01/22/GraphGAN/3.png">
-<meta property="og:updated_time" content="2019-01-24T03:35:07.626Z">
+<meta property="og:updated_time" content="2019-01-24T09:19:46.165Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《GraphGAN:Graph Representation Learning with Generative Adversarial Nets》阅读笔记">
 <meta name="twitter:description" content="论文地址:GraphGAN IntroductionGAN是CV上非常火的方法，作者将其引入Network Embedding领域。为了达到这个目的，首先，作者将当前的NE model分成了两类，分别是生成模型(generative model)和判别模型(discriminative model)。简单来说，生成模型。所谓生成模型，就是对于每个节点$v_c$，都存在一个潜在的真实连接分布$p_{">
@@ -383,7 +383,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.8k
+                  1.9k
                 </span>
               
 
@@ -440,7 +440,8 @@
 <p>因此，本文以图中节点$v_c$为例，以$v_c$为根构建一棵BFS树$T_c$。$\mathcal{N}_c(v)$为节点$v$在$T_c$上的邻居集合（包括他的父节点和所有子节点）。对于一个given vertex $v$和它的一个邻居$v_i \in \mathcal{N}_c(v)$,定义概率为:  </p>
 <script type="math/tex; mode=display">p_c(v_i|v)=\frac{\exp (g_{v_i}^\top g_v)}{\sum_{v_i \in \mathcal{N}_c(v)} \exp(g_{v_j}^\top g_v)}</script><p>这是一个在$\mathcal{N}_c(v)$上的softmax函数。</p>
 <p>为了计算$G(v|v_c;\theta_G)$,注意到在$T_c$上，根节点$v_c$到每个节点$v$都有一条唯一的路径， 把这条路径记为$P_{v_c \to v}=(v_{r_0},v_{r_1},…,v_{r_m})$,其中$v_{r_0}=v_c$, $v_{r_m}=v$,那么在graph softmax中，将$G(v|v_c;\theta_G)$定义为:  </p>
-<script type="math/tex; mode=display">G(v|v_c;\theta_G)\triangleq (\prod^m_{j=1} p_c(v_{r_j}|v_{r_{j-1}})) \cdot p_c(v_{r_{m-1}}|v_{r_m})</script><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2>
+<script type="math/tex; mode=display">G(v|v_c;\theta_G)\triangleq (\prod^m_{j=1} p_c(v_{r_j}|v_{r_{j-1}})) \cdot p_c(v_{r_{m-1}}|v_{r_m})</script><h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>总的来说，这篇paper应该属于较早将GAN结合到NRL上的尝试， 有不少值得学习的地方，但是从实验部分看，Baselines较少以及试验指标选取中可以看出还有很大的提升空间。该算法主要针对无权图，对于加权图来说并不适配。</p>
+
       
     </div>
     
