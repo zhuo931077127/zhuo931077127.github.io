@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-01-24T09:19:46.165Z</updated>
+  <updated>2019-02-20T07:31:40.387Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《Self-Paced Network Embedding》阅读笔记</title>
+    <link href="http://yoursite.com/2019/02/18/SeedNE/"/>
+    <id>http://yoursite.com/2019/02/18/SeedNE/</id>
+    <published>2019-02-18T07:36:57.000Z</published>
+    <updated>2019-02-20T07:31:40.387Z</updated>
+    
+    <content type="html"><![CDATA[<p>论文地址: <a href="https://www.kdd.org/kdd2018/accepted-papers/view/self-paced-network-embedding" target="_blank" rel="noopener">SeedNE</a></p><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>传统的NE方法例如DeepWalk, Node2vec, Line是通过将正上下文节点在低维空间中靠近锚节点(anchor node)，而负上下文节点在低维空间中远离锚节点来学习Network Representation.也就是说，在低维空间中拉近相似节点，同时推远不相似节点。当采样负上下文节点时，通常采用预定义基于节点流行程度的采样分布，越流行的节点越有可能被采样为负例。<br>在数学上，这类似一个二分类器。用来把两个相似的节点分类成正相关节点对或负相关节点对。但是随机负例采样的方式无法区别出不同节点的信息，而是将所有节点等价采样。所以，DeepWalk，node2vec,LINE采样负节点是根据一个分布，这个分布依赖于节点的度。因此，采样连边多的节点会得到更好的效果，因为连边多的节点包含更多信息。然而这种方法忽略了度少的节点也可能包含有用的信息。所以不能仅仅用连接信息来决定一个节点的信息量。因此，本文的目标是找到真正有用的节点来训练模型。<br>当前的NE方法所使用的的采样方式是静态的，即采样分布不会随着训练过程而变化。所以在训练模型中，一个节点的信息量是个常量。但是，随着训练过程的继续，一些负例节点会远离锚节点，然而有一些却不会。所以我们应该更加注意这些不好区分的节点。因此，最好在不同的训练阶段对不同概率的节点进行采样。另一方面，不能总是关注不好区分的节点。应该从易到难的采样。</p><p>因此，本文的目标是动态地为训练模型抽取信息负面节点。具体来说，本文提出了一种自步节点采样策略(self-paced)。 该策略可以基于当前模型参数发现每个节点的信息量，然后根据其信息量对负节点进行采样。 此外，这种自定进度的策略可以在训练过程中逐渐对困难的负面节点进行采样。 此外，本文将这种自我采样策略扩展到生成对抗性网络框架。 对七个基准网络数据集进行了大量实验，以验证提出的方法的有效性。</p><h1 id="Sample-Selection"><a href="#Sample-Selection" class="headerlink" title="Sample Selection"></a>Sample Selection</h1><p>Curriculum Learning(课程学习)：<a href="https://blog.csdn.net/qq_25011449/article/details/82914803" target="_blank" rel="noopener">解读</a><br>Self-Paced Learning(自步学习)：<a href="https://blog.csdn.net/selous/article/details/78144377" target="_blank" rel="noopener">解读</a></p><h1 id="Self-Paced-Network-Embedding"><a href="#Self-Paced-Network-Embedding" class="headerlink" title="Self-Paced Network Embedding"></a>Self-Paced Network Embedding</h1>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;论文地址: &lt;a href=&quot;https://www.kdd.org/kdd2018/accepted-papers/view/self-paced-network-embedding&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;SeedNE&lt;/a&gt;&lt;/
+      
+    
+    </summary>
+    
+      <category term="Network Embedding" scheme="http://yoursite.com/categories/Network-Embedding/"/>
+    
+      <category term="paper" scheme="http://yoursite.com/categories/Network-Embedding/paper/"/>
+    
+    
+      <category term="GAN" scheme="http://yoursite.com/tags/GAN/"/>
+    
+      <category term="Self-Paced" scheme="http://yoursite.com/tags/Self-Paced/"/>
+    
+  </entry>
   
   <entry>
     <title>《GraphGAN:Graph Representation Learning with Generative Adversarial Nets》阅读笔记</title>

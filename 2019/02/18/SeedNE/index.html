@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="GAN,Self-Paced,">
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="失眠ing      -2019-1-17 正常睡眠     -2019-1-18 正常睡眠     -2019-1-19 熬夜但是正常睡眠   -2019-1-20 正常睡眠      -2019-1-21 正常睡眠但是醒的太早 -2019-1-22 睡得晚醒得早   -2019-1-23 正常睡眠    -2019-1-24 看了看要投稿的期刊，感觉自己的paper实验还是不够充分，论文还有漏">
-<meta name="keywords" content="Network Embedding, Social Network Analysis, Data mining">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Daily Life 日常">
-<meta property="og:url" content="http://yoursite.com/DailyLife/index.html">
+<meta name="description" content="论文地址: SeedNE Introduction传统的NE方法例如DeepWalk, Node2vec, Line是通过将正上下文节点在低维空间中靠近锚节点(anchor node)，而负上下文节点在低维空间中远离锚节点来学习Network Representation.也就是说，在低维空间中拉近相似节点，同时推远不相似节点。当采样负上下文节点时，通常采用预定义基于节点流行程度的采样分布，越流行">
+<meta name="keywords" content="GAN,Self-Paced">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《Self-Paced Network Embedding》阅读笔记">
+<meta property="og:url" content="http://yoursite.com/2019/02/18/SeedNE/index.html">
 <meta property="og:site_name" content="Wei Zhuo">
-<meta property="og:description" content="失眠ing      -2019-1-17 正常睡眠     -2019-1-18 正常睡眠     -2019-1-19 熬夜但是正常睡眠   -2019-1-20 正常睡眠      -2019-1-21 正常睡眠但是醒的太早 -2019-1-22 睡得晚醒得早   -2019-1-23 正常睡眠    -2019-1-24 看了看要投稿的期刊，感觉自己的paper实验还是不够充分，论文还有漏">
+<meta property="og:description" content="论文地址: SeedNE Introduction传统的NE方法例如DeepWalk, Node2vec, Line是通过将正上下文节点在低维空间中靠近锚节点(anchor node)，而负上下文节点在低维空间中远离锚节点来学习Network Representation.也就是说，在低维空间中拉近相似节点，同时推远不相似节点。当采样负上下文节点时，通常采用预定义基于节点流行程度的采样分布，越流行">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-02-17T07:26:15.955Z">
+<meta property="og:updated_time" content="2019-02-20T07:31:40.387Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Daily Life 日常">
-<meta name="twitter:description" content="失眠ing      -2019-1-17 正常睡眠     -2019-1-18 正常睡眠     -2019-1-19 熬夜但是正常睡眠   -2019-1-20 正常睡眠      -2019-1-21 正常睡眠但是醒的太早 -2019-1-22 睡得晚醒得早   -2019-1-23 正常睡眠    -2019-1-24 看了看要投稿的期刊，感觉自己的paper实验还是不够充分，论文还有漏">
+<meta name="twitter:title" content="《Self-Paced Network Embedding》阅读笔记">
+<meta name="twitter:description" content="论文地址: SeedNE Introduction传统的NE方法例如DeepWalk, Node2vec, Line是通过将正上下文节点在低维空间中靠近锚节点(anchor node)，而负上下文节点在低维空间中远离锚节点来学习Network Representation.也就是说，在低维空间中拉近相似节点，同时推远不相似节点。当采样负上下文节点时，通常采用预定义基于节点流行程度的采样分布，越流行">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/DailyLife/">
+  <link rel="canonical" href="http://yoursite.com/2019/02/18/SeedNE/">
 
 
 
 
 
-  <title>Daily Life 日常 | Wei Zhuo</title>
+  <title>《Self-Paced Network Embedding》阅读笔记 | Wei Zhuo</title>
   
 
 
@@ -273,44 +273,257 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/18/SeedNE/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mario Z">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar3.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wei Zhuo">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">Daily Life 日常</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <p>失眠ing      -2019-1-17</p>
-<p>正常睡眠     -2019-1-18</p>
-<p>正常睡眠     -2019-1-19</p>
-<p>熬夜但是正常睡眠   -2019-1-20</p>
-<p>正常睡眠      -2019-1-21</p>
-<p>正常睡眠但是醒的太早 -2019-1-22</p>
-<p>睡得晚醒得早   -2019-1-23</p>
-<p>正常睡眠    -2019-1-24</p>
-<p>看了看要投稿的期刊，感觉自己的paper实验还是不够充分，论文还有漏洞，加油啊，二月前一定要改好。   -2019-1-26</p>
-<p>论文终于投出去了，感觉还有很多不足，难受。   -2019-1-31</p>
-<p>寒假日记：<br>2月1日： 明天开始要认真学习<br>2月2日： 玩<br>2月3日： 玩<br>.<br>.<br>.<br>2月11日： 明天开始要认真学习<br>2月12日： 玩<br>2月13日： 玩</p>
-
+          <h1 class="post-title" itemprop="name headline">《Self-Paced Network Embedding》阅读笔记</h1>
         
-      </div>
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-18T15:36:57+08:00">
+                2019-02-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network-Embedding/" itemprop="url" rel="index">
+                    <span itemprop="name">Network Embedding</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Network-Embedding/paper/" itemprop="url" rel="index">
+                    <span itemprop="name">paper</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  681
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>论文地址: <a href="https://www.kdd.org/kdd2018/accepted-papers/view/self-paced-network-embedding" target="_blank" rel="noopener">SeedNE</a></p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>传统的NE方法例如DeepWalk, Node2vec, Line是通过将正上下文节点在低维空间中靠近锚节点(anchor node)，而负上下文节点在低维空间中远离锚节点来学习Network Representation.也就是说，在低维空间中拉近相似节点，同时推远不相似节点。当采样负上下文节点时，通常采用预定义基于节点流行程度的采样分布，越流行的节点越有可能被采样为负例。<br>在数学上，这类似一个二分类器。用来把两个相似的节点分类成正相关节点对或负相关节点对。但是随机负例采样的方式无法区别出不同节点的信息，而是将所有节点等价采样。所以，DeepWalk，node2vec,LINE采样负节点是根据一个分布，这个分布依赖于节点的度。因此，采样连边多的节点会得到更好的效果，因为连边多的节点包含更多信息。然而这种方法忽略了度少的节点也可能包含有用的信息。所以不能仅仅用连接信息来决定一个节点的信息量。因此，本文的目标是找到真正有用的节点来训练模型。<br>当前的NE方法所使用的的采样方式是静态的，即采样分布不会随着训练过程而变化。所以在训练模型中，一个节点的信息量是个常量。但是，随着训练过程的继续，一些负例节点会远离锚节点，然而有一些却不会。所以我们应该更加注意这些不好区分的节点。因此，最好在不同的训练阶段对不同概率的节点进行采样。另一方面，不能总是关注不好区分的节点。应该从易到难的采样。</p>
+<p>因此，本文的目标是动态地为训练模型抽取信息负面节点。具体来说，本文提出了一种自步节点采样策略(self-paced)。 该策略可以基于当前模型参数发现每个节点的信息量，然后根据其信息量对负节点进行采样。 此外，这种自定进度的策略可以在训练过程中逐渐对困难的负面节点进行采样。 此外，本文将这种自我采样策略扩展到生成对抗性网络框架。 对七个基准网络数据集进行了大量实验，以验证提出的方法的有效性。</p>
+<h1 id="Sample-Selection"><a href="#Sample-Selection" class="headerlink" title="Sample Selection"></a>Sample Selection</h1><p>Curriculum Learning(课程学习)：<a href="https://blog.csdn.net/qq_25011449/article/details/82914803" target="_blank" rel="noopener">解读</a><br>Self-Paced Learning(自步学习)：<a href="https://blog.csdn.net/selous/article/details/78144377" target="_blank" rel="noopener">解读</a></p>
+<h1 id="Self-Paced-Network-Embedding"><a href="#Self-Paced-Network-Embedding" class="headerlink" title="Self-Paced Network Embedding"></a>Self-Paced Network Embedding</h1>
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="Mario Z WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/ali.png" alt="Mario Z Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/GAN/" rel="tag"># GAN</a>
+          
+            <a href="/tags/Self-Paced/" rel="tag"># Self-Paced</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/01/22/GraphGAN/" rel="next" title="《GraphGAN:Graph Representation Learning with Generative Adversarial Nets》阅读笔记">
+                <i class="fa fa-chevron-left"></i> 《GraphGAN:Graph Representation Learning with Generative Adversarial Nets》阅读笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -348,8 +561,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -470,6 +692,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Sample-Selection"><span class="nav-number">2.</span> <span class="nav-text">Sample Selection</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Self-Paced-Network-Embedding"><span class="nav-number">3.</span> <span class="nav-text">Self-Paced Network Embedding</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
