@@ -92,7 +92,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/02/28/Optimizer/EMA_1.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/28/Optimizer/EMA_2.png">
 <meta property="og:image" content="http://yoursite.com/2019/02/28/Optimizer/EMA_3.svg">
-<meta property="og:updated_time" content="2019-02-28T09:19:59.137Z">
+<meta property="og:updated_time" content="2019-02-28T09:26:44.224Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深度学习中的优化算法总结">
 <meta name="twitter:description" content="最近想好好学一学Deep Learning中的优化算法（不能一直Adam了），看了一些文献，用这篇文章做个总结笔记。 Gradient Desent(梯度下降)目标函数$f(x)$，其中$x$为模型的待优化参数，对于每个epoch $t$, $\eta_t$表示第$t$个epoch的步长。$x_t$第$t$个epoch时的参数。(1).梯度下降的原理：目标函数（损失函数）$f(x)$关于参数$x$">
@@ -372,7 +372,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.2k
+                  1.3k
                 </span>
               
 
@@ -435,6 +435,8 @@ y_t  &= (1-\gamma) x_t + \gamma y_{t-1}\\
 \boldsymbol{x}_t &= \boldsymbol{x}_{t-1} - \boldsymbol{v}_t,
 \end{aligned}\end{split}</script><p>其中$g_t = \nabla f_i(x)$上式可以看出，如果$\gamma=0$，则上式就是一个普通的随机梯度下降法。$0 \leq \gamma &lt; 1$. $\gamma$一般取0.9。<br>一般，初始化$v_0=0$, 则  </p>
 <script type="math/tex; mode=display">v_1=\eta_t g_t \\ v_2=\gamma v_1+\eta_t g_t = \eta_t g_t(\gamma+1) \\ v_3 = \eta_t g_t (\gamma^2+\gamma+1) \\ v_{inf} = \frac{(\eta_t g_t)\cdot(1-\gamma^{inf+1})}{1-\gamma}\approx \frac{(\eta_t g_t)}{1-\gamma}</script><p>相比原始梯度下降算法，动量梯度下降算法有助于加速收敛。当梯度与动量方向一致时，动量项会增加，而相反时，动量项减少，因此动量梯度下降算法可以减少训练的震荡过程。</p>
+<h2 id="Adaptive-moment-estimation-Adam"><a href="#Adaptive-moment-estimation-Adam" class="headerlink" title="Adaptive moment estimation(Adam)"></a>Adaptive moment estimation(Adam)</h2><p>学习率自适应<br>稍后更新</p>
+<h2 id="Adabound"><a href="#Adabound" class="headerlink" title="Adabound"></a>Adabound</h2><p>正在学习中</p>
 <p>参考文献：<br><a href="https://zhuanlan.zhihu.com/p/32626442" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/32626442</a><br><a href="https://zhuanlan.zhihu.com/p/31630368" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/31630368</a><br><a href="https://zh.gluon.ai/" target="_blank" rel="noopener">https://zh.gluon.ai/</a></p>
 
       
@@ -716,7 +718,7 @@ y_t  &= (1-\gamma) x_t + \gamma y_{t-1}\\
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-Desent-梯度下降"><span class="nav-number">1.</span> <span class="nav-text">Gradient Desent(梯度下降)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stochastic-Gradient-Desent-随机梯度下降"><span class="nav-number">2.</span> <span class="nav-text">Stochastic Gradient Desent(随机梯度下降)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Momentum-动量法"><span class="nav-number">3.</span> <span class="nav-text">Momentum(动量法)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Exponentially-weighted-moving-averages-EMA"><span class="nav-number">3.1.</span> <span class="nav-text">Exponentially weighted moving averages(EMA)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动量法"><span class="nav-number">3.2.</span> <span class="nav-text">动量法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-Desent-梯度下降"><span class="nav-number">1.</span> <span class="nav-text">Gradient Desent(梯度下降)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Stochastic-Gradient-Desent-随机梯度下降"><span class="nav-number">2.</span> <span class="nav-text">Stochastic Gradient Desent(随机梯度下降)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Momentum-动量法"><span class="nav-number">3.</span> <span class="nav-text">Momentum(动量法)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Exponentially-weighted-moving-averages-EMA"><span class="nav-number">3.1.</span> <span class="nav-text">Exponentially weighted moving averages(EMA)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动量法"><span class="nav-number">3.2.</span> <span class="nav-text">动量法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adaptive-moment-estimation-Adam"><span class="nav-number">4.</span> <span class="nav-text">Adaptive moment estimation(Adam)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adabound"><span class="nav-number">5.</span> <span class="nav-text">Adabound</span></a></li></ol></div>
             
 
           </div>
