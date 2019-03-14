@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-02-28T09:26:44.224Z</updated>
+  <updated>2019-03-14T06:21:25.863Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《BiNE:Bipartite Network Embedding》阅读笔记</title>
+    <link href="http://yoursite.com/2019/03/13/BiNE/"/>
+    <id>http://yoursite.com/2019/03/13/BiNE/</id>
+    <published>2019-03-13T14:01:15.000Z</published>
+    <updated>2019-03-14T06:21:25.863Z</updated>
+    
+    <content type="html"><![CDATA[<p>论文地址：<a href="https://www.comp.nus.edu.sg/~xiangnan/papers/sigir18-bipartiteNE.pdf" target="_blank" rel="noopener">BiNE</a></p><h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p><strong>Bipartite Network(二分网络)</strong>:如下图所示：<br><img src="/2019/03/13/BiNE/stru.png" alt="你想输入的替代文字"><br>二分网络将节点分为两种类型，其中 边存在于两种类型之间，例如users-items组成的推荐网络，相同类型节点间不会产生边。传统的Network Embedding将bipartite network视为同质网络（homogeneous network）， 也就是仅考虑直接联系的边。这样就存在一个问题，即在同一个类型中的节点，虽然没有直接的连接，但是也可能有间接的关系。比如两个用户同时连接到同一个商品，则这两个用户可能有有相同的购买偏好。</p><p>另一个问题，<br><img src="/2019/03/13/BiNE/r1.png" alt="你想输入的替代文字"> <img src="/2019/03/13/BiNE/r2.png" alt="你想输入的替代文字"><br>如上两图所示， 图一可以看出，节点被访问的词数和考虑到的节点数呈现斜率为-1.582的幂律分布，但是基于随机游走的生成器相对于真实分布有所偏差， 文中分析原因在于基于随机游走的模型DeepWalk为每个节点生成相同长度的节点序列（walk_length）并且每个节点所需要的随机游走次数（walk per vertex）也是完全相同的，这样无法反应网络的特征以及异构性。<br>另外，对于Heterogeneous Network Embedding方法metapath2vec++, 此方法是次优的因为它将直接连接的节点与间接有关系的节点视为等价。</p><p>针对以上问题，BiNE为直接连接和间接关系分别设计了专用的目标函数，并且联合优化。 并且，所及游走的长度由该节点的重要程度决定，节点的重要程度通过<a href="http://www.cs.cornell.edu/home/kleinber/auth.pdf" target="_blank" rel="noopener">HITS</a>来衡量。</p><h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><p>如figure中的二分网络， 可以这样定义：$G=(U,V,E)$,和一个$|U| \times |V|$的$W=[w_{ij}]$为权重矩阵。输出d维embedding向量$U=[\overrightarrow{u_i}]$, $V=[\overrightarrow{v_i}]$，结构如下图所示：<br><img src="/2019/03/13/BiNE/3.png" alt="你想输入的替代文字">（取自作者的讲解ppt）  </p><h2 id="Explicit-Relations"><a href="#Explicit-Relations" class="headerlink" title="Explicit Relations"></a>Explicit Relations</h2><p>同LINE一样， 基于直接连接的目标函数表示为：  </p><script type="math/tex; mode=display">minimize \quad O_1=-\sum_{e_{ij} \in E}w_{ij}\log \hat{P}(i,j)</script><h2 id="Implicit-Relations"><a href="#Implicit-Relations" class="headerlink" title="Implicit Relations"></a>Implicit Relations</h2><h3 id="构造随机游走序列"><a href="#构造随机游走序列" class="headerlink" title="构造随机游走序列"></a>构造随机游走序列</h3><p>这是本文的创新点，分别为$U$和$U$构建语料库，即随机游走序列$D^U$和$D^V$。 首先给出两个同type节点相似度的定义：  </p><script type="math/tex; mode=display">w^U_{ij}=\sum_{k \in V}w_{ik}w_{jk}</script><script type="math/tex; mode=display">w^V_{ij}=\sum_{k \in U}w_{ki}w_{kj}</script><p>其中$i$和$j$是为$U$或$V$中的同类节点，也就是说两个同类节点如果有共同目标顶点，那么他们的2介相似度不为0。 则$U$中的二阶权重矩阵$|U|\times|U|$维矩阵$W^U=[w^U_{ij}]$。$V$中同理。<br><img src="/2019/03/13/BiNE/Al1.png" alt="你想输入的替代文字"><br>其中$l=max(H(v_i)\times maxT,minT)$, $H(v_i)$为节点$v_i$的中心性，中心性由HITS衡量。$l$为节点$v$的random walk次数（the number of random walks）,有这个节点的重要程度（centrality/importance）决定。  </p><script type="math/tex; mode=display">D_{v_i}=BiasedRandomWalk(W^R,v_i,p)</script><p>表示其中一次随机游走的节点集合$p$表示停止概率。</p><p>通过上面的推导，可以对分别对$U$,$V$中的节点构早随机游走序列，以$U$为例，若$S\in D^U$表示 那么$S$就是$U$中的一个随机游走序列。</p><h3 id="对间接关系建模"><a href="#对间接关系建模" class="headerlink" title="对间接关系建模"></a>对间接关系建模</h3><p>如下图所示（图片取自作者的ppt），$S$为$D^U$中的一个随机游走序列， 其中$u_i$是这个序列的中心点，$C_s(u_i)$是$u_i$的上下文节点。<br><img src="/2019/03/13/BiNE/dd.png" alt="你想输入的替代文字"><br>对于$U$中的随机游走序列结合$D^U$，我们要做的就是最大化给定$u_i$,生成$u_c \in C_s(u_i)$的条件概率。所以目标函数如下：</p><script type="math/tex; mode=display">maximize \quad O_2 = \prod_{u_i \in S \land S \in D^U} \prod_{u_c \in C_s(u_i)}P(u_c|u_i)</script><p>对于$D^V$同理。其中,$p(u_c|u_i) = \frac{\exp(\overrightarrow{u}_i^T \overrightarrow{\theta}_c)}{\sum^{|U|}_{k=1} \exp(\overrightarrow{u}_i^T \overrightarrow{\theta}_k))}$。</p><h3 id="Negative-Sampling"><a href="#Negative-Sampling" class="headerlink" title="Negative Sampling"></a>Negative Sampling</h3><p>本文的负采样方法是基于局部敏感哈希（LSH）来对与中心节点不相似的节点进行采样。<br>该方法的strategy是，给定一个中心节点，随机选取一个bucket（序列）并且这个序列不包含给定的中心节点，以此来获得和给定节点尽量不相似的负采样节点。<br>$N^{ns}_S (u_i)$ 表示$ns$个负采样节点，对于中心节点$u_i$, 那么上文提到的条件概率$p(u_c|u_i)$可以被定义为下式：  </p><script type="math/tex; mode=display">p(u_c,N^{ns}_S (u_i)|u_i) = \prod_{z \in \{u_c\} \cup N^{ns}_S (u_i)} P(z|u_i)</script><p>其中条件概率$P(z|u_i)$定义为：<br><img src="/2019/03/13/BiNE/4.png" alt="你想输入的替代文字"><br>其中$\sigma$表示sigmoid函数，这样就减少了上文softmax函数造成的计算量过大的问题。</p><h2 id="联合优化"><a href="#联合优化" class="headerlink" title="联合优化"></a>联合优化</h2><p>通过随机梯度上升对3部分损失函数进行加权优化：  </p><script type="math/tex; mode=display">maximize \quad L = \alpha \log O_2+\beta \log O_3 - \gamma O_1</script><p>最终BiNE的整体算法流程如下：<br><img src="/2019/03/13/BiNE/Al2.png" alt="你想输入的替代文字">  </p><h1 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h1><p>这篇文章提出的分布式训练以及负采样策略还是很值得学习的。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;论文地址：&lt;a href=&quot;https://www.comp.nus.edu.sg/~xiangnan/papers/sigir18-bipartiteNE.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;BiNE&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&quot;I
+      
+    
+    </summary>
+    
+      <category term="Network Embedding" scheme="http://yoursite.com/categories/Network-Embedding/"/>
+    
+      <category term="paper" scheme="http://yoursite.com/categories/Network-Embedding/paper/"/>
+    
+    
+      <category term="Bipartite Network" scheme="http://yoursite.com/tags/Bipartite-Network/"/>
+    
+      <category term="SGA" scheme="http://yoursite.com/tags/SGA/"/>
+    
+  </entry>
   
   <entry>
     <title>深度学习中的优化算法总结</title>
@@ -65,9 +95,9 @@
       <category term="paper" scheme="http://yoursite.com/categories/Network-Embedding/paper/"/>
     
     
-      <category term="Self-Paced" scheme="http://yoursite.com/tags/Self-Paced/"/>
-    
       <category term="GAN" scheme="http://yoursite.com/tags/GAN/"/>
+    
+      <category term="Self-Paced" scheme="http://yoursite.com/tags/Self-Paced/"/>
     
   </entry>
   
