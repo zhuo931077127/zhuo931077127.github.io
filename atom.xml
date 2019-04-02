@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-03-20T14:58:39.229Z</updated>
+  <updated>2019-04-02T08:33:22.390Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Opencv轮廓提取并计算图片中某一封闭区域的面积</title>
+    <link href="http://yoursite.com/2019/04/02/Pic-closed-edge/"/>
+    <id>http://yoursite.com/2019/04/02/Pic-closed-edge/</id>
+    <published>2019-04-02T07:43:44.000Z</published>
+    <updated>2019-04-02T08:33:22.390Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近遇到一个问题，之前在<a href="https://zhuo931077127.github.io/2019/01/19/edge-detection-pj/" target="_blank" rel="noopener">这篇文章</a>中提到过一个边缘检测并且拟合直线的方法。但是如果需要计算区域内的面积，比如说要计算下图中类似三角形区域内的面积<br><img src="/2019/04/02/Pic-closed-edge/cut.jpeg" alt="你想输入的替代文字"><br>之前的做法是用Canny算子提取边缘，再用HoughLines拟合直线，然后求出交点坐标并计算三角形面积，其中，边缘提取后的图像如下图所示：<br><img src="/2019/04/02/Pic-closed-edge/edge.jpeg" alt="你想输入的替代文字"><br>我们可以很明显的看出这不是一个标准的三角形，所以如果想要更精确的获得三角形，就需要对图片进行轮廓提取，然后计算轮廓内区域的面积。这里给出代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line"># Input image</span><br><span class="line">img = cv2.imread(&apos;cut.jpeg&apos;, cv2.IMREAD_GRAYSCALE)</span><br><span class="line"></span><br><span class="line"># Needed due to JPG artifacts</span><br><span class="line">_, temp = cv2.threshold(img, 128, 255, cv2.THRESH_BINARY)</span><br><span class="line"></span><br><span class="line"># Dilate to better detect contours</span><br><span class="line">temp = cv2.dilate(temp, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3)))</span><br><span class="line"></span><br><span class="line"># Find largest contour</span><br><span class="line">_, cnts, _ = cv2.findContours(temp, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)</span><br><span class="line">largestCnt = []</span><br><span class="line">for cnt in cnts:</span><br><span class="line">    if len(cnt) &gt; len(largestCnt):</span><br><span class="line">        largestCnt = cnt</span><br><span class="line"></span><br><span class="line"># Determine center of area of largest contour</span><br><span class="line">M = cv2.moments(largestCnt)</span><br><span class="line">x = int(M[&quot;m10&quot;] / M[&quot;m00&quot;])</span><br><span class="line">y = int(M[&quot;m01&quot;] / M[&quot;m00&quot;])</span><br><span class="line"></span><br><span class="line"># Initiale mask for flood filling</span><br><span class="line">width, height = temp.shape</span><br><span class="line">mask = img2 = np.ones((width + 2, height + 2), np.uint8) * 255</span><br><span class="line">mask[1:width, 1:height] = 0</span><br><span class="line"></span><br><span class="line"># Generate intermediate image, draw largest contour, flood filled</span><br><span class="line">temp = np.zeros(temp.shape, np.uint8)</span><br><span class="line">temp = cv2.drawContours(temp, largestCnt, -1, 255, cv2.FILLED)</span><br><span class="line">_, temp, mask, _ = cv2.floodFill(temp, mask, (x, y), 255)</span><br><span class="line">temp = cv2.morphologyEx(temp, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3)))</span><br><span class="line"></span><br><span class="line"># Count pixels in desired region</span><br><span class="line">area = cv2.countNonZero(temp)</span><br><span class="line"></span><br><span class="line"># Put result on original image</span><br><span class="line">img = cv2.putText(img, str(area), (x, y), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, 255)</span><br><span class="line"></span><br><span class="line">cv2.imshow(&apos;Input&apos;, img)</span><br><span class="line">cv2.imshow(&apos;Temp image&apos;, temp)</span><br><span class="line"></span><br><span class="line">cv2.waitKey(0)</span><br><span class="line"></span><br></pre></td></tr></table></figure></p><p>最后我们可以得到一个比较准确的轮廓：<br><img src="/2019/04/02/Pic-closed-edge/img_trk.jpg" alt="你想输入的替代文字"><br>面积如图中所示：<br><img src="/2019/04/02/Pic-closed-edge/img_tr.jpg" alt="你想输入的替代文字">  </p><p>参考：<br><a href="https://stackoverflow.com/questions/55467031/how-to-get-the-area-of-the-contours" target="_blank" rel="noopener">https://stackoverflow.com/questions/55467031/how-to-get-the-area-of-the-contours</a></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;最近遇到一个问题，之前在&lt;a href=&quot;https://zhuo931077127.github.io/2019/01/19/edge-detection-pj/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;这篇文章&lt;/a&gt;中提到过一个边缘检测并且拟合
+      
+    
+    </summary>
+    
+      <category term="project" scheme="http://yoursite.com/categories/project/"/>
+    
+      <category term="Computer Vision" scheme="http://yoursite.com/categories/project/Computer-Vision/"/>
+    
+    
+      <category term="Contours" scheme="http://yoursite.com/tags/Contours/"/>
+    
+  </entry>
   
   <entry>
     <title>社交网络影响最大化（Influence Maximization）中的IC，LT模型</title>
@@ -122,9 +149,9 @@
       <category term="paper" scheme="http://yoursite.com/categories/Network-Embedding/paper/"/>
     
     
-      <category term="Self-Paced" scheme="http://yoursite.com/tags/Self-Paced/"/>
-    
       <category term="GAN" scheme="http://yoursite.com/tags/GAN/"/>
+    
+      <category term="Self-Paced" scheme="http://yoursite.com/tags/Self-Paced/"/>
     
   </entry>
   

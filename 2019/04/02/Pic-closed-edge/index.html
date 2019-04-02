@@ -68,12 +68,10 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Contours,">
 
 
 
-
-  
 
 
   <link rel="alternate" href="/atom.xml" title="Wei Zhuo" type="application/atom+xml">
@@ -83,18 +81,23 @@
 
 
 
-<meta name="description" content="XZMU, JNU, know-nothing">
-<meta name="keywords" content="Network Embedding, Social Network Analysis, Data mining">
-<meta property="og:type" content="website">
-<meta property="og:title" content="photography">
-<meta property="og:url" content="http://yoursite.com/photography/index.html">
+<meta name="description" content="最近遇到一个问题，之前在这篇文章中提到过一个边缘检测并且拟合直线的方法。但是如果需要计算区域内的面积，比如说要计算下图中类似三角形区域内的面积之前的做法是用Canny算子提取边缘，再用HoughLines拟合直线，然后求出交点坐标并计算三角形面积，其中，边缘提取后的图像如下图所示：我们可以很明显的看出这不是一个标准的三角形，所以如果想要更精确的获得三角形，就需要对图片进行轮廓提取，然后计算轮廓内区">
+<meta name="keywords" content="Contours">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Opencv轮廓提取并计算图片中某一封闭区域的面积">
+<meta property="og:url" content="http://yoursite.com/2019/04/02/Pic-closed-edge/index.html">
 <meta property="og:site_name" content="Wei Zhuo">
-<meta property="og:description" content="XZMU, JNU, know-nothing">
+<meta property="og:description" content="最近遇到一个问题，之前在这篇文章中提到过一个边缘检测并且拟合直线的方法。但是如果需要计算区域内的面积，比如说要计算下图中类似三角形区域内的面积之前的做法是用Canny算子提取边缘，再用HoughLines拟合直线，然后求出交点坐标并计算三角形面积，其中，边缘提取后的图像如下图所示：我们可以很明显的看出这不是一个标准的三角形，所以如果想要更精确的获得三角形，就需要对图片进行轮廓提取，然后计算轮廓内区">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-01-16T09:48:59.956Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/02/Pic-closed-edge/cut.jpeg">
+<meta property="og:image" content="http://yoursite.com/2019/04/02/Pic-closed-edge/edge.jpeg">
+<meta property="og:image" content="http://yoursite.com/2019/04/02/Pic-closed-edge/img_trk.jpg">
+<meta property="og:image" content="http://yoursite.com/2019/04/02/Pic-closed-edge/img_tr.jpg">
+<meta property="og:updated_time" content="2019-04-02T08:33:22.390Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="photography">
-<meta name="twitter:description" content="XZMU, JNU, know-nothing">
+<meta name="twitter:title" content="Opencv轮廓提取并计算图片中某一封闭区域的面积">
+<meta name="twitter:description" content="最近遇到一个问题，之前在这篇文章中提到过一个边缘检测并且拟合直线的方法。但是如果需要计算区域内的面积，比如说要计算下图中类似三角形区域内的面积之前的做法是用Canny算子提取边缘，再用HoughLines拟合直线，然后求出交点坐标并计算三角形面积，其中，边缘提取后的图像如下图所示：我们可以很明显的看出这不是一个标准的三角形，所以如果想要更精确的获得三角形，就需要对图片进行轮廓提取，然后计算轮廓内区">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/02/Pic-closed-edge/cut.jpeg">
 
 
 
@@ -124,13 +127,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/photography/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/02/Pic-closed-edge/">
 
 
 
 
 
-  <title>photography | Wei Zhuo</title>
+  <title>Opencv轮廓提取并计算图片中某一封闭区域的面积 | Wei Zhuo</title>
   
 
 
@@ -275,33 +278,254 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/Pic-closed-edge/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Mario Z">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/uploads/avatar3.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Wei Zhuo">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">photography</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
+          <h1 class="post-title" itemprop="name headline">Opencv轮廓提取并计算图片中某一封闭区域的面积</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-02T15:43:44+08:00">
+                2019-04-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
           
-        
-      </div>
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/project/" itemprop="url" rel="index">
+                    <span itemprop="name">project</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/project/Computer-Vision/" itemprop="url" rel="index">
+                    <span itemprop="name">Computer Vision</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  431
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  2
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>最近遇到一个问题，之前在<a href="https://zhuo931077127.github.io/2019/01/19/edge-detection-pj/" target="_blank" rel="noopener">这篇文章</a>中提到过一个边缘检测并且拟合直线的方法。但是如果需要计算区域内的面积，比如说要计算下图中类似三角形区域内的面积<br><img src="/2019/04/02/Pic-closed-edge/cut.jpeg" alt="你想输入的替代文字"><br>之前的做法是用Canny算子提取边缘，再用HoughLines拟合直线，然后求出交点坐标并计算三角形面积，其中，边缘提取后的图像如下图所示：<br><img src="/2019/04/02/Pic-closed-edge/edge.jpeg" alt="你想输入的替代文字"><br>我们可以很明显的看出这不是一个标准的三角形，所以如果想要更精确的获得三角形，就需要对图片进行轮廓提取，然后计算轮廓内区域的面积。这里给出代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line"># Input image</span><br><span class="line">img = cv2.imread(&apos;cut.jpeg&apos;, cv2.IMREAD_GRAYSCALE)</span><br><span class="line"></span><br><span class="line"># Needed due to JPG artifacts</span><br><span class="line">_, temp = cv2.threshold(img, 128, 255, cv2.THRESH_BINARY)</span><br><span class="line"></span><br><span class="line"># Dilate to better detect contours</span><br><span class="line">temp = cv2.dilate(temp, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3)))</span><br><span class="line"></span><br><span class="line"># Find largest contour</span><br><span class="line">_, cnts, _ = cv2.findContours(temp, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)</span><br><span class="line">largestCnt = []</span><br><span class="line">for cnt in cnts:</span><br><span class="line">    if len(cnt) &gt; len(largestCnt):</span><br><span class="line">        largestCnt = cnt</span><br><span class="line"></span><br><span class="line"># Determine center of area of largest contour</span><br><span class="line">M = cv2.moments(largestCnt)</span><br><span class="line">x = int(M[&quot;m10&quot;] / M[&quot;m00&quot;])</span><br><span class="line">y = int(M[&quot;m01&quot;] / M[&quot;m00&quot;])</span><br><span class="line"></span><br><span class="line"># Initiale mask for flood filling</span><br><span class="line">width, height = temp.shape</span><br><span class="line">mask = img2 = np.ones((width + 2, height + 2), np.uint8) * 255</span><br><span class="line">mask[1:width, 1:height] = 0</span><br><span class="line"></span><br><span class="line"># Generate intermediate image, draw largest contour, flood filled</span><br><span class="line">temp = np.zeros(temp.shape, np.uint8)</span><br><span class="line">temp = cv2.drawContours(temp, largestCnt, -1, 255, cv2.FILLED)</span><br><span class="line">_, temp, mask, _ = cv2.floodFill(temp, mask, (x, y), 255)</span><br><span class="line">temp = cv2.morphologyEx(temp, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3)))</span><br><span class="line"></span><br><span class="line"># Count pixels in desired region</span><br><span class="line">area = cv2.countNonZero(temp)</span><br><span class="line"></span><br><span class="line"># Put result on original image</span><br><span class="line">img = cv2.putText(img, str(area), (x, y), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, 255)</span><br><span class="line"></span><br><span class="line">cv2.imshow(&apos;Input&apos;, img)</span><br><span class="line">cv2.imshow(&apos;Temp image&apos;, temp)</span><br><span class="line"></span><br><span class="line">cv2.waitKey(0)</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>最后我们可以得到一个比较准确的轮廓：<br><img src="/2019/04/02/Pic-closed-edge/img_trk.jpg" alt="你想输入的替代文字"><br>面积如图中所示：<br><img src="/2019/04/02/Pic-closed-edge/img_tr.jpg" alt="你想输入的替代文字">  </p>
+<p>参考：<br><a href="https://stackoverflow.com/questions/55467031/how-to-get-the-area-of-the-contours" target="_blank" rel="noopener">https://stackoverflow.com/questions/55467031/how-to-get-the-area-of-the-contours</a></p>
+
       
     </div>
     
     
     
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>感谢支持！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechat.png" alt="Mario Z WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/ali.png" alt="Mario Z Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Contours/" rel="tag"># Contours</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/20/IC-LT/" rel="next" title="社交网络影响最大化（Influence Maximization）中的IC，LT模型">
+                <i class="fa fa-chevron-left"></i> 社交网络影响最大化（Influence Maximization）中的IC，LT模型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
