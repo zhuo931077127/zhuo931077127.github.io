@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/DailyLife/index.html</loc>
+    
+    <lastmod>2019-04-10T14:35:46.677Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2019/04/02/Pic-closed-edge/</loc>
     
     <lastmod>2019-04-02T08:35:06.360Z</lastmod>
@@ -33,13 +40,6 @@
     <loc>http://yoursite.com/2019/02/18/SeedNE/</loc>
     
     <lastmod>2019-02-20T08:28:18.343Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/DailyLife/index.html</loc>
-    
-    <lastmod>2019-02-17T07:26:15.955Z</lastmod>
     
   </url>
   
