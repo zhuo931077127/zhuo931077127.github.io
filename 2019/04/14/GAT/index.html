@@ -92,7 +92,9 @@
 <meta property="og:image" content="http://yoursite.com/2019/04/14/GAT/1.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/14/GAT/2.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/14/GAT/com.gif">
-<meta property="og:updated_time" content="2019-04-15T09:24:27.613Z">
+<meta property="og:image" content="http://www.cl.cam.ac.uk/~pv273/images/gat.jpg">
+<meta property="og:image" content="http://www.cl.cam.ac.uk/~pv273/images/gat_tsne.jpg">
+<meta property="og:updated_time" content="2019-04-15T11:44:48.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Graph Attention Networks》阅读笔记">
 <meta name="twitter:description" content="论文地址：GAT Introduction本文介绍了一种新型的神经网络架构用来处理图结构。即Graph Attention Networks(GATs)。该方法利用masked self-attentional layer，即通过网络层的堆叠，可以获取网络中每个节点的领域特征，同时为领域中的不同节点指定不同的权重。这样做的好处是可以不需要各种高成本的矩阵运算也不依赖于的图结构信息。通过这种方式，">
@@ -443,6 +445,22 @@ e_{ij} = a(W\vec{h_i},W\vec{h_j})</script><p>上式中，分别对$\vec{h_i}$和
 <li><p>GAT可以被描述为一种特殊的<a href="http://openaccess.thecvf.com/content_cvpr_2017/papers/Monti_Geometric_Deep_Learning_CVPR_2017_paper.pdf" target="_blank" rel="noopener">MoNet(Geometric deep learning on graphs and manifolds using mixture model cnns)</a>。具体我还没看，不会<img src="/2019/04/14/GAT/com.gif" alt=""></p>
 </li>
 </ul>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">GAT layer</th>
+<th style="text-align:center">t-SNE + Attention coefficients on Cora</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><img src="http://www.cl.cam.ac.uk/~pv273/images/gat.jpg" alt=""></td>
+<td style="text-align:center"><img src="http://www.cl.cam.ac.uk/~pv273/images/gat_tsne.jpg" alt=""></td>
+</tr>
+</tbody>
+</table>
+</div>
 <h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>参考：</p>
 <p>GCN：<a href="https://arxiv.org/abs/1609.02907" target="_blank" rel="noopener">https://arxiv.org/abs/1609.02907</a></p>
 <p><a href="https://zhuanlan.zhihu.com/p/34232818" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34232818</a></p>
