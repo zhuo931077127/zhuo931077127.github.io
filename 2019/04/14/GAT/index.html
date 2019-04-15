@@ -91,7 +91,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://yoursite.com/2019/04/14/GAT/1.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/14/GAT/2.png">
-<meta property="og:updated_time" content="2019-04-15T03:33:26.440Z">
+<meta property="og:updated_time" content="2019-04-15T03:36:52.265Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Graph Attention Networks》阅读笔记">
 <meta name="twitter:description" content="论文地址：GAT Introduction本文介绍了一种新型的神经网络架构用来处理图结构。即Graph Attention Networks(GATs)。该方法利用masked self-attentional layer，即通过网络层的堆叠，可以获取网络中每个节点的领域特征，同时为领域中的不同节点指定不同的权重。这样做的好处是可以不需要各种高成本的矩阵运算也不依赖于的图结构信息。通过这种方式，">
@@ -371,7 +371,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.1k
+                  1.2k
                 </span>
               
 
@@ -431,6 +431,10 @@ e_{ij} = a(W\vec{h_i},W\vec{h_j})</script><p>上式中，分别对$\vec{h_i}$和
 \vec{h_i'} = \|^K_{k=1} \sigma\left(\sum_{j \in \mathcal{N}_{i}} \alpha_{i j}^{k} \mathbf{W}^{k} \vec{h}_{j}\right)</script><p>上式为把不同$k$的向量做连接操作，其中$\alpha_{ij}^k$和$\mathbf{W}^{k}$表示第$k$个head的结果，我们可以注意到，最终输出的结果是$KF’$维的。除了concat之外，我们还可以通过求平均的方式来获得$\vec{h_i’}$:</p>
 <script type="math/tex; mode=display">
 \vec{h'_i}=\sigma\left(\frac{1}{K} \sum_{k=1}^{K} \sum_{j \in \mathcal{N}_{i}} \alpha_{i j}^{k} \mathbf{W}^{k} \vec{h}_{j}\right)</script><h1 id="Comparisions"><a href="#Comparisions" class="headerlink" title="Comparisions"></a>Comparisions</h1><p>稍后补充</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>参考：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/34232818" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34232818</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/59176692" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/59176692</a></p>
+<p><a href="https://arxiv.org/abs/1710.10903" target="_blank" rel="noopener">https://arxiv.org/abs/1710.10903</a></p>
 
       
     </div>
@@ -713,7 +717,7 @@ e_{ij} = a(W\vec{h_i},W\vec{h_j})</script><p>上式中，分别对$\vec{h_i}$和
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Architecture"><span class="nav-number">2.</span> <span class="nav-text">Architecture</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Comparisions"><span class="nav-number">3.</span> <span class="nav-text">Comparisions</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Architecture"><span class="nav-number">2.</span> <span class="nav-text">Architecture</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Comparisions"><span class="nav-number">3.</span> <span class="nav-text">Comparisions</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
             
 
           </div>
