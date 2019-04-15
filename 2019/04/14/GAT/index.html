@@ -94,7 +94,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/04/14/GAT/com.gif">
 <meta property="og:image" content="http://www.cl.cam.ac.uk/~pv273/images/gat.jpg">
 <meta property="og:image" content="http://www.cl.cam.ac.uk/~pv273/images/gat_tsne.jpg">
-<meta property="og:updated_time" content="2019-04-15T11:44:48.579Z">
+<meta property="og:updated_time" content="2019-04-15T14:00:34.720Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《Graph Attention Networks》阅读笔记">
 <meta name="twitter:description" content="论文地址：GAT Introduction本文介绍了一种新型的神经网络架构用来处理图结构。即Graph Attention Networks(GATs)。该方法利用masked self-attentional layer，即通过网络层的堆叠，可以获取网络中每个节点的领域特征，同时为领域中的不同节点指定不同的权重。这样做的好处是可以不需要各种高成本的矩阵运算也不依赖于的图结构信息。通过这种方式，">
@@ -439,11 +439,12 @@ e_{ij} = a(W\vec{h_i},W\vec{h_j})</script><p>上式中，分别对$\vec{h_i}$和
 <li><p>与GCN不同的是，GAT为同一邻域中的节点分配不同的重要性（different importance），提升了模型容量。</p>
 </li>
 <li><p>注意机制以共享的方式应用于图中的所有边（共享$\mathbf{W}$），因此它不依赖于对全局图结构的预先访问或其所有节点的（特征）。这样有以下提升：</p>
-<p> 1） 不必是无向图。如果$i \to j$不存在,可以直接不用计算$\alpha_{ij}$。</p>
-<p> 2） 可直接应用于归纳学习。</p>
+<ul>
+<li>不必是无向图。如果$i \to j$不存在,可以直接不用计算$\alpha_{ij}$。</li>
+<li>可直接应用于归纳学习。</li>
+</ul>
 </li>
-<li><p>GAT可以被描述为一种特殊的<a href="http://openaccess.thecvf.com/content_cvpr_2017/papers/Monti_Geometric_Deep_Learning_CVPR_2017_paper.pdf" target="_blank" rel="noopener">MoNet(Geometric deep learning on graphs and manifolds using mixture model cnns)</a>。具体我还没看，不会<img src="/2019/04/14/GAT/com.gif" alt=""></p>
-</li>
+<li>GAT可以被描述为一种特殊的<a href="http://openaccess.thecvf.com/content_cvpr_2017/papers/Monti_Geometric_Deep_Learning_CVPR_2017_paper.pdf" target="_blank" rel="noopener">MoNet(Geometric deep learning on graphs and manifolds using mixture model cnns)</a>。具体我还没看，不会<img src="/2019/04/14/GAT/com.gif" alt=""></li>
 </ul>
 <div class="table-container">
 <table>
