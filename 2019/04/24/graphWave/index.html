@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Contours,">
+  <meta name="keywords" content="Spectral graph wavelets,Heat kernel,">
 
 
 
@@ -81,23 +81,20 @@
 
 
 
-<meta name="description" content="最近遇到一个问题，之前在这篇文章中提到过一个边缘检测并且拟合直线的方法。但是如果需要计算区域内的面积，比如说要计算下图中类似三角形区域内的面积之前的做法是用Canny算子提取边缘，再用HoughLines拟合直线，然后求出交点坐标并计算三角形面积，其中，边缘提取后的图像如下图所示：我们可以很明显的看出这不是一个标准的三角形，所以如果想要更精确的获得三角形，就需要对图片进行轮廓提取，然后计算轮廓内区">
-<meta name="keywords" content="Contours">
+<meta name="description" content="论文地址：GraphWave 参考：https://zhuanlan.zhihu.com/p/50212921 https://github.com/benedekrozemberczki/GraphWaveMachine Introduction说实话这篇论文后面的数学证明部分完全看不懂~，最后结合benedekrozemberczki的代码强行给自己解释了一波。。。   这篇文章的出发点是考">
+<meta name="keywords" content="Spectral graph wavelets,Heat kernel">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenCV轮廓提取并计算图片中某一封闭区域的面积">
-<meta property="og:url" content="http://yoursite.com/2019/04/02/Pic-closed-edge/index.html">
+<meta property="og:title" content="GraphWave:《Learning Structural Node Embeddings via DiffusionWavelets》代码笔记">
+<meta property="og:url" content="http://yoursite.com/2019/04/24/graphWave/index.html">
 <meta property="og:site_name" content="Wei Zhuo">
-<meta property="og:description" content="最近遇到一个问题，之前在这篇文章中提到过一个边缘检测并且拟合直线的方法。但是如果需要计算区域内的面积，比如说要计算下图中类似三角形区域内的面积之前的做法是用Canny算子提取边缘，再用HoughLines拟合直线，然后求出交点坐标并计算三角形面积，其中，边缘提取后的图像如下图所示：我们可以很明显的看出这不是一个标准的三角形，所以如果想要更精确的获得三角形，就需要对图片进行轮廓提取，然后计算轮廓内区">
+<meta property="og:description" content="论文地址：GraphWave 参考：https://zhuanlan.zhihu.com/p/50212921 https://github.com/benedekrozemberczki/GraphWaveMachine Introduction说实话这篇论文后面的数学证明部分完全看不懂~，最后结合benedekrozemberczki的代码强行给自己解释了一波。。。   这篇文章的出发点是考">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2019/04/02/Pic-closed-edge/cut.jpeg">
-<meta property="og:image" content="http://yoursite.com/2019/04/02/Pic-closed-edge/edge.jpeg">
-<meta property="og:image" content="http://yoursite.com/2019/04/02/Pic-closed-edge/img_trk.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/04/02/Pic-closed-edge/img_tr.jpg">
-<meta property="og:updated_time" content="2019-04-02T08:35:06.360Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/24/graphWave/1.jpg">
+<meta property="og:updated_time" content="2019-04-24T09:58:19.966Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OpenCV轮廓提取并计算图片中某一封闭区域的面积">
-<meta name="twitter:description" content="最近遇到一个问题，之前在这篇文章中提到过一个边缘检测并且拟合直线的方法。但是如果需要计算区域内的面积，比如说要计算下图中类似三角形区域内的面积之前的做法是用Canny算子提取边缘，再用HoughLines拟合直线，然后求出交点坐标并计算三角形面积，其中，边缘提取后的图像如下图所示：我们可以很明显的看出这不是一个标准的三角形，所以如果想要更精确的获得三角形，就需要对图片进行轮廓提取，然后计算轮廓内区">
-<meta name="twitter:image" content="http://yoursite.com/2019/04/02/Pic-closed-edge/cut.jpeg">
+<meta name="twitter:title" content="GraphWave:《Learning Structural Node Embeddings via DiffusionWavelets》代码笔记">
+<meta name="twitter:description" content="论文地址：GraphWave 参考：https://zhuanlan.zhihu.com/p/50212921 https://github.com/benedekrozemberczki/GraphWaveMachine Introduction说实话这篇论文后面的数学证明部分完全看不懂~，最后结合benedekrozemberczki的代码强行给自己解释了一波。。。   这篇文章的出发点是考">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/24/graphWave/1.jpg">
 
 
 
@@ -127,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/02/Pic-closed-edge/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/24/graphWave/">
 
 
 
 
 
-  <title>OpenCV轮廓提取并计算图片中某一封闭区域的面积 | Wei Zhuo</title>
+  <title>GraphWave:《Learning Structural Node Embeddings via DiffusionWavelets》代码笔记 | Wei Zhuo</title>
   
 
 
@@ -290,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/Pic-closed-edge/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/24/graphWave/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mario Z">
@@ -307,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">OpenCV轮廓提取并计算图片中某一封闭区域的面积</h1>
+          <h1 class="post-title" itemprop="name headline">GraphWave:《Learning Structural Node Embeddings via DiffusionWavelets》代码笔记</h1>
         
 
         <div class="post-meta">
@@ -319,8 +316,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-02T15:43:44+08:00">
-                2019-04-02
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-24T16:59:13+08:00">
+                2019-04-24
               </time>
             
 
@@ -342,8 +339,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/project/" itemprop="url" rel="index">
-                    <span itemprop="name">project</span>
+                  <a href="/categories/Network-Embedding/" itemprop="url" rel="index">
+                    <span itemprop="name">Network Embedding</span>
                   </a>
                 </span>
 
@@ -353,8 +350,8 @@
                 
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/project/Computer-Vision/" itemprop="url" rel="index">
-                    <span itemprop="name">Computer Vision</span>
+                  <a href="/categories/Network-Embedding/paper/" itemprop="url" rel="index">
+                    <span itemprop="name">paper</span>
                   </a>
                 </span>
 
@@ -384,7 +381,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  431
+                  1.3k
                 </span>
               
 
@@ -400,7 +397,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  2
+                  5
                 </span>
               
             </div>
@@ -421,9 +418,40 @@
       
 
       
-        <p>最近遇到一个问题，之前在<a href="https://zhuo931077127.github.io/2019/01/19/edge-detection-pj/" target="_blank" rel="noopener">这篇文章</a>中提到过一个边缘检测并且拟合直线的方法。但是如果需要计算区域内的面积，比如说要计算下图中类似三角形区域内的面积<br><img src="/2019/04/02/Pic-closed-edge/cut.jpeg" alt="你想输入的替代文字"><br>之前的做法是用Canny算子提取边缘，再用HoughLines拟合直线，然后求出交点坐标并计算三角形面积，其中，边缘提取后的图像如下图所示：<br><img src="/2019/04/02/Pic-closed-edge/edge.jpeg" alt="你想输入的替代文字"><br>我们可以很明显的看出这不是一个标准的三角形，所以如果想要更精确的获得三角形，就需要对图片进行轮廓提取，然后计算轮廓内区域的面积。这里给出代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line"># Input image</span><br><span class="line">img = cv2.imread(&apos;cut.jpeg&apos;, cv2.IMREAD_GRAYSCALE)</span><br><span class="line"></span><br><span class="line"># Needed due to JPG artifacts</span><br><span class="line">_, temp = cv2.threshold(img, 128, 255, cv2.THRESH_BINARY)</span><br><span class="line"></span><br><span class="line"># Dilate to better detect contours</span><br><span class="line">temp = cv2.dilate(temp, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3)))</span><br><span class="line"></span><br><span class="line"># Find largest contour</span><br><span class="line">_, cnts, _ = cv2.findContours(temp, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)</span><br><span class="line">largestCnt = []</span><br><span class="line">for cnt in cnts:</span><br><span class="line">    if len(cnt) &gt; len(largestCnt):</span><br><span class="line">        largestCnt = cnt</span><br><span class="line"></span><br><span class="line"># Determine center of area of largest contour</span><br><span class="line">M = cv2.moments(largestCnt)</span><br><span class="line">x = int(M[&quot;m10&quot;] / M[&quot;m00&quot;])</span><br><span class="line">y = int(M[&quot;m01&quot;] / M[&quot;m00&quot;])</span><br><span class="line"></span><br><span class="line"># Initiale mask for flood filling</span><br><span class="line">width, height = temp.shape</span><br><span class="line">mask = img2 = np.ones((width + 2, height + 2), np.uint8) * 255</span><br><span class="line">mask[1:width, 1:height] = 0</span><br><span class="line"></span><br><span class="line"># Generate intermediate image, draw largest contour, flood filled</span><br><span class="line">temp = np.zeros(temp.shape, np.uint8)</span><br><span class="line">temp = cv2.drawContours(temp, largestCnt, -1, 255, cv2.FILLED)</span><br><span class="line">_, temp, mask, _ = cv2.floodFill(temp, mask, (x, y), 255)</span><br><span class="line">temp = cv2.morphologyEx(temp, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3)))</span><br><span class="line"></span><br><span class="line"># Count pixels in desired region</span><br><span class="line">area = cv2.countNonZero(temp)</span><br><span class="line"></span><br><span class="line"># Put result on original image</span><br><span class="line">img = cv2.putText(img, str(area), (x, y), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, 255)</span><br><span class="line"></span><br><span class="line">cv2.imshow(&apos;Input&apos;, img)</span><br><span class="line">cv2.imshow(&apos;Temp image&apos;, temp)</span><br><span class="line"></span><br><span class="line">cv2.waitKey(0)</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<p>最后我们可以得到一个比较准确的轮廓：<br><img src="/2019/04/02/Pic-closed-edge/img_trk.jpg" alt="你想输入的替代文字"><br>面积如图中所示：<br><img src="/2019/04/02/Pic-closed-edge/img_tr.jpg" alt="你想输入的替代文字">  </p>
-<p>参考：<br><a href="https://stackoverflow.com/questions/55467031/how-to-get-the-area-of-the-contours" target="_blank" rel="noopener">https://stackoverflow.com/questions/55467031/how-to-get-the-area-of-the-contours</a></p>
+        <p> 论文地址：<a href="https://dl.acm.org/citation.cfm?id=3220025" target="_blank" rel="noopener">GraphWave</a></p>
+<p>参考：<a href="https://zhuanlan.zhihu.com/p/50212921" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/50212921</a></p>
+<p><a href="https://github.com/benedekrozemberczki/GraphWaveMachine" target="_blank" rel="noopener">https://github.com/benedekrozemberczki/GraphWaveMachine</a></p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>说实话这篇论文后面的数学证明部分完全看不懂~，最后结合<a href="https://github.com/benedekrozemberczki" target="_blank" rel="noopener">benedekrozemberczki</a>的代码强行给自己解释了一波。。。  </p>
+<p>这篇文章的出发点是考虑到在网络图中不同部分的节点也可能具有相同的Embedding。如下图所示：</p>
+<p><img src="/2019/04/24/graphWave/1.jpg" alt=""></p>
+<p>节点$a$和$b$在网络中的距离较远，但是由于他们的邻域是相似的，也就是说他们具有结构相似性，所以$a$和$b$应该是相似节点。上图中的两个小柱状图现实节点$a$和节点$b$的小波系数分布很相似。现实网络中如社交网络中的管理员，细胞分子网络中的酶都符合这样的分布。</p>
+<p>本文创新：</p>
+<ul>
+<li>完全非监督，不需要任何先验知识。</li>
+<li>完整的数学证明，以前的方法都是启发式的，这篇论文作者使用大量篇幅证明使用GraphWave，结构等价/相似的节点具有近乎相同/相似的嵌入。</li>
+</ul>
+<h1 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h1><p>class WaveletMachine：</p>
+<p> 注： </p>
+<p>PyGSP: Python中的图形信号处理</p>
+<p>self.steps=[0, 20, 40, 60, 80,…,980] 表示每个20采样一个point，最终获得50维的向量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def __init__(self, G, settings):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    This method </span><br><span class="line">    :param G: Input networkx graph object.</span><br><span class="line">    :param settings: argparse object with settings.</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    self.index = G.nodes()</span><br><span class="line">    self.G = pygsp.graphs.Graph(nx.adjacency_matrix(G))  # 从邻接矩阵构建一个图</span><br><span class="line">    self.number_of_nodes = len(nx.nodes(G))  # 节点数 620</span><br><span class="line">    self.settings = settings</span><br><span class="line">    if self.number_of_nodes &gt; self.settings.switch:  # switch=100</span><br><span class="line">        self.settings.mechanism = &quot;approximate&quot;</span><br><span class="line">    # step_size=20, sample_number=50  self.steps=[0, 20, 40, 60, 80,...,980]</span><br><span class="line">    self.steps = [x * self.settings.step_size for x in range(self.settings.sample_number)]</span><br></pre></td></tr></table></figure>
+<p>嵌入机制，如果节点数大于switch的话选approximate, 具体是什么意思，不懂。 现在选用的是approximate_structural_wavelet_embedding方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def create_embedding(self):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    Depending the mechanism setting creating an exact or approximate embedding.</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    if self.settings.mechanism == &quot;exact&quot;:</span><br><span class="line">        self.exact_structural_wavelet_embedding()</span><br><span class="line">    else:</span><br><span class="line">        self.approximate_structural_wavelet_embedding()</span><br></pre></td></tr></table></figure>
+<p>首先，对于一个无向图$G=(\mathcal{V}, \mathcal{E})$,它的拉普拉斯矩阵是$L=D-A$，其中$D$是$G$的度矩阵（一个对角阵，对角元素$D_{ii}$是节点$i$的度），$A$是$G$的邻接矩阵。 $L$的特征向量为$U$，特征值为$\Lambda=\operatorname{diag}\left(\lambda_{1}, \ldots, \lambda_{n}\right)$。</p>
+<p>这一块代码的目的是pygsp.filters.Heat的源码公式如下：</p>
+<script type="math/tex; mode=display">
+\hat{g}(x) = \exp \left( \frac{-\tau x}{\lambda_{\text{max}}} \right)</script><p>论文中公式为：</p>
+<script type="math/tex; mode=display">
+g_s = e^{-\lambda s}</script><p>其中$s$是<strong>scaling parameter</strong>, $s$越大，能量传播越远，代码中为定制1000。heat_fliter是图$G$的<strong>heat kernel</strong>即热核特征。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def approximate_structural_wavelet_embedding(self):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    Estimating the largest eigenvalue, setting up the heat filter and the Cheybshev polynomial. Using the approximate wavelet calculator method.</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    self.G.estimate_lmax()  # 估计拉普拉斯算子的最大特征值, 结果被缓存在G.lmax()中。</span><br><span class="line">    # 公式：\hat&#123;g&#125;(x) = \exp \left( \frac&#123;-\tau x&#125;&#123;\lambda_&#123;\text&#123;max&#125;&#125;&#125; \right) 文中的 g_s(\lambda)</span><br><span class="line">    # tau: Scaling parameter tau控制能量传播距离，tau越大，能量传播的越远</span><br><span class="line">    self.heat_filter = pygsp.filters.Heat(self.G, tau=[self.settings.heat_coefficient])  # 热系数为1000</span><br><span class="line"></span><br><span class="line">    self.chebyshev = pygsp.filters.approximations.compute_cheby_coeff(self.heat_filter,</span><br><span class="line">                                                                      m=self.settings.approximation)  # shape:(101,)</span><br><span class="line">    self.approximate_wavelet_calculator()</span><br></pre></td></tr></table></figure>
+<p>上面的代码不太懂什么意思。</p>
+<p>下面的方法是计算每个节点的小波系数。</p>
+<p>假设wavelet_coefficients 是节点$a$的小波系数即$\Psi_{a}$，$G$中有620个节点，那么wavelet_coefficients 是一个(620,)的向量，每个数$i$代表节点$a$从节点$i$接受到的能量。</p>
+<p>如果两个节点具有相似的结构特征，那么他们的wavelet_coefficients 也应相似。</p>
+<p>随后在0~1000以20的步长采样50个点：[0,20,40,…,980]，计算节点$a$的特征函数：</p>
+<script type="math/tex; mode=display">
+\phi_{a}(t)=\frac{1}{N} \sum_{m=1}^{N} e^{i t \Psi_{m a}}</script><p>概率论中，任何随机变量的特征函数完全定义了它的概率分布。其中，$i$是虚部单位。$\Psi_{m a}$表示节点$a$和节点$i$的小波系数（即$a$从$m$获取的能量）。整个公式的意思本质上就是<strong>节点$a$的图谱小波(Spectral Graph Wavelets)$\Psi_{a}$在时间$t$采样的特征函数</strong> ，采样50次，那么就可以得到50个含$\phi_{a}$，将每个$\phi_{a}$的实部和虚部拼接就得到了最终的节点$a$的表示向量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">def approximate_wavelet_calculator(self):</span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    Given the Chebyshev polynomial, graph the approximate embedding is calculated. </span><br><span class="line">    &quot;&quot;&quot;</span><br><span class="line">    self.real_and_imaginary = []  # 实部和虚部</span><br><span class="line">    for node in tqdm(range(0, self.number_of_nodes)):</span><br><span class="line">        impulse = np.zeros(self.number_of_nodes)  # 每个节点的响应</span><br><span class="line">        impulse[node] = 1  # 节点node的one-hot编码</span><br><span class="line"></span><br><span class="line">        # 节点node的小波系数 (620,) 表示节点node从每个节点接收到的能量分布</span><br><span class="line">        # 如果节点node和节点node1在网络中的结构相似，那么他们的小波系数(能量分布)也应相似</span><br><span class="line">        wavelet_coefficients = pygsp.filters.approximations.cheby_op(self.G, self.chebyshev, impulse)  # 节点node的小波系数</span><br><span class="line"></span><br><span class="line">        # 每隔20个点采样一次 共采样50次</span><br><span class="line">        # np.mean(np.exp(wavelet_coefficients * 1 * step * 1j)) 表示节点node的经验特征函数，1j是虚部单位</span><br><span class="line">        self.real_and_imaginary.append(</span><br><span class="line">            [np.mean(np.exp(wavelet_coefficients * 1 * step * 1j)) for step in self.steps])  # 论文中公式(2)</span><br><span class="line">    self.real_and_imaginary = np.array(self.real_and_imaginary)  # shape:(620,50)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -470,7 +498,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Contours/" rel="tag"># Contours</a>
+            <a href="/tags/Spectral-graph-wavelets/" rel="tag"># Spectral graph wavelets</a>
+          
+            <a href="/tags/Heat-kernel/" rel="tag"># Heat kernel</a>
           
         </div>
       
@@ -498,8 +528,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/20/IC-LT/" rel="next" title="社交网络影响最大化（Influence Maximization）中的IC，LT模型">
-                <i class="fa fa-chevron-left"></i> 社交网络影响最大化（Influence Maximization）中的IC，LT模型
+              <a href="/2019/04/14/GAT/" rel="next" title="《Graph Attention Networks》阅读笔记">
+                <i class="fa fa-chevron-left"></i> 《Graph Attention Networks》阅读笔记
               </a>
             
           </div>
@@ -507,10 +537,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/14/GAT/" rel="prev" title="《Graph Attention Networks》阅读笔记">
-                《Graph Attention Networks》阅读笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -567,8 +593,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -689,6 +724,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码分析"><span class="nav-number">2.</span> <span class="nav-text">代码分析</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
