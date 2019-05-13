@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Edge detection,">
+  <meta name="keywords" content="Social Network Analysis,Diffusion,Network Embedding,">
 
 
 
@@ -81,23 +81,20 @@
 
 
 
-<meta name="description" content="前段时间做了一个简单的小项目，需求是测量图片中布的褶皱角度，第一次做CV的东西，决定用这个blog记录一下。 项目源码在:edge-detection  先看看传统的边缘检测方法的效果:  第一张图是原始图，由于本项目要求竟要求图片上半部分的褶皱角度，所以仅考虑上半部分的背景干扰，可以看出高斯，梯度，非极大抑制这三种方法都无法有效的排除干扰。然后我们用canny算法试试。步骤是先把图片转化为灰度图">
-<meta name="keywords" content="Edge detection">
+<meta name="description" content="文章链接：Embedding_IC Introduction本文基于Network Embedding优化了传统的独立级联模型（IC），用以学习一个更具鲁棒性的扩散概率。 对于网络和社交数据，分析用户交互来为扩散现象建模具有以下困难：  用户通常是异质的，伴随着不同的行为或兴趣。并且他们通过各种通道同时交互。 用户之间的关系很难检测和表征。 例如，在信息传播过程中，不经常交互的用户之间的“弱关系">
+<meta name="keywords" content="Social Network Analysis,Diffusion,Network Embedding">
 <meta property="og:type" content="article">
-<meta property="og:title" content="图片边缘检测并且拟合直线">
-<meta property="og:url" content="http://yoursite.com/2019/01/19/edge-detection-pj/index.html">
+<meta property="og:title" content="《Representation Learning for Information Diffusion through Social Networks:an Embedded Cascade Model》阅读笔记">
+<meta property="og:url" content="http://yoursite.com/2019/05/12/embedding-ic/index.html">
 <meta property="og:site_name" content="Wei Zhuo">
-<meta property="og:description" content="前段时间做了一个简单的小项目，需求是测量图片中布的褶皱角度，第一次做CV的东西，决定用这个blog记录一下。 项目源码在:edge-detection  先看看传统的边缘检测方法的效果:  第一张图是原始图，由于本项目要求竟要求图片上半部分的褶皱角度，所以仅考虑上半部分的背景干扰，可以看出高斯，梯度，非极大抑制这三种方法都无法有效的排除干扰。然后我们用canny算法试试。步骤是先把图片转化为灰度图">
+<meta property="og:description" content="文章链接：Embedding_IC Introduction本文基于Network Embedding优化了传统的独立级联模型（IC），用以学习一个更具鲁棒性的扩散概率。 对于网络和社交数据，分析用户交互来为扩散现象建模具有以下困难：  用户通常是异质的，伴随着不同的行为或兴趣。并且他们通过各种通道同时交互。 用户之间的关系很难检测和表征。 例如，在信息传播过程中，不经常交互的用户之间的“弱关系">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2019/01/19/edge-detection-pj/tra.png">
-<meta property="og:image" content="http://yoursite.com/2019/01/19/edge-detection-pj/edge.jpeg">
-<meta property="og:image" content="http://yoursite.com/2019/01/19/edge-detection-pj/line.png">
-<meta property="og:image" content="http://yoursite.com/2019/01/19/edge-detection-pj/final.jpeg">
-<meta property="og:updated_time" content="2019-01-19T04:11:50.156Z">
+<meta property="og:image" content="http://yoursite.com/2019/05/12/embedding-ic/1.png">
+<meta property="og:updated_time" content="2019-05-13T08:43:58.632Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="图片边缘检测并且拟合直线">
-<meta name="twitter:description" content="前段时间做了一个简单的小项目，需求是测量图片中布的褶皱角度，第一次做CV的东西，决定用这个blog记录一下。 项目源码在:edge-detection  先看看传统的边缘检测方法的效果:  第一张图是原始图，由于本项目要求竟要求图片上半部分的褶皱角度，所以仅考虑上半部分的背景干扰，可以看出高斯，梯度，非极大抑制这三种方法都无法有效的排除干扰。然后我们用canny算法试试。步骤是先把图片转化为灰度图">
-<meta name="twitter:image" content="http://yoursite.com/2019/01/19/edge-detection-pj/tra.png">
+<meta name="twitter:title" content="《Representation Learning for Information Diffusion through Social Networks:an Embedded Cascade Model》阅读笔记">
+<meta name="twitter:description" content="文章链接：Embedding_IC Introduction本文基于Network Embedding优化了传统的独立级联模型（IC），用以学习一个更具鲁棒性的扩散概率。 对于网络和社交数据，分析用户交互来为扩散现象建模具有以下困难：  用户通常是异质的，伴随着不同的行为或兴趣。并且他们通过各种通道同时交互。 用户之间的关系很难检测和表征。 例如，在信息传播过程中，不经常交互的用户之间的“弱关系">
+<meta name="twitter:image" content="http://yoursite.com/2019/05/12/embedding-ic/1.png">
 
 
 
@@ -127,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/19/edge-detection-pj/">
+  <link rel="canonical" href="http://yoursite.com/2019/05/12/embedding-ic/">
 
 
 
 
 
-  <title>图片边缘检测并且拟合直线 | Wei Zhuo</title>
+  <title>《Representation Learning for Information Diffusion through Social Networks:an Embedded Cascade Model》阅读笔记 | Wei Zhuo</title>
   
 
 
@@ -290,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/19/edge-detection-pj/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/12/embedding-ic/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mario Z">
@@ -307,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">图片边缘检测并且拟合直线</h1>
+          <h1 class="post-title" itemprop="name headline">《Representation Learning for Information Diffusion through Social Networks:an Embedded Cascade Model》阅读笔记</h1>
         
 
         <div class="post-meta">
@@ -319,8 +316,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-19T00:00:00+08:00">
-                2019-01-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-12T22:09:38+08:00">
+                2019-05-12
               </time>
             
 
@@ -342,8 +339,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/project/" itemprop="url" rel="index">
-                    <span itemprop="name">project</span>
+                  <a href="/categories/Diffusion/" itemprop="url" rel="index">
+                    <span itemprop="name">Diffusion</span>
                   </a>
                 </span>
 
@@ -353,8 +350,8 @@
                 
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/project/Computer-Vision/" itemprop="url" rel="index">
-                    <span itemprop="name">Computer Vision</span>
+                  <a href="/categories/Diffusion/paper/" itemprop="url" rel="index">
+                    <span itemprop="name">paper</span>
                   </a>
                 </span>
 
@@ -384,7 +381,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  619
+                  1.4k
                 </span>
               
 
@@ -400,7 +397,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  2
+                  5
                 </span>
               
             </div>
@@ -421,20 +418,40 @@
       
 
       
-        <p>前段时间做了一个简单的小项目，需求是测量图片中布的褶皱角度，第一次做CV的东西，决定用这个blog记录一下。 项目源码在:<a href="https://github.com/zhuo931077127/edge-detection" title="edge-detection" target="_blank" rel="noopener">edge-detection
-</a></p>
-<p>先看看传统的边缘检测方法的效果:</p>
-<p><img src="/2019/01/19/edge-detection-pj/tra.png" alt="你想输入的替代文字"></p>
-<p>第一张图是原始图，由于本项目要求竟要求图片上半部分的褶皱角度，所以仅考虑上半部分的背景干扰，可以看出高斯，梯度，非极大抑制这三种方法都无法有效的排除干扰。<br>然后我们用canny算法试试。<br>步骤是先把图片转化为灰度图，然后用canny算子做边缘检测。<br>代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">gray = cv.cvtColor(image, cv.COLOR_RGB2GRAY)</span><br><span class="line">edges = cv.Canny(gray, 50, 310)  # apertureSize参数默认其实就是3  # 50 310</span><br><span class="line"># cv.imshow(&quot;edges&quot;, edges)</span><br><span class="line">edge = Image.fromarray(edges)</span><br><span class="line">edge.save(&quot;edge.jpeg&quot;)</span><br></pre></td></tr></table></figure></p>
-<p>结果如下:  </p>
-<p><img src="/2019/01/19/edge-detection-pj/edge.jpeg" alt="你想输入的替代文字"></p>
-<p>霍夫线性变换拟合直线:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">lines = cv.HoughLines(edges, 1, np.pi / 180, 68)  # 68</span><br><span class="line">   # l1 = lines[:, 0, :]</span><br><span class="line">   # print(l1)</span><br><span class="line">   mink = float(&apos;inf&apos;)</span><br><span class="line">   maxk = -float(&apos;inf&apos;)</span><br><span class="line">   for line in lines:</span><br><span class="line">       rho, theta = line[0]  # line[0]存储的是点到直线的极径和极角，其中极角是弧度表示的。</span><br><span class="line">       a = np.cos(theta)  # theta是弧度</span><br><span class="line">       b = np.sin(theta)</span><br><span class="line">       x0 = a * rho  # 代表x = r * cos（theta）</span><br><span class="line">       y0 = b * rho  # 代表y = r * sin（theta）</span><br><span class="line">       x1 = int(x0 + 1000 * (-b))  # 计算直线起点横坐标</span><br><span class="line">       y1 = int(y0 + 1000 * a)  # 计算起始起点纵坐标</span><br><span class="line">       x2 = int(x0 - 1000 * (-b))  # 计算直线终点横坐标</span><br><span class="line">       y2 = int(y0 - 1000 * a)  # 计算直线终点纵坐标    注：这里的数值1000给出了画出的线段长度范围大小，数值越小，画出的线段越短，数值越大，画出的线段越长</span><br><span class="line">       print(&quot;x1: %s, y1:%s, x2:%s, y2:%s&quot; % (x1, y1, x2, y2))</span><br><span class="line">       k = (y2 - y1) / (x2 - x1)</span><br><span class="line">       if k &gt; maxk:</span><br><span class="line">           maxk = k</span><br><span class="line">           xmax1 = x1</span><br><span class="line">           ymax1 = y1</span><br><span class="line">           xmax2 = x2</span><br><span class="line">           ymax2 = y2</span><br><span class="line">           lineMax = line</span><br><span class="line">       if k &lt; mink:</span><br><span class="line">           mink = k</span><br><span class="line">           xmin1 = x1</span><br><span class="line">           ymin1 = y1</span><br><span class="line">           xmin2 = x2</span><br><span class="line">           ymin2 = y2</span><br><span class="line">           lineMin = line</span><br><span class="line">   cv.line(image, (xmax1, ymax1), (xmax2, ymax2), (255, 0, 0), 2)  # 点的坐标必须是元组，不能是列表。</span><br><span class="line">   cv.line(image, (xmin1, ymin1), (xmin2, ymin2), (255, 0, 0), 2)  # 点的坐标必须是元组，不能是列表。</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>值得注意的是，拟合直线过程中HoughLines会发现很多直线，因此，我选择了斜率最大和最小的两条直线做为最终的直线。画在图上的话就是酱紫的结果:</p>
-<p><img src="/2019/01/19/edge-detection-pj/line.png" alt="你想输入的替代文字"></p>
-<p>所以：总的过程可以概括如下:</p>
-<p><img src="/2019/01/19/edge-detection-pj/final.jpeg" alt="你想输入的替代文字"></p>
-<p>现在想这么弱智的项目居然还花了几天时间做，我是真滴蠢哦（T-T）</p>
+        <p> 文章链接：<a href="https://dl.acm.org/citation.cfm?id=2835817" target="_blank" rel="noopener">Embedding_IC</a></p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>本文基于Network Embedding优化了传统的独立级联模型（IC），用以学习一个更具鲁棒性的扩散概率。</p>
+<p>对于网络和社交数据，分析用户交互来为扩散现象建模具有以下困难：</p>
+<ul>
+<li>用户通常是异质的，伴随着不同的行为或兴趣。并且他们通过各种通道同时交互。</li>
+<li>用户之间的关系很难检测和表征。 例如，在信息传播过程中，不经常交互的用户之间的“弱关系”很重要，而它们很难被捕获。</li>
+<li>不同应用中的级联长度变化很大，难以学习和预测。</li>
+</ul>
+<p>本文的目的是通过从观察中学习来开发扩散模型。为此，本文专注于独立级联模型（IC），该模型定义了网络中的扩散迭代过程。在这种情况下，建模扩散的问题归结为<strong>学习表征用户间隐含的相互影响关系的概率分布</strong>，以便发现网络的主要通信通道。我们在此考虑的模型执行以下假设：</p>
+<ul>
+<li>影响传播是二元的（被感染或不被感染），</li>
+<li>扩散网络未知，</li>
+<li>影响关系不依赖于传播的内容，</li>
+<li>用户之间的感染概率不会随时间变化（一旦分配了两个节点间的感染概率，那么该概率固定）。</li>
+</ul>
+<p>本文基于NE，将扩散空间建模为一个连续的潜在空间，用户间的相对位置用于定义内容传输的可能性。用户靠的越近，传播概率越高。如下图所示：</p>
+<p><img src="/2019/05/12/embedding-ic/1.png" alt=""></p>
+<h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><h2 id="Notations"><a href="#Notations" class="headerlink" title="Notations"></a>Notations</h2><p>传播事件集$\mathcal{D}=\{D_1,D_2,…,D_n\}$ 可以视为一个graph中的$n$个级联（cascade）。其中，一个传播事件$D$是一个带有时间戳的用户集。值得注意的是，级联中的用户并不知道是谁传染它，仅知道它何时被传染。</p>
+<p>给定一个社交网络，有$N$个用户：$\mathcal{U}=\{u_1,u_2,…,u_N\}$，一个传播级联$D$可以定义为user和它的timestamp的集合：$D = \{(u,t^D(u)) | u \in \mathcal{U} \wedge t^D(u)&lt; \infty\}$， 其中，$t^D: \mathcal{U} \to \mathbb{R}^+$ 表示用户被传染的时间戳， $\infty$表示未被传染的用户。每个用户的时间戳$t^D$表示该用户相对于源用户（source user）被传染的时间，$t^D(source \quad user) = 0$。接下来，用$D(t)$表示在时间戳$t$之前被传染的用户：$D(t) = \{u \in \mathcal{U} | t^D(u)&lt;t\}$。对称地，用$\bar{D}(t)$表示在时间戳$t$之前没有被感染的用户。 $D(\infty)$表示最终所有被感染的用户，$\bar{D}(infty)$表示最终所有没被感染的用户。</p>
+<h2 id="Diffusion-Model"><a href="#Diffusion-Model" class="headerlink" title="Diffusion Model"></a>Diffusion Model</h2><p>本文将级联embed到连续空间中，用以捕获扩散关系的规律性。本文只考虑传播的顺序，而不是确切的感染时间戳。</p>
+<p>在Embedding_IC中，在一个传播事件(级联)$D$中，一个用户是否被感染的概率取决于先前所有已经被感染的节点。给定一个已经被影响的用户集$I \in \mathcal{U}$, $P(v|I)$表示给定活跃用户集$I$时，节点$v$被传染的概率，其中$v \in \mathcal{U} \backslash I$:</p>
+<script type="math/tex; mode=display">
+P(v|I) = 1-\prod_{u \in I}(1-P_{u,v})</script><p>上式中，$\prod_{u \in I}(1-P_{u,v})$表示$I$中所有节点都不影响$v$的概率。那么$P(v|I)$就可以表示$v$被感染的概率。</p>
+<p>接下来就需要给出$P_{u,v}$的定义了，即$v$被$u$传染的概率。$z_u \in \mathbb{R}^d$是传染源用户$u$的表示向量，$\omega_{v} \in \mathbb{R}^d$是传染目标用户$v$的表示向量。那么$P_{u,v}$可以定义如下：</p>
+<script type="math/tex; mode=display">
+P_{u,v} = f(z_u,\omega_{v})</script><p>其中，$f: \mathbb{R}^d \times \mathbb{R}^d \to [0,1]$，是一个映射函数，把两个表示向量映射到概率空间：</p>
+<script type="math/tex; mode=display">
+f\left(z_{u}, \omega_{v}\right)=\frac{1}{1+\exp \left(z_{u}^{(0)}+\omega_{v}^{(0)}+\sum_{i=1}^{d-1}\left(z_{u}^{(i)}-\omega_{v}^{(i)}\right)^{2}\right)}</script><p>其中，$z_{u}^{(i)}$和$\omega_{v}^{(i)}$分别表示$z_u$和$\omega_v$的第$i$个分量。表示随距离增加而递减的传输概率，即$\left(z_{u}^{(i)}-\omega_{v}^{(i)}\right)$越大$f$越小。上式使用了sigmoid函数:$\frac{1}{1+e^{-x}}$返回一个$[0,1]$的概率。</p>
+<p>值得注意的是，偏置项$z_{u}^{(0)}$和$\omega_{v}^{(0)}$的作用是反映$u$传入$v$的一般趋势，这样做的目的是避免不同的$u$和$v$产生相同的概率。</p>
+<h2 id="Learning-Algorithm"><a href="#Learning-Algorithm" class="headerlink" title="Learning Algorithm"></a>Learning Algorithm</h2><p>考虑所有节点对的传播概率$\mathcal{P}=\{P_{u,v} | (u,v) \in \mathcal{U}^2\}$ (涉及所有节点对)。那么对于特定级联$D$的概率为：</p>
+<script type="math/tex; mode=display">
+P(D)=\prod_{v \in D(\infty)} P_{v}^{D} \prod_{v \in \overline{D}(\infty)}\left(1-P_{v}^{D}\right)</script><p>上式中，$\prod_{v \in D(\infty)} P_{v}^{D}$表示$D$中所有被影响的用户存在的概率，$\prod_{v \in \overline{D}(\infty)}\left(1-P_{v}^{D}\right)$表示$D$中所有未被影响的用户存在的概率。所以$P(D)$就是级联$D$存在的概率。同时，可以用对数似然来表示训练级联集$\mathcal{D}$:</p>
+<script type="math/tex; mode=display">
+\mathcal{L}(\mathcal{P} ; \mathcal{D})=\sum_{D \in \mathcal{D}}\left(\sum_{v \in D(\infty)} \log \left(P_{v}^{D}\right)+\sum_{v \in \overline{D}(\infty)} \log \left(1-P_{v}^{D}\right)\right)</script><p>上式就是模型的目标函数。</p>
 
       
     </div>
@@ -481,7 +498,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Edge-detection/" rel="tag"># Edge detection</a>
+            <a href="/tags/Social-Network-Analysis/" rel="tag"># Social Network Analysis</a>
+          
+            <a href="/tags/Diffusion/" rel="tag"># Diffusion</a>
+          
+            <a href="/tags/Network-Embedding/" rel="tag"># Network Embedding</a>
           
         </div>
       
@@ -509,8 +530,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/01/17/HTNE/" rel="next" title="HTNE:《Embedding Temporal Network via Neighborhood Formation》阅读笔记">
-                <i class="fa fa-chevron-left"></i> HTNE:《Embedding Temporal Network via Neighborhood Formation》阅读笔记
+              <a href="/2019/05/06/IM-conclusion/" rel="next" title="Influence Maximization Conclusion">
+                <i class="fa fa-chevron-left"></i> Influence Maximization Conclusion
               </a>
             
           </div>
@@ -518,10 +539,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/01/21/SDNE/" rel="prev" title="SDNE:《Structral Deep Network Embedding》阅读笔记">
-                SDNE:《Structral Deep Network Embedding》阅读笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -578,8 +595,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -676,6 +702,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model"><span class="nav-number">2.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Notations"><span class="nav-number">2.1.</span> <span class="nav-text">Notations</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Diffusion-Model"><span class="nav-number">2.2.</span> <span class="nav-text">Diffusion Model</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learning-Algorithm"><span class="nav-number">2.3.</span> <span class="nav-text">Learning Algorithm</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
