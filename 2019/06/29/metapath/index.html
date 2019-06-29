@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Contours,">
+  <meta name="keywords" content="Meta-path,Heterogeneous Information Networks,">
 
 
 
@@ -81,23 +81,21 @@
 
 
 
-<meta name="description" content="最近遇到一个问题，之前在这篇文章中提到过一个边缘检测并且拟合直线的方法。但是如果需要计算区域内的面积，比如说要计算下图中类似三角形区域内的面积之前的做法是用Canny算子提取边缘，再用HoughLines拟合直线，然后求出交点坐标并计算三角形面积，其中，边缘提取后的图像如下图所示：我们可以很明显的看出这不是一个标准的三角形，所以如果想要更精确的获得三角形，就需要对图片进行轮廓提取，然后计算轮廓内区">
-<meta name="keywords" content="Contours">
+<meta name="description" content="论文地址： metapath2vec Introduction真实网络中通常包含多种类型的节点和关系，这些节点和关系共同组成了异质信息网络（Heterogeneous Information Network），传统的NE方法如DeepWalk, Line , node2vec更多关注与同质网络从而忽略了网络的异质性。针对这个问题，这篇文章提出了metapath2vec基于meta-path的随机游">
+<meta name="keywords" content="Meta-path,Heterogeneous Information Networks">
 <meta property="og:type" content="article">
-<meta property="og:title" content="OpenCV轮廓提取并计算图片中某一封闭区域的面积">
-<meta property="og:url" content="http://yoursite.com/2019/04/02/Pic-closed-edge/index.html">
+<meta property="og:title" content="《metapath2vec:Scalable Representation Learning for Heterogeneous Networks》阅读笔记">
+<meta property="og:url" content="http://yoursite.com/2019/06/29/metapath/index.html">
 <meta property="og:site_name" content="Wei Zhuo">
-<meta property="og:description" content="最近遇到一个问题，之前在这篇文章中提到过一个边缘检测并且拟合直线的方法。但是如果需要计算区域内的面积，比如说要计算下图中类似三角形区域内的面积之前的做法是用Canny算子提取边缘，再用HoughLines拟合直线，然后求出交点坐标并计算三角形面积，其中，边缘提取后的图像如下图所示：我们可以很明显的看出这不是一个标准的三角形，所以如果想要更精确的获得三角形，就需要对图片进行轮廓提取，然后计算轮廓内区">
+<meta property="og:description" content="论文地址： metapath2vec Introduction真实网络中通常包含多种类型的节点和关系，这些节点和关系共同组成了异质信息网络（Heterogeneous Information Network），传统的NE方法如DeepWalk, Line , node2vec更多关注与同质网络从而忽略了网络的异质性。针对这个问题，这篇文章提出了metapath2vec基于meta-path的随机游">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2019/04/02/Pic-closed-edge/cut.jpeg">
-<meta property="og:image" content="http://yoursite.com/2019/04/02/Pic-closed-edge/edge.jpeg">
-<meta property="og:image" content="http://yoursite.com/2019/04/02/Pic-closed-edge/img_trk.jpg">
-<meta property="og:image" content="http://yoursite.com/2019/04/02/Pic-closed-edge/img_tr.jpg">
-<meta property="og:updated_time" content="2019-04-02T08:35:06.360Z">
+<meta property="og:image" content="http://yoursite.com/2019/06/29/metapath/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/06/29/metapath/2.png">
+<meta property="og:updated_time" content="2019-06-29T10:56:30.496Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="OpenCV轮廓提取并计算图片中某一封闭区域的面积">
-<meta name="twitter:description" content="最近遇到一个问题，之前在这篇文章中提到过一个边缘检测并且拟合直线的方法。但是如果需要计算区域内的面积，比如说要计算下图中类似三角形区域内的面积之前的做法是用Canny算子提取边缘，再用HoughLines拟合直线，然后求出交点坐标并计算三角形面积，其中，边缘提取后的图像如下图所示：我们可以很明显的看出这不是一个标准的三角形，所以如果想要更精确的获得三角形，就需要对图片进行轮廓提取，然后计算轮廓内区">
-<meta name="twitter:image" content="http://yoursite.com/2019/04/02/Pic-closed-edge/cut.jpeg">
+<meta name="twitter:title" content="《metapath2vec:Scalable Representation Learning for Heterogeneous Networks》阅读笔记">
+<meta name="twitter:description" content="论文地址： metapath2vec Introduction真实网络中通常包含多种类型的节点和关系，这些节点和关系共同组成了异质信息网络（Heterogeneous Information Network），传统的NE方法如DeepWalk, Line , node2vec更多关注与同质网络从而忽略了网络的异质性。针对这个问题，这篇文章提出了metapath2vec基于meta-path的随机游">
+<meta name="twitter:image" content="http://yoursite.com/2019/06/29/metapath/1.png">
 
 
 
@@ -127,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/02/Pic-closed-edge/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/29/metapath/">
 
 
 
 
 
-  <title>OpenCV轮廓提取并计算图片中某一封闭区域的面积 | Wei Zhuo</title>
+  <title>《metapath2vec:Scalable Representation Learning for Heterogeneous Networks》阅读笔记 | Wei Zhuo</title>
   
 
 
@@ -290,7 +288,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/02/Pic-closed-edge/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/29/metapath/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mario Z">
@@ -307,7 +305,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">OpenCV轮廓提取并计算图片中某一封闭区域的面积</h1>
+          <h1 class="post-title" itemprop="name headline">《metapath2vec:Scalable Representation Learning for Heterogeneous Networks》阅读笔记</h1>
         
 
         <div class="post-meta">
@@ -319,8 +317,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-02T15:43:44+08:00">
-                2019-04-02
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-06-29T16:29:18+08:00">
+                2019-06-29
               </time>
             
 
@@ -342,8 +340,8 @@
               
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/project/" itemprop="url" rel="index">
-                    <span itemprop="name">project</span>
+                  <a href="/categories/Network-Embedding/" itemprop="url" rel="index">
+                    <span itemprop="name">Network Embedding</span>
                   </a>
                 </span>
 
@@ -353,8 +351,8 @@
                 
               
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
-                  <a href="/categories/project/Computer-Vision/" itemprop="url" rel="index">
-                    <span itemprop="name">Computer Vision</span>
+                  <a href="/categories/Network-Embedding/paper/" itemprop="url" rel="index">
+                    <span itemprop="name">paper</span>
                   </a>
                 </span>
 
@@ -384,7 +382,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  431
+                  1.2k
                 </span>
               
 
@@ -400,7 +398,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  2
+                  5
                 </span>
               
             </div>
@@ -421,9 +419,28 @@
       
 
       
-        <p>最近遇到一个问题，之前在<a href="https://zhuo931077127.github.io/2019/01/19/edge-detection-pj/" target="_blank" rel="noopener">这篇文章</a>中提到过一个边缘检测并且拟合直线的方法。但是如果需要计算区域内的面积，比如说要计算下图中类似三角形区域内的面积<br><img src="/2019/04/02/Pic-closed-edge/cut.jpeg" alt="你想输入的替代文字"><br>之前的做法是用Canny算子提取边缘，再用HoughLines拟合直线，然后求出交点坐标并计算三角形面积，其中，边缘提取后的图像如下图所示：<br><img src="/2019/04/02/Pic-closed-edge/edge.jpeg" alt="你想输入的替代文字"><br>我们可以很明显的看出这不是一个标准的三角形，所以如果想要更精确的获得三角形，就需要对图片进行轮廓提取，然后计算轮廓内区域的面积。这里给出代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import cv2</span><br><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line"># Input image</span><br><span class="line">img = cv2.imread(&apos;cut.jpeg&apos;, cv2.IMREAD_GRAYSCALE)</span><br><span class="line"></span><br><span class="line"># Needed due to JPG artifacts</span><br><span class="line">_, temp = cv2.threshold(img, 128, 255, cv2.THRESH_BINARY)</span><br><span class="line"></span><br><span class="line"># Dilate to better detect contours</span><br><span class="line">temp = cv2.dilate(temp, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3)))</span><br><span class="line"></span><br><span class="line"># Find largest contour</span><br><span class="line">_, cnts, _ = cv2.findContours(temp, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)</span><br><span class="line">largestCnt = []</span><br><span class="line">for cnt in cnts:</span><br><span class="line">    if len(cnt) &gt; len(largestCnt):</span><br><span class="line">        largestCnt = cnt</span><br><span class="line"></span><br><span class="line"># Determine center of area of largest contour</span><br><span class="line">M = cv2.moments(largestCnt)</span><br><span class="line">x = int(M[&quot;m10&quot;] / M[&quot;m00&quot;])</span><br><span class="line">y = int(M[&quot;m01&quot;] / M[&quot;m00&quot;])</span><br><span class="line"></span><br><span class="line"># Initiale mask for flood filling</span><br><span class="line">width, height = temp.shape</span><br><span class="line">mask = img2 = np.ones((width + 2, height + 2), np.uint8) * 255</span><br><span class="line">mask[1:width, 1:height] = 0</span><br><span class="line"></span><br><span class="line"># Generate intermediate image, draw largest contour, flood filled</span><br><span class="line">temp = np.zeros(temp.shape, np.uint8)</span><br><span class="line">temp = cv2.drawContours(temp, largestCnt, -1, 255, cv2.FILLED)</span><br><span class="line">_, temp, mask, _ = cv2.floodFill(temp, mask, (x, y), 255)</span><br><span class="line">temp = cv2.morphologyEx(temp, cv2.MORPH_OPEN, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (3, 3)))</span><br><span class="line"></span><br><span class="line"># Count pixels in desired region</span><br><span class="line">area = cv2.countNonZero(temp)</span><br><span class="line"></span><br><span class="line"># Put result on original image</span><br><span class="line">img = cv2.putText(img, str(area), (x, y), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1, 255)</span><br><span class="line"></span><br><span class="line">cv2.imshow(&apos;Input&apos;, img)</span><br><span class="line">cv2.imshow(&apos;Temp image&apos;, temp)</span><br><span class="line"></span><br><span class="line">cv2.waitKey(0)</span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
-<p>最后我们可以得到一个比较准确的轮廓：<br><img src="/2019/04/02/Pic-closed-edge/img_trk.jpg" alt="你想输入的替代文字"><br>面积如图中所示：<br><img src="/2019/04/02/Pic-closed-edge/img_tr.jpg" alt="你想输入的替代文字">  </p>
-<p>参考：<br><a href="https://stackoverflow.com/questions/55467031/how-to-get-the-area-of-the-contours" target="_blank" rel="noopener">https://stackoverflow.com/questions/55467031/how-to-get-the-area-of-the-contours</a></p>
+        <p>论文地址： <a href="https://ericdongyx.github.io/papers/KDD17-dong-chawla-swami-metapath2vec.pdf" target="_blank" rel="noopener">metapath2vec</a></p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>真实网络中通常包含多种类型的节点和关系，这些节点和关系共同组成了异质信息网络（Heterogeneous Information Network），传统的NE方法如DeepWalk, Line , node2vec更多关注与同质网络从而忽略了网络的异质性。针对这个问题，这篇文章提出了metapath2vec基于meta-path的随机游走来构建节点的异质邻域，采用异质Skip-gram模型来学习节点的representation。 另外，在负采样时也考虑异质性，从而进一步提出了metapath2vec++。如下：</p>
+<p><img src="/2019/06/29/metapath/1.png" alt=""></p>
+<h1 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a>Definition</h1><p><strong>Definition 1:</strong> 异质网络： $G = (V,E,T)$，其中每个节点和边分别对应一个映射 $\phi(v) : V \rightarrow T_{V}$ 和$\varphi(e) : E \rightarrow T_{E}$。 其中$T_V$和$T_E$分别表示节点的类型集合以及关系的类型集合。且$\left|T_{V}\right|+\left|T_{E}\right|&gt;2$。</p>
+<p><strong>Definition 2:</strong> 异质网络表示学习 为网络中的节点学习一个$d$维的表示 $\mathrm{X} \in \mathbb{R}^{|V| \times d}$，$d \ll|V|$。节点的向量表示可以捕获节点间结构和语义关系。</p>
+<h1 id="Model"><a href="#Model" class="headerlink" title="Model"></a>Model</h1><h2 id="metapath2vec"><a href="#metapath2vec" class="headerlink" title="metapath2vec"></a>metapath2vec</h2><p>Skip-Gram模型是给定一个节点，预测向下文节点的概率。metapath2vec的目的是考虑多种类型节点和多种类型关系的情况下，最大化网络概率。为了将异质信息融入skip-gram模型中，首先提出异质skip-gram。</p>
+<h3 id="Heterogeneous-Skip-Gram"><a href="#Heterogeneous-Skip-Gram" class="headerlink" title="Heterogeneous Skip-Gram"></a>Heterogeneous Skip-Gram</h3><p>对于节点类型$|T_V| &gt; 1$的网络$G$， 给定一个节点$v$，需要最大化属于类型$t \in T_V$的异质上下文节点的概率： </p>
+<script type="math/tex; mode=display">
+\arg \max _{\theta} \sum_{v \in V} \sum_{t \in T_{V}} \sum_{c_{t} \in N_{t}(v)} \log p\left(c_{t} | v ; \theta\right)</script><p>其中，$N_t(v)$表示$v$属于第$t$个类型的邻居节点。 $p\left(c_{t} | v ; \theta\right)$ 表示给定节点$v$，它的$t$类型邻域概率： $p\left(c_{t} | v ; \theta\right)=\frac{e^{X_{c_{t}} \cdot X_{v}}}{\sum_{u \in V} e^{X_{u} \cdot X_{v}}}$，是一个softmax函数，$X_v$是节点$v$的表示。由于softmax函数的分母每一次都要遍历所有节点，所以采用负采样改进$\log p(\cdot)$ 如下： </p>
+<script type="math/tex; mode=display">
+\log \sigma\left(X_{c_{t}} \cdot X_{v}\right)+\sum_{m=1}^{M} \mathbb{E}_{u^{m} \sim P(u)}\left[\log \sigma\left(-X_{u^{m}} \cdot X_{v}\right)\right]</script><p>其中 $\sigma(x)=\frac{1}{1+e^{-x}}$。</p>
+<h3 id="Meta-Path-Based-Random-Walks"><a href="#Meta-Path-Based-Random-Walks" class="headerlink" title="Meta-Path-Based Random Walks"></a>Meta-Path-Based Random Walks</h3><p>在第$i$步时，转移概率$p(v^{i+1}|v^i)$表示为忽略节点类型情况下$v^i$的邻居分布。但是，PathSim提出，异质信息网络中的随机游走偏向于高度可见的节点，即具有主导数量路径的节点，所以 本文设计了基于元路径的随机游走来生成path，从而能够捕获不同类型节点间的结构联系和语义关系，提出了促进异构网络结构转换为metapath2vec的skip-gram。</p>
+<p>一个meta-path模式$\mathcal{P}: V_{1} \stackrel{R_{1}}{\longrightarrow} V_{2} \stackrel{R_{2}}{\longrightarrow} \dots V_{t} \stackrel{R_{t}}{\longrightarrow} V_{t+1} \cdots \stackrel{R_{l-1}}{\longrightarrow} V_{l}$， 其中 $R=R_{1} \circ R_{2} \circ \cdots \circ R_{l-1}$ 节点类型$V_{1}$到$V_{l}$之间的组合关系。那么节点间的跳转概率定义为：</p>
+<script type="math/tex; mode=display">
+p\left(v^{i+1} | v_{t}^{i}, \mathcal{P}\right)=\left\{\begin{array}{cc}{\frac{1}{\left|N_{t+1}\left(v_{t}^{i}\right)\right|}} & {\left(v^{i+1}, v_{t}^{i}\right) \in E, \phi\left(v^{i+1}\right)=t+1} \\ {0} & {\left(v^{i+1}, v_{t}^{i}\right) \in E, \phi\left(v^{i+1}\right) \neq t+1} \\ {0} & {\left(v^{i+1}, v_{t}^{i}\right) \notin E}\end{array}\right.</script><p>其中$v^i_t \in V_t$，$N_{t+1}\left(v_{t}^{i}\right)$表示属于$t$类型的节点$v$的属于$t+1$类型的邻居。如果下一个节点$v^{i+1}$和$v^i_t$之间有边，并且$v^{i+1}$是$t+1$类型的节点 那么转移概率服从平均分布。其中，$v^{i+1}$服从meta-path所定义的下移节点类型。如图（a）中，原路径为$OAPVPAO$，那么节点$a_4$的下一个节点必然要是$P$类。 由于meta-path的对称性，所以：</p>
+<script type="math/tex; mode=display">
+p\left(v^{i+1} | v_{t}^{i}\right)=p\left(v^{i+1} | v_{1}^{i}\right), \text { if } t=l</script><h2 id="metapath2vec-1"><a href="#metapath2vec-1" class="headerlink" title="metapath2vec++"></a>metapath2vec++</h2><p>由于softmax做归一化时没有考虑节点类型，分母是对所有节点求和，所以为了融合节点类型，给出<strong>Heterogeneous negative sampling</strong>: </p>
+<script type="math/tex; mode=display">
+p\left(c_{t} | v ; \theta\right)=\frac{e^{X_{c_{t}} \cdot X_{v}}}{\sum_{u_{t} \in V_{t}} e^{X_{u_{t}} \cdot X_{v}}}</script><p><strong>如图（c）所示，metapath2vec++对每种类型节点指定不同的一组多项式分布</strong>，相当于在输出层根据节点类型，把异质网络分解成不同的同质网络，同样采用负采用的方法简化计算：</p>
+<script type="math/tex; mode=display">
+O(\mathrm{X})=\log \sigma\left(X_{c_{t}} \cdot X_{v}\right)+\sum_{m=1}^{M} \mathbb{E}_{u_{t}^{m} \sim P_{t}\left(u_{t}\right)}\left[\log \sigma\left(-X_{u_{t}^{m}} \cdot X_{v}\right)\right]</script><p>算法如下：</p>
+<p><img src="/2019/06/29/metapath/2.png" alt=""></p>
 
       
     </div>
@@ -470,7 +487,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Contours/" rel="tag"># Contours</a>
+            <a href="/tags/Meta-path/" rel="tag"># Meta-path</a>
+          
+            <a href="/tags/Heterogeneous-Information-Networks/" rel="tag"># Heterogeneous Information Networks</a>
           
         </div>
       
@@ -498,8 +517,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/20/IC-LT/" rel="next" title="社交网络影响最大化（Influence Maximization）中的IC，LT模型">
-                <i class="fa fa-chevron-left"></i> 社交网络影响最大化（Influence Maximization）中的IC，LT模型
+              <a href="/2019/05/29/MNMF/" rel="next" title="M-NMF:《Community Preserving Network Embedding》阅读笔记">
+                <i class="fa fa-chevron-left"></i> M-NMF:《Community Preserving Network Embedding》阅读笔记
               </a>
             
           </div>
@@ -507,10 +526,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/14/GAT/" rel="prev" title="《Graph Attention Networks》阅读笔记">
-                《Graph Attention Networks》阅读笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -567,8 +582,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -665,6 +689,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Definition"><span class="nav-number">2.</span> <span class="nav-text">Definition</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model"><span class="nav-number">3.</span> <span class="nav-text">Model</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#metapath2vec"><span class="nav-number">3.1.</span> <span class="nav-text">metapath2vec</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Heterogeneous-Skip-Gram"><span class="nav-number">3.1.1.</span> <span class="nav-text">Heterogeneous Skip-Gram</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Meta-Path-Based-Random-Walks"><span class="nav-number">3.1.2.</span> <span class="nav-text">Meta-Path-Based Random Walks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#metapath2vec-1"><span class="nav-number">3.2.</span> <span class="nav-text">metapath2vec++</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
