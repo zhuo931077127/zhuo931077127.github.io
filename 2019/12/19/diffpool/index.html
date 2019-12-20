@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="attention,Graph Neural Network,">
+  <meta name="keywords" content="Graph Neural Network,paper,Hierarchical Graph Embedding,">
 
 
 
@@ -81,24 +81,20 @@
 
 
 
-<meta name="description" content="论文地址：GAT Introduction本文介绍了一种新型的神经网络架构用来处理图结构。即Graph Attention Networks(GATs)。该方法利用masked self-attentional layer，即通过网络层的堆叠，可以获取网络中每个节点的领域特征，同时为领域中的不同节点指定不同的权重。这样做的好处是可以不需要各种高成本的矩阵运算也不依赖于的图结构信息。通过这种方式，">
-<meta name="keywords" content="attention,Graph Neural Network">
+<meta name="description" content="论文地址： DiffPool Introduction传统的GNN算法在Node-level的任务如节点分类、链路预测上有着较好的效果。但是，现有的GNN方法由于其存在平面化的局限性，因此无法学习图的层级表示（意味着无法预测整个图的标签），顾无法实现图分类任务。举个栗子，一个Graph，可以分成600个subgraph，每个节点都存在于其中的某个subgraph（一个节点只存在于一个subgrap">
+<meta name="keywords" content="Graph Neural Network,paper,Hierarchical Graph Embedding">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《Graph Attention Networks》阅读笔记">
-<meta property="og:url" content="http://yoursite.com/2019/04/14/GAT/index.html">
+<meta property="og:title" content="DiffPool:《Hierarchical Graph Representation Learning with Differentiable Pooling》阅读笔记">
+<meta property="og:url" content="http://yoursite.com/2019/12/19/diffpool/index.html">
 <meta property="og:site_name" content="Wei Zhuo">
-<meta property="og:description" content="论文地址：GAT Introduction本文介绍了一种新型的神经网络架构用来处理图结构。即Graph Attention Networks(GATs)。该方法利用masked self-attentional layer，即通过网络层的堆叠，可以获取网络中每个节点的领域特征，同时为领域中的不同节点指定不同的权重。这样做的好处是可以不需要各种高成本的矩阵运算也不依赖于的图结构信息。通过这种方式，">
+<meta property="og:description" content="论文地址： DiffPool Introduction传统的GNN算法在Node-level的任务如节点分类、链路预测上有着较好的效果。但是，现有的GNN方法由于其存在平面化的局限性，因此无法学习图的层级表示（意味着无法预测整个图的标签），顾无法实现图分类任务。举个栗子，一个Graph，可以分成600个subgraph，每个节点都存在于其中的某个subgraph（一个节点只存在于一个subgrap">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://yoursite.com/2019/04/14/GAT/1.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/14/GAT/2.png">
-<meta property="og:image" content="http://yoursite.com/2019/04/14/GAT/com.gif">
-<meta property="og:image" content="http://www.cl.cam.ac.uk/~pv273/images/gat.jpg">
-<meta property="og:image" content="http://www.cl.cam.ac.uk/~pv273/images/gat_tsne.jpg">
-<meta property="og:updated_time" content="2019-04-15T14:00:34.720Z">
+<meta property="og:image" content="http://yoursite.com/2019/12/19/diffpool/1.png">
+<meta property="og:updated_time" content="2019-12-20T09:40:34.555Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《Graph Attention Networks》阅读笔记">
-<meta name="twitter:description" content="论文地址：GAT Introduction本文介绍了一种新型的神经网络架构用来处理图结构。即Graph Attention Networks(GATs)。该方法利用masked self-attentional layer，即通过网络层的堆叠，可以获取网络中每个节点的领域特征，同时为领域中的不同节点指定不同的权重。这样做的好处是可以不需要各种高成本的矩阵运算也不依赖于的图结构信息。通过这种方式，">
-<meta name="twitter:image" content="http://yoursite.com/2019/04/14/GAT/1.png">
+<meta name="twitter:title" content="DiffPool:《Hierarchical Graph Representation Learning with Differentiable Pooling》阅读笔记">
+<meta name="twitter:description" content="论文地址： DiffPool Introduction传统的GNN算法在Node-level的任务如节点分类、链路预测上有着较好的效果。但是，现有的GNN方法由于其存在平面化的局限性，因此无法学习图的层级表示（意味着无法预测整个图的标签），顾无法实现图分类任务。举个栗子，一个Graph，可以分成600个subgraph，每个节点都存在于其中的某个subgraph（一个节点只存在于一个subgrap">
+<meta name="twitter:image" content="http://yoursite.com/2019/12/19/diffpool/1.png">
 
 
 
@@ -128,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/14/GAT/">
+  <link rel="canonical" href="http://yoursite.com/2019/12/19/diffpool/">
 
 
 
 
 
-  <title>《Graph Attention Networks》阅读笔记 | Wei Zhuo</title>
+  <title>DiffPool:《Hierarchical Graph Representation Learning with Differentiable Pooling》阅读笔记 | Wei Zhuo</title>
   
 
 
@@ -291,7 +287,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/14/GAT/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/19/diffpool/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Mario Z">
@@ -308,7 +304,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">《Graph Attention Networks》阅读笔记</h1>
+          <h1 class="post-title" itemprop="name headline">DiffPool:《Hierarchical Graph Representation Learning with Differentiable Pooling》阅读笔记</h1>
         
 
         <div class="post-meta">
@@ -320,8 +316,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-14T23:01:31+08:00">
-                2019-04-14
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-19T19:32:36+08:00">
+                2019-12-19
               </time>
             
 
@@ -345,6 +341,17 @@
                 <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
                   <a href="/categories/Graph-Mining/" itemprop="url" rel="index">
                     <span itemprop="name">Graph Mining</span>
+                  </a>
+                </span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/Graph-Mining/Graph-Neural-Network/" itemprop="url" rel="index">
+                    <span itemprop="name">Graph Neural Network</span>
                   </a>
                 </span>
 
@@ -374,7 +381,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.4k
+                  2.1k
                 </span>
               
 
@@ -390,7 +397,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  5
+                  8
                 </span>
               
             </div>
@@ -411,62 +418,36 @@
       
 
       
-        <p> 论文地址：<a href="https://arxiv.org/abs/1710.10903" target="_blank" rel="noopener">GAT</a></p>
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>本文介绍了一种新型的神经网络架构用来处理图结构。即<strong>Graph Attention Networks</strong>(<strong>GATs</strong>)。该方法利用masked self-attentional layer，即通过网络层的堆叠，可以获取网络中每个节点的领域特征，同时为领域中的不同节点指定不同的权重。这样做的好处是可以不需要各种高成本的矩阵运算也不依赖于的图结构信息。通过这种方式，GAT可以解决基于谱的图神经网络存在的问题，同时，GAT可以使用用归纳（inductive）和转换（transductive）问题。</p>
-<p><strong>归纳学习：</strong>先从训练样本中学习到一定的模式，然后利用其对测试样本进行预测（即首先从特殊到一般，然后再从一般到特殊），这类模型如常见的贝叶斯模型。</p>
-<p><strong>转换学习：</strong>先观察特定的训练样本，然后对特定的测试样本做出预测（从特殊到特殊），这类模型如k近邻、SVM等。</p>
-<h1 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h1><p>图$G$中有$N$个节点，他们的特征向量为：$\textbf{h}=\{\vec{h_1},\vec{h_2},…,\vec{h_N}\}$，其中，$\vec{h_i} \in \mathbb{R}^F$，$F$是每个节点特征数。我们的目的是输出一个新的节点特征向量集$\textbf{h’}=\{\vec{h_1’},\vec{h_2’},…,\vec{h_N’}\}$，其中$\vec{h_i’} \in \mathbb{R}^{F’}$。 本质就是修改特征向量的维度（Network embedding）</p>
-<p>为了获得足够的表达能力以将输入特征变换为更高级别的特征，需要至少一个可学习的线性变换。因此，以任意节点$i$和$j$为例，分别对节点$i$和节点$j$的特征向量做线性变换$W \in \mathbb{R}^{F \times F’}$，这样 就将$\vec{h_i}$和$\vec{h_j}$从$F$维的向量转化为$F’$维的向量：</p>
+        <p>论文地址： <a href="https://arxiv.org/pdf/1806.08804.pdf" target="_blank" rel="noopener">DiffPool</a></p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>传统的GNN算法在Node-level的任务如节点分类、链路预测上有着较好的效果。但是，现有的GNN方法由于其存在平面化的局限性，因此无法学习图的层级表示（意味着无法预测整个图的标签），顾无法实现图分类任务。举个栗子，一个Graph，可以分成600个subgraph，每个节点都存在于其中的某个subgraph（一个节点只存在于一个subgraph中），每个subgraph拥有一个标签，如何预测subgraph的标签是这篇文章主要想解决的问题。传统的GNN的图分类方法都是为Graph中的所有节点生成Embedding，然后将对这些Embedding做全局聚合（池化），如简单的把属于同一个subgraph的节点求和或者输入到MLP中生成一个标签向量来表示整个subgraph，但是这样可能忽略的图的层级结构信息。</p>
+<p>本文提出了一种端到端的可微可微图池化模块<strong>DiffPool</strong>，原理如下图所示：  </p>
+<p><img src="/2019/12/19/diffpool/1.png" alt=""></p>
+<p>在深度GNN中的每层中为节点学习可微的软簇分配，将节点映射到簇中，这些簇作为新的节点作为下一层GNN的输入。上图的Original Network部分是一个Subgraph，传统的方法是直接求出这个Subgraph中每个节点的Embedding，然后相加或输入到一个神经网络中，得到一个预测向量，这种方法可以称为“全局池化”。<strong>DiffPool</strong>中，假设第$l$层的输入是$1000$个簇（如果是第一层输入就是1000个节点），我们先设置第$l+1$层需要输入的簇的个数（假设为$100$），也就是第$l$层输出的簇个数，然后在$l$层中通过一个分配矩阵将$1000$个簇做合并，合并成100个“节点”，然后将这100个节点输入到$l+1$层中，最后图中的节点数逐渐减少，最后，图中的节点只有一个，这个节点的embedding就是整个图的表示，然后将图输入到一个多层感知机MLP中，得到预测向量，在于真值的one-hot向量做cross-entropy，得到Loss。</p>
+<h1 id="Model：DiffPool"><a href="#Model：DiffPool" class="headerlink" title="Model：DiffPool"></a>Model：DiffPool</h1><p>一个Graph表示为$\mathcal{G} = (A,F)$，其中$A \in \{0,1\}^{n \times n}$是Graph的邻接矩阵，$F \in \mathbb{R}^{n \times d}$表示节点特征矩阵，每个节点有$d$维的特征。给定一个带标签的子图集$\mathcal{D}=\left\{\left(G_{1}, y_{1}\right),\left(G_{2}, y_{2}\right), \ldots\right\}$， 其中 $y_{i} \in \mathcal{Y}$表示每个子图$G_i \in \mathcal{G}$的标签，任务目标是寻找映射$f: \mathcal{G} \rightarrow \mathcal{Y}$，将图映射到标签集。我们需要一个过程来将每个子图转化为一个有限维度的向量$\mathbb{R}^D$。</p>
+<h2 id="Graph-Neural-Networks"><a href="#Graph-Neural-Networks" class="headerlink" title="Graph Neural Networks"></a>Graph Neural Networks</h2><p>一般，GNN可以表示成”Message Passing”框架：</p>
 <script type="math/tex; mode=display">
-e_{ij} = a(W\vec{h_i},W\vec{h_j})</script><p>上式中，分别对$\vec{h_i}$和$\vec{h_j}$做线性变换，然后使用self-attention为图中的每一个节点分配注意力（权重）。上式中，注意力机制$a$是一个$\mathbb{R}^{F’} \times \mathbb{R}^{F’} \to \mathbb{R}$的映射。最终得到的$e_{ij}$是节点$j$对节点$i$的影响力系数（一个实数）。</p>
-<p>但是，上面的方法考虑其他节点对$i$的影响时，将图中的所有节点都纳入了考虑范围，这样就丢失了图的结构信息。因此，本文引入<strong>masked attention</strong>机制，即计算影响力系数$e_{ij}$时， 仅考虑节点$i$的<strong>一部分邻居节点</strong> $j \in \mathcal{N}_i$（$i$也属于$\mathcal{N}_i$）。使用softmax将节点$i$部分邻居的注意力系数分配到(0,1)上：</p>
+H^{(k)}=M\left(A, H^{(k-1)} ; \theta^{(k)}\right)</script><p>其中$H^{(k)} \in \mathbb{R}^{n \times d}$表示GNN迭代$k$次后的node embedding，$M$是一个Message扩散函数，由邻接矩阵$A$和一个可训练的参数$\theta^{(k)}$决定。$H^{(k-1)}$是由前一个message passing过程生成的node embedding。当$k = 1$时，第一个GNN的输入为$H^{(0)}$是原始的节点特征$H^{(0)} = F$。</p>
+<p>GNN的一个主要目标是设计一个Message Passage函数$M$，GCN（kipf.2016）是一种流行的GNN，$M$的实现方式是将线性变换和ReLU非线性激活结合起来:</p>
 <script type="math/tex; mode=display">
-\alpha_{ij} = softmax_j(e_{ij}) = \frac{\exp(e_{ij})}{\sum_{k \in \mathcal{N}_i}\exp(e_{ik})}</script><p>在本文中，$a$是一个单层前馈神经网络，参数是一个权重向量$\vec{\text{a}} \in \mathbb{R}^{2F’}$，然后使用负半轴斜率为0.2的<a href="https://blog.csdn.net/sinat_33027857/article/details/80192789" target="_blank" rel="noopener">LeakyReLU</a>作为非线性激活函数：</p>
+H^{(k)}=M\left(A, H^{(k-1)} ; W^{(k)}\right)=\operatorname{ReLU}\left(\tilde{D}^{-\frac{1}{2}} \tilde{A} \tilde{D}^{-\frac{1}{2}} H^{(k-1)} W^{(k-1)}\right)</script><p>其中，$\tilde{A} = A+I$是一个加上自环的邻接矩阵，$\tilde{D}=\sum_{j} \tilde{A}_{i j}$是$\tilde{A}$的度矩阵，$W^{(k)} \in \mathbb{R}^{d \times d}$是一个可训练的权重矩阵，$W$与节点个数以及每个节点的度无关，可以看做一个特征增强矩阵，用来规定GCN的输出维度。</p>
+<p>一个完整的GNN模型会迭代$K$次来输出最终的node embedding$Z = H^{(K)} \in \mathbb{R}^{n \times d}$。对于GCN，GAT，GraphSage，$K$一般取2-6。文中为了简单表示，忽略了GNN的内部结构，用$Z=GNN(A,X)$来表示一个任意的执行$K$次的GNN模块。</p>
+<h2 id="GNN和池化层的堆叠"><a href="#GNN和池化层的堆叠" class="headerlink" title="GNN和池化层的堆叠"></a>GNN和池化层的堆叠</h2><p>这篇工作的目标是定义一个一般的，端到端的可微策略，允许以层级的方式堆叠多个GNN模块。给定原始的邻接矩阵$A \in \mathbb{R}^{n \times n}$，$Z=GNN(A,X)$十一GNN模块的输出（假设这个GNN模块做了3次迭代）。我们需要定义一个策略来输出一个新的粗化图，这个粗化图包含$m$个节点，$m &lt; n$，它的邻接矩阵一个带权重的邻接矩阵$A’ \in \mathbb{R}^{m \times m}$，同时，输出node embedding $Z’ \in \mathbb{R}^{m \times d}$。这个粗化图（$m$个节点的图）作为下一层GNN的输入 （将$A’$和$Z’$输入下一个GNN层）。最后所有节点粗化为只有一个节点的图，这个节点的embedding就是这个subgraph的表示。因此，目标为：如何使用上一层GNN的输出结果，对节点做合并或池化，是的图中的节点减少，再将粗化的图输入到下一个GNN中。</p>
+<h2 id="基于可学习分配的可微分池化"><a href="#基于可学习分配的可微分池化" class="headerlink" title="基于可学习分配的可微分池化"></a>基于可学习分配的可微分池化</h2><p><strong>DiffPool</strong>通过对一个GNN模块的输出学习一个聚类分配矩阵来解决这个问题。可微池化层根据$l-1$层的GNN模块（假设是一个3次迭代的GNN模块）产生的node embedding来对节点做合并，从而产生一个粗化图，这个粗化图作为$l$层GNN模块的输入，最终，整个subgraph被粗化为一个cluster，可以看做一个节点。</p>
+<h3 id="用分配矩阵进行池化"><a href="#用分配矩阵进行池化" class="headerlink" title="用分配矩阵进行池化"></a>用分配矩阵进行池化</h3><p>$S^{(l)} \in \mathbb{R}^{n_{l} \times n_{l+1}}$表示第$l$层的聚类分配矩阵，$S^{(l)}$的每一行表示第l层的每个节点（cluster）,每一列表示$l+1$层的每个cluster（节点）。$S^{(l)}_{ij}$表示第$l$层的节点$i$属于第$l+1$层cluster $j$的概率，所以$S^{(l)}$是个概率矩阵。</p>
+<p>假如已经有了第$l$层的节点分配矩阵$S^{(l)}$，将第$l$层的邻接矩阵表示为$A^{(l)}$，将第$l$层GNN模块的输出节点特征（node embedding）表示为$Z^{(l)}$，通过DiffPool层可以将第$l$层的图粗化为$\left(A^{(l+1)}, X^{(l+1)}\right)=\operatorname{DIFFPOOL}\left(A^{(l)}, Z^{(l)}\right)$，其中，$A^{(l+1)}$是$l+1$层图的邻接矩阵，是一个粗化后的图，$X^{(l+1)}$是下一层的输入特征（node/cluster embedding）：</p>
 <script type="math/tex; mode=display">
-\alpha_{ij} = \frac{\exp(LeakyReLU(\vec{\text{a}}^T[W\vec{h_i}||W\vec{h_j}]))}{\sum_{k\in \mathcal{N}_i} \exp(LeakyReLU(\vec{\text{a}}^T[W\vec{h_i}||W\vec{h_k}]))}</script><p>其中$||$表示向量的连接操作。上述过程可以用下图表示：</p>
-<p><img src="/2019/04/14/GAT/1.png" alt=""></p>
-<p>这样，我们就可以获得节点$j$对节点$i$的注意力系数$\alpha_{ij}$，那么，节点$i$最终的输出特征$\vec{h_i’}$就是对$\mathcal{N}_i$中所有节点的加权（加注意力）求和：</p>
+\begin{aligned}
+&X^{(l+1)}=S^{(l)^{T}} Z^{(l)} \in \mathbb{R}^{n_{l+1} \times d}\\
+&A^{(l+1)}=S^{(l)^{T}} A^{(l)} S^{(l)} \in \mathbb{R}^{n_{l+1} \times n_{l+1}}
+\end{aligned}</script><p>上面第一个公式将第$l$层节点嵌入$Z^{(l)}$转化为下一层的输入特征$X^{(l+1)}$。第二个公式将第$l$层的邻接矩阵转化为$l+1$层的粗化图邻接矩阵$A^{(l+1)}$。$n_{l+1}$是$l+1$层节点（cluster）的数量。最后，将$A^{(l+1)}$和$X^{(l+1)}$作为下一层GNN的输入。这样图中的节点就由$n_l$个下降到$n_{l+1}$个。</p>
+<h3 id="学习分配矩阵S"><a href="#学习分配矩阵S" class="headerlink" title="学习分配矩阵S"></a>学习分配矩阵S</h3><p>第$l$层的输入特征$X^{(l)}$，用一个GNN模块（代码中是一个3层的GCN）得到node embedding：</p>
 <script type="math/tex; mode=display">
-\vec{h_i'} = \sigma (\sum_{j \in \mathcal{N}_i}\alpha_{ij} W\vec{h_j})</script><p>另外，本文使用<strong>multi-head attention</strong>来稳定self-attention的学习过程，如下图所示： </p>
-<p><img src="/2019/04/14/GAT/2.png" alt=""></p>
-<p>图中是$K=3$ heads的multi-head attention，不同颜色的箭头表示一个独立的attention计算，每个邻居节点做三次attention计算。每次attention计算就是一个普通的self-attention，输出的结果是一个$\vec{h_i’}$。multi-head attention为每个节点$i$输出3个不同的$\vec{h_i’}$,，然后将这三个向量做连接或者取平均，得到最终的$\vec{h_i’}$：</p>
+Z^{(l)}=\mathrm{GNN}_{l, \text { embed }}\left(A^{(l)}, X^{(l)}\right)</script><p>用另外一个GNN模块（代码中是一个3层的GCN）在用一个softmax转化为概率矩阵来的到节点分配矩阵：</p>
 <script type="math/tex; mode=display">
-\vec{h_i'} = \|^K_{k=1} \sigma\left(\sum_{j \in \mathcal{N}_{i}} \alpha_{i j}^{k} \mathbf{W}^{k} \vec{h}_{j}\right)</script><p>上式为把不同$k$的向量做连接操作，其中$\alpha_{ij}^k$和$\mathbf{W}^{k}$表示第$k$个head的结果，我们可以注意到，最终输出的结果是$KF’$维的。除了concat之外，我们还可以通过求平均的方式来获得$\vec{h_i’}$:</p>
-<script type="math/tex; mode=display">
-\vec{h'_i}=\sigma\left(\frac{1}{K} \sum_{k=1}^{K} \sum_{j \in \mathcal{N}_{i}} \alpha_{i j}^{k} \mathbf{W}^{k} \vec{h}_{j}\right)</script><h1 id="Comparisions"><a href="#Comparisions" class="headerlink" title="Comparisions"></a>Comparisions</h1><ul>
-<li><p>GAT是计算高效的。self-attention是在所有边上并行计算，并且输出的特征在所有边上并行计算，从而不需要昂贵的矩阵计算和特征分解。单个head的GAT的时间复杂度为$O\left(|V| F F^{\prime}+|E| F^{\prime}\right)$，其中$F$是输入的特征数，$|V|$和$|E|$分别是节点数和边数。复杂度与GCN相同。</p>
-</li>
-<li><p>与GCN不同的是，GAT为同一邻域中的节点分配不同的重要性（different importance），提升了模型容量。</p>
-</li>
-<li><p>注意机制以共享的方式应用于图中的所有边（共享$\mathbf{W}$），因此它不依赖于对全局图结构的预先访问或其所有节点的（特征）。这样有以下提升：</p>
-<ul>
-<li>不必是无向图。如果$i \to j$不存在,可以直接不用计算$\alpha_{ij}$。</li>
-<li>可直接应用于归纳学习。</li>
-</ul>
-</li>
-<li>GAT可以被描述为一种特殊的<a href="http://openaccess.thecvf.com/content_cvpr_2017/papers/Monti_Geometric_Deep_Learning_CVPR_2017_paper.pdf" target="_blank" rel="noopener">MoNet(Geometric deep learning on graphs and manifolds using mixture model cnns)</a>。具体我还没看，不会<img src="/2019/04/14/GAT/com.gif" alt=""></li>
-</ul>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th style="text-align:center">GAT layer</th>
-<th style="text-align:center">t-SNE + Attention coefficients on Cora</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center"><img src="http://www.cl.cam.ac.uk/~pv273/images/gat.jpg" alt=""></td>
-<td style="text-align:center"><img src="http://www.cl.cam.ac.uk/~pv273/images/gat_tsne.jpg" alt=""></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><p>参考：</p>
-<p>GCN：<a href="https://arxiv.org/abs/1609.02907" target="_blank" rel="noopener">https://arxiv.org/abs/1609.02907</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/34232818" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34232818</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/59176692" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/59176692</a></p>
-<p><a href="https://arxiv.org/abs/1710.10903" target="_blank" rel="noopener">https://arxiv.org/abs/1710.10903</a></p>
+S^{(l)}=\operatorname{softmax}\left(\mathrm{GNN}_{l, \mathrm{pool}}\left(A^{(l)}, X^{(l)}\right)\right)</script><p>$S^{(l)}$是一个$n_l \times n_{l+1}$的全链接矩阵，$S^{(l)}_{ij}$表示第$l$层的节点$i$属于第$l+1$层cluster $j$的概率。</p>
+<p>$l=0$时，第一层GNN的输入是subgraph的原始邻接矩阵$A$和特征矩阵$F$，倒数第二层$l=L-1$时的分配矩阵$S^{(L-1)}$是一个全1向量，那么最后将所以节点归为一类，产生一个代表整个图的嵌入向量。</p>
+<p>所以，把图节点的合并过程称为分层的图表示学习（Hierarchical Graph Representation Learning）。</p>
+<h2 id="辅助链路预测和熵正则化"><a href="#辅助链路预测和熵正则化" class="headerlink" title="辅助链路预测和熵正则化"></a>辅助链路预测和熵正则化</h2><p>未完待续。。。</p>
 
       
     </div>
@@ -513,9 +494,11 @@ e_{ij} = a(W\vec{h_i},W\vec{h_j})</script><p>上式中，分别对$\vec{h_i}$和
       
         <div class="post-tags">
           
-            <a href="/tags/attention/" rel="tag"># attention</a>
-          
             <a href="/tags/Graph-Neural-Network/" rel="tag"># Graph Neural Network</a>
+          
+            <a href="/tags/paper/" rel="tag"># paper</a>
+          
+            <a href="/tags/Hierarchical-Graph-Embedding/" rel="tag"># Hierarchical Graph Embedding</a>
           
         </div>
       
@@ -543,8 +526,8 @@ e_{ij} = a(W\vec{h_i},W\vec{h_j})</script><p>上式中，分别对$\vec{h_i}$和
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/02/Pic-closed-edge/" rel="next" title="OpenCV轮廓提取并计算图片中某一封闭区域的面积">
-                <i class="fa fa-chevron-left"></i> OpenCV轮廓提取并计算图片中某一封闭区域的面积
+              <a href="/2019/09/07/spectral-clustering/" rel="next" title="谱聚类 Spectral Clustering 笔记">
+                <i class="fa fa-chevron-left"></i> 谱聚类 Spectral Clustering 笔记
               </a>
             
           </div>
@@ -552,10 +535,6 @@ e_{ij} = a(W\vec{h_i},W\vec{h_j})</script><p>上式中，分别对$\vec{h_i}$和
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/24/graphWave/" rel="prev" title="GraphWave:《Learning Structural Node Embeddings via DiffusionWavelets》代码笔记">
-                GraphWave:《Learning Structural Node Embeddings via DiffusionWavelets》代码笔记 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -729,7 +708,7 @@ e_{ij} = a(W\vec{h_i},W\vec{h_j})</script><p>上式中，分别对$\vec{h_i}$和
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Architecture"><span class="nav-number">2.</span> <span class="nav-text">Architecture</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Comparisions"><span class="nav-number">3.</span> <span class="nav-text">Comparisions</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model：DiffPool"><span class="nav-number">2.</span> <span class="nav-text">Model：DiffPool</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Graph-Neural-Networks"><span class="nav-number">2.1.</span> <span class="nav-text">Graph Neural Networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GNN和池化层的堆叠"><span class="nav-number">2.2.</span> <span class="nav-text">GNN和池化层的堆叠</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于可学习分配的可微分池化"><span class="nav-number">2.3.</span> <span class="nav-text">基于可学习分配的可微分池化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#用分配矩阵进行池化"><span class="nav-number">2.3.1.</span> <span class="nav-text">用分配矩阵进行池化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习分配矩阵S"><span class="nav-number">2.3.2.</span> <span class="nav-text">学习分配矩阵S</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#辅助链路预测和熵正则化"><span class="nav-number">2.4.</span> <span class="nav-text">辅助链路预测和熵正则化</span></a></li></ol></li></ol></div>
             
 
           </div>
