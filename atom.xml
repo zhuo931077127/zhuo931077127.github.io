@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Wei Zhuo</title>
+  <title>Big Brother</title>
   
   <subtitle>始终在磕磕绊绊的摸索，至今依然是个无知的人</subtitle>
   <link href="/atom.xml" rel="self"/>
@@ -10,7 +10,7 @@
   <id>http://yoursite.com/</id>
   
   <author>
-    <name>Mario Z</name>
+    <name>Mario</name>
     
   </author>
   
